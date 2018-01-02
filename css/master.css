@@ -50,11 +50,12 @@ footer {
 
 nav {
     background: #01CFFF;
-    text-align: center;
+    text-align: center
 }
 
 nav h4 {
     padding: 12px;
+    font-size: 180%;
 }
 
 nav ul li {
@@ -65,7 +66,9 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-weight: bold
+    font-weight: bold;
+    font-family: Gentium Basic;
+    font-size: 180%;
 }
 
 header {
@@ -91,6 +94,34 @@ header h1 {
 
 .form ul li select {
     font-size: 100%;
+}
+
+.form input[type=submit] {
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.table table {
+    margin: 3px auto;
+    width: 100%;
+}
+
+.form.table table tr th {
+    background: #009f00;
+    padding: 12px;
+}
+
+.table table tr td {
+    padding: 12px;
+}
+
+.table table tbody tr {
+    background: white;
+    color: black;
+}
+
+.table table tbody tr:nth-child(odd) {
+    background: silver;
 }
 
 .links ul li {
