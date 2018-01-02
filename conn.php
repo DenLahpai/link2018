@@ -58,24 +58,15 @@ class Database {
 
     public function generate_Reference($r) {
         if ($r <= 9 ) {
-		$zeros = '00000';
+		$zeros = '00';
     	}
     	else if ($r <= 99) {
-    		$zeros = '0000';
-    	}
-    	else if ($r <= 999) {
-    		$zeros = '000';
-    	}
-    	else if ($r <= 9999) {
-    		$zeros = '00';
-    	}
-    	else if ($r <= 99999) {
     		$zeros = '0';
     	}
     	else {
     		$zeros = '';
     	}
-    	$reference = 'SEC-'.$zeros.$r;
+    	$reference = 'LNK-'.$zeros.$r;
     	return $reference;
     }
 }
@@ -84,8 +75,12 @@ class Database {
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-//checking if a user is logged in
- if (!isset($_SESSION['userId'])){
+// checking if a user is logged in
+ if (!isset($_SESSION['UsersId'])){
     header("location:index.php");
     $_SESSION['msg_error'] = "Session Expired! Please log in again!";
 }
+
+$msg_error = NULL;
+
+?>

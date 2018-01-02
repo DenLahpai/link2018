@@ -6,6 +6,7 @@
 
 .content {
     background: black;
+    color: white;
     display: grid;
     grid-gap: 6px;
     grid-template-columns: repeat(3, 1fr);
@@ -14,7 +15,7 @@
     " header header header "
     " section section section "
     " main main main "
-    " footer footer footer "
+    " aside aside aside "
     ;
 }
 
@@ -34,8 +35,37 @@ main {
     grid-area: main;
 }
 
+aside {
+    grid-area: aside;
+}
+
 footer {
-    grid-area: footer;
+    text-align: center;
+    padding: 12px;
+}
+
+#menu-items {
+    display: none;
+}
+
+nav {
+    background: #01CFFF;
+    text-align: center;
+}
+
+nav h4 {
+    padding: 12px;
+}
+
+nav ul li {
+    padding: 12px;
+    list-style: none;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold
 }
 
 header {
@@ -45,4 +75,64 @@ header {
 
 header h1 {
     color: #01CFFF;
+}
+
+
+.form ul li {
+    padding: 12px;
+    list-style: none;
+    text-align: center;
+    font-size: 240%;
+}
+
+.form ul li input {
+    font-size: 100%;
+}
+
+.form ul li select {
+    font-size: 100%;
+}
+
+.links ul li {
+    padding: 12px;
+    list-style:none;
+    font-size: 240%;
+}
+
+.links ul li a {
+    color: #009f00;
+}
+
+.error {
+    color: red;
+}
+
+button {
+    font-size: 100%;
+    margin: 48px;
+    padding: 12px 24px;
+    background: #009f00;
+    color: white;
+    border-radius: 12px;
+}
+
+/*styles for tablets*/
+@media screen and (min-width: 992px) {
+    .content {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas:
+        " nav header header header header header "
+        " nav section section section section section "
+        " nav main main main main main "
+        " nav aside aside aside aside aside "
+        ;
+    }
+
+    #menu-items {
+        display: block;
+    }
+
+    #menu-switch {
+        display: none;
+    }
 }

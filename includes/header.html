@@ -1,3 +1,10 @@
 <header>
     <h1><?php echo $pageTitle; ?></h1>
+    <p class="error">
+    <?php
+    if ($msg_error != NULL) {
+        echo $msg_error;
+    }
+    ?>
+    </p>
 </header>
