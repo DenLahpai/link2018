@@ -55,7 +55,6 @@ nav {
 
 nav h4 {
     padding: 12px;
-    font-size: 180%;
 }
 
 nav ul li {
@@ -68,7 +67,6 @@ nav ul li a {
     text-decoration: none;
     font-weight: bold;
     font-family: Gentium Basic;
-    font-size: 180%;
 }
 
 header {
@@ -80,21 +78,27 @@ header h1 {
     color: #01CFFF;
 }
 
+header p {
+    padding: 6px;
+}
 
 .form ul li {
     padding: 12px;
+    margin: 12px auto;
     list-style: none;
+}
+
+.form ul li:last-child {
     text-align: center;
-    font-size: 240%;
 }
 
 .form ul li input {
-    font-size: 100%;
+    background: black;
+    color: white;
+    border:none;
+    border-bottom: 1px solid #009f00;
 }
 
-.form ul li select {
-    font-size: 100%;
-}
 
 .form input[type=submit] {
     padding: 6px 12px;
@@ -127,7 +131,7 @@ header h1 {
 .links ul li {
     padding: 12px;
     list-style:none;
-    font-size: 240%;
+
 }
 
 .links ul li a {
@@ -139,8 +143,6 @@ header h1 {
 }
 
 button {
-    font-size: 100%;
-    margin: 48px;
     padding: 12px 24px;
     background: #009f00;
     color: white;
@@ -149,9 +151,28 @@ button {
 
 .grid-div {
     display: grid;
+    grid-template-columns: 1fr;
+}
+
+.grid-div div:nth-child(odd){
+    background: red;
+}
+
+.grid-item ul li {
+    list-style: none;
+    text-align: center;
 }
 
 /*styles for tablets*/
+@media screen and (min-width: 768px) {
+    .grid-div {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/*styles for computers*/
 @media screen and (min-width: 992px) {
     .content {
         grid-template-columns: repeat(6, 1fr);
@@ -169,5 +190,10 @@ button {
 
     #menu-switch {
         display: none;
+    }
+
+    .grid-div {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
     }
 }
