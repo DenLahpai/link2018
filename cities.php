@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $AirportCode = $_REQUEST['AirportCode'];
     $City = trim($_REQUEST['City']);
     $CountryCode = $_REQUEST['CountryCode'];
-    if(empty($AirportCode) || empty($City) || $CountryCode == 0) {
+    if(empty($AirportCode) || empty($City) || empty($CountryCode)) {
         $msg_error = $empty_field;
     }
     else {
@@ -33,7 +33,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 )
             ;";
             $insert_Cities->query($query_insert_Cities);
-            $insert_Cities->bind(':AiportCode', $AiportCode);
+            $insert_Cities->bind(':AirportCode', $AirportCode);
             $insert_Cities->bind(':City', $City);
             $insert_Cities->bind(':CountryCode', $CountryCode);
             if($insert_Cities->execute()) {
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <th>
                                     <label for="CountryCode">Country:</label>
                                     <select name="CountryCode">
-                                        <option value="0">Select</option>
+                                        <option value="">Select</option>
                                         <?php
                                         //getting data from the table Countries
                                         $getRows_Countries = new Database();
@@ -87,7 +87,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         $getRows_Countries->query($query_getRows_Countries);
                                         $rows_Countries = $getRows_Countries->resultset();
                                         foreach ($rows_Countries as $row_Countries) {
-                                            echo "<option value=\"$row_Countries->Id\">".$row_Countries->Country."</option>";
+                                            echo "<option value=\"$row_Countries->Code\">".$row_Countries->Country."</option>";
                                         }
                                         ?>
                                     </select>
