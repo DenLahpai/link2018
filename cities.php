@@ -1,5 +1,51 @@
 <?php
 require "conn.php";
+
+//Insert data to the table Cities
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $AirportCode = $_REQUEST['AirportCode'];
+    $City = trim($_REQUEST['City']);
+    $CountryCode = $_REQUEST['CountryCode'];
+    if(empty($AirportCode) || empty($City) || $CountryCode == 0) {
+        $msg_error = $empty_field;
+    }
+    else {
+        //checking for duplications
+        $check_Cities = new Database();
+        $query_check_Cities = "SELECT * FROM Cities WHERE AirportCode = :AirportCode ;";
+        $check_Cities->query($query_check_Cities);
+        $check_Cities->bind(':AirportCode', $AirportCode);
+        $rowCount_Cities = $check_Cities->rowCount();
+        if ($rowCount_Cities > 0) {
+            $msg_error = $duplicate_entry;
+        }
+        else {
+            //inserting
+            $insert_Cities = new Database();
+            $query_insert_Cities = "INSERT INTO Cities (
+                AirportCode,
+                City,
+                CountryCode
+                ) VALUES(
+                :AirportCode,
+                :City,
+                :CountryCode
+                )
+            ;";
+            $insert_Cities->query($query_insert_Cities);
+            $insert_Cities->bind(':AiportCode', $AiportCode);
+            $insert_Cities->bind(':City', $City);
+            $insert_Cities->bind(':CountryCode', $CountryCode);
+            if($insert_Cities->execute()) {
+                $msg_error = NULL;
+            }
+            else {
+                $msg_error = $connection_problem;
+            }
+        }
+    }
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,7 +116,9 @@ require "conn.php";
                                 echo "<td>".$row_Cities->AirportCode."</td>";
                                 echo "<td>".$row_Cities->City."</td>";
                                 echo "<td>".$row_Cities->Country."</td>";
-                                //TODO
+                                echo "<td><a href=\"citiesEdit.php?CitiesId=$row_Cities->Id\">";
+                                echo "Edit</a></td>";
+                                echo "</tr>";
                             }
                             ?>
                         </tbody>
@@ -78,5 +126,6 @@ require "conn.php";
                 </form>
             </main>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>

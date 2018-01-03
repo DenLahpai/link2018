@@ -31,8 +31,7 @@ require "conn.php";
                                 $getRows_Agents->query($query_getRows_Agents);
                                 $rows_Agents = $getRows_Agents->resultset();
                                 foreach ($rows_Agents as $row_Agents) {
-                                    echo "<option id=\"$row_Agents->Id\">".$row_Agents->Name."</option>";
-                                    // print_r($row_Agents);
+                                    echo "<option id=\"$row_Agents->Id\">".$row_Agents->Name."</option>";                                    
                                 }
                                 ?>
                             </select>

@@ -8,7 +8,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //checking for empty fields!
     if(empty($Code) || empty($Country) || empty($Region)) {
-        $msg_error = "Please make sure to fill out all the fields!";
+        $msg_error = $empty_field;
     }
     else {
         //checking for duplications
@@ -18,7 +18,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $check_Countries->bind(':Code', $Code);
         $rowCount_Countries = $check_Countries->rowCount();
         if ($rowCount_Countries > 0 ) {
-            $msg_error = "Country code already exist!";
+            $msg_error = $duplicate_entry;
         }
         else {
             //inserting data
@@ -41,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $msg_error = NULL;
             }
             else {
-                $msg_error = 'There was a connection problem with the database!';
+                $msg_error = $connection_problem;
             }
         }
     }

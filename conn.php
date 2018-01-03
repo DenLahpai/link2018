@@ -81,6 +81,10 @@ ini_set('display_errors', 1);
     $_SESSION['msg_error'] = "Session Expired! Please log in again!";
 }
 
-$msg_error = NULL;
+////////////////////////////////Error notifications/////////////////////////////////////
+$msg_error = NULL; //used as variable in the header to display error messages
+$empty_field = "Please make sure to fill out all the required field(s)!";
+$duplicate_entry = "Duplicated entry!";
+$connection_problem = "There was a connection problem with the database server!";
 
 ?>
