@@ -143,11 +143,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<li>".$row_Corporates->Name."</li>";
                         echo "<li>".$row_Corporates->Chain."</li>";
                         echo "<li>".$row_Corporates->Type."</li>";
-                        // echo "<li>".$row_Corporates->Country."</li>";
-                        // echo "<li>".$row_Corporates->Email."</li>";
-                        // echo "<li>".$row_Corporates->Website."</li>";
                         echo "<li><a href=\"corporatesEdit.php?corporatesId=$row_Corporates->Id\">";
-                        echo "Edit</a></li>";
+                        echo "View Details</a></li>";
                         echo "</ul>";
                         echo "</div><!-- End of grid-item-->";
                     }

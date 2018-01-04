@@ -48,7 +48,7 @@ class Database {
 
     public function resultset() {
         $this->execute();
-        return $this->stm->fetchAll(PDO:: FETCH_OBJ);
+        return $this->stm->fetchAll(PDO::FETCH_OBJ);
     }
 
     public function rowCount() {
@@ -66,7 +66,7 @@ class Database {
     	else {
     		$zeros = '';
     	}
-    	$reference = 'LNK-'.$zeros.$r;
+    	$reference = 'LNK'.$zeros.$r;
     	return $reference;
     }
 }

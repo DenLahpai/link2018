@@ -8,6 +8,12 @@ session_start();
         $title = "Welcome";
         include "includes/head.html";
         ?>
+        <style media="screen">
+            main ul li {
+                text-align: center;
+            }
+        </style>
+
     </head>
     <body>
         <div class="content"><!-- content -->
@@ -16,7 +22,7 @@ session_start();
             $pageTitle = "Welcome";
             include "includes/header.html";
             ?>
-            <main>
+        <main>
                 <form action="login.php" method="post" class="form login">
                     <ul>
                         <li class="error">

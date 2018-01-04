@@ -50,7 +50,9 @@ footer {
 
 nav {
     background: #01CFFF;
-    text-align: center
+    text-align: center;
+    border-radius: 12px;
+
 }
 
 nav h4 {
@@ -82,6 +84,12 @@ header p {
     padding: 6px;
 }
 
+.form {
+    display: inline-block;
+    background: #787878;
+    border-radius: 12px;
+}
+
 .form ul li {
     padding: 12px;
     margin: 12px auto;
@@ -93,12 +101,11 @@ header p {
 }
 
 .form ul li input {
-    background: black;
+    background: #787878;
     color: white;
-    border:none;
+    border: none;
     border-bottom: 1px solid #009f00;
 }
-
 
 .form input[type=submit] {
     padding: 6px 12px;
@@ -131,7 +138,6 @@ header p {
 .links ul li {
     padding: 12px;
     list-style:none;
-
 }
 
 .links ul li a {
@@ -149,18 +155,41 @@ button {
     border-radius: 12px;
 }
 
+main h3 {
+    text-align: center;
+}
+
 .grid-div {
     display: grid;
     grid-template-columns: 1fr;
 }
 
+.grid-item {
+    border-radius: 24px;
+    padding: 12px;
+}
+
+.grid-div div {
+    background: #01CFFF;
+    margin: 6px;
+}
+
 .grid-div div:nth-child(odd){
-    background: red;
+    background:#009f00 ;
+}
+
+.grid-item ul li:nth-child(1) {
+    font-weight: bolder;
 }
 
 .grid-item ul li {
     list-style: none;
     text-align: center;
+    padding: 6px;
+}
+
+.grid-item ul li a {
+    font-weight: bold;
 }
 
 /*styles for tablets*/
@@ -170,7 +199,6 @@ button {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-
 
 /*styles for computers*/
 @media screen and (min-width: 992px) {
