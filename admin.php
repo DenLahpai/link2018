@@ -1,4 +1,4 @@
-<?php require "conn.php"; ?>
+<?php require "../conn/conn.php"; ?>
 <!DOCTYPE html>
 <html>
     <head>

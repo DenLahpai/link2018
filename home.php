@@ -1,5 +1,5 @@
 <?php
-require "conn.php";
+require "../conn/conn.php";
 
 //inserting data to the table Bookings
 if($_SERVER['REQUEST_METHOD'] == 'POST') {

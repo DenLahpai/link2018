@@ -1,5 +1,5 @@
 <?php
-require "conn.php";
+require "../conn/conn.php";
 
 //insert data to the table Corporates
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
