@@ -9,7 +9,7 @@ session_start();
         include "includes/head.html";
         ?>
         <style media="screen">
-            main ul li {
+            main {
                 text-align: center;
             }
         </style>
@@ -22,7 +22,7 @@ session_start();
             $pageTitle = "Welcome";
             include "includes/header.html";
             ?>
-        <main>
+            <main>
                 <form action="login.php" method="post" class="form login">
                     <ul>
                         <li class="error">
