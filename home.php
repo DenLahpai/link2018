@@ -161,8 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </li>
                         <li>
                             <button type="submit" name="buttonSubmit">Submit</button>
-                        </li>
-                        <li></li>
+                        </li>                        
                     </ul>
                 </form>
             </section>
