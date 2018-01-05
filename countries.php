@@ -1,4 +1,4 @@
-<?php require "../conn/conn.php";
+<?php require "functions.php";
 
 //inserting data to the table Countries
 if($_SERVER['REQUEST_METHOD'] == 'POST') {

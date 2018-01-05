@@ -1,5 +1,5 @@
 <?php
-require "../conn/conn.php";
+require "functions.php";
 
 //inserting data to the table Bookings
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -175,6 +175,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     //getting data from the table Bookings
                     $getRows_Bookings = new Database();
                     $query_getRows_Bookings = "SELECT
+                        Bookings.Id AS BookingsId,
                         Bookings.Reference,
                         Bookings.Name AS BookingName,
                         Corporates.Name AS CorporateName,
@@ -196,7 +197,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     foreach ($rows_Bookings as $row_Bookings) {
                         echo "<div class=\"grid-item\"><!-- grid-item -->";
                         echo "<ul>";
-                        echo "<li>".$row_Bookings->Reference."</li>";
+                        echo "<li><a href=\"booking_details.php?BookingsId=$row_Bookings->BookingsId\">".$row_Bookings->Reference."</a></li>";
                         echo "<li>".$row_Bookings->BookingName;
                         echo " X ".$row_Bookings->Pax." Pers</li>";
                         echo "<li>".$row_Bookings->CorporateName."</li>";
@@ -204,7 +205,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo date("d-M-Y", strtotime($row_Bookings->ArvDate))."</li>";
                         echo "<li style=\"font-style: italic;\">By ";
                         echo $row_Bookings->Username."</li>";
-                        echo "<li><a href=\"booking_details.php\">View Details</a></li>";
+                        echo "<li><a href=\"bookingsEdit.php?BookingsId=$row_Bookings->BookingsId\">Edit</a></li>";
                         echo "</div><!-- end of grid-item --!>";
                     }
                     ?>

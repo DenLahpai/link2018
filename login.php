@@ -1,5 +1,5 @@
 <?php
-require "../conn/conn.php";
+require "functions.php";
 
 //getting data from the form
 if($_SERVER['REQUEST_METHOD'] == 'POST') {

@@ -1,5 +1,5 @@
 <?php
-require "../conn/conn.php";
+require "functions.php";
 
 //Insert data to the table Cities
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
