@@ -12,7 +12,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Exchange = trim($_REQUEST['Exchange']);
     $UserId = $_SESSION['UsersId'];
 
-    if(empty($CorporatesId) || $Pax <= 0 || empty($Pax) || empty($Exchange)) {
+    if(empty($CorporatesId) || $Pax <= 0 || empty($Pax) || $Exchange <= 0 || empty($Exchange)) {
         $msg_error = $empty_field;
     }
     else {
@@ -161,7 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </li>
                         <li>
                             <button type="submit" name="buttonSubmit">Submit</button>
-                        </li>                        
+                        </li>
                     </ul>
                 </form>
             </section>

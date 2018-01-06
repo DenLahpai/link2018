@@ -1,25 +1,55 @@
 <?php
 require "functions.php";
-//getting one data from Bookings
 $BookingsId = $_REQUEST['BookingsId'];
-$getRow_Bookings = new Database();
-$query_getRow_Bookings = "SELECT
-    Bookings.Reference,
-    Bookings.Name AS BookingsName,
-    Bookings.CorporatesId,
-    Corporates.Name AS CorporatesName,
-    Bookings.ArvDate,
-    Bookings.Pax,
-    Bookings.Status,
-    Bookings.Remark,
-    Bookings.Exchange
-    FROM Bookings, Corporates
-    WHERE Bookings.CorporatesId = Corporates.Id
-    AND Bookings.Id = :BookingsId
-;";
-$getRow_Bookings->query($query_getRow_Bookings);
-$getRow_Bookings->bind(':BookingsId', $BookingsId);
-$row_Bookings = $getRow_Bookings->resultset();
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $Name = trim($_REQUEST['Name']);
+    $CorporatesId = $_REQUEST['CorporatesId'];
+    $ArvDate = $_REQUEST['ArvDate'];
+    $Pax = trim($_REQUEST['Pax']);
+    $Status = $_REQUEST['Status'];
+    $Remark = trim($_REQUEST['Remark']);
+    $Exchange = trim($_REQUEST['Exchange']);
+    $UserId = $_SESSION['UsersId'];
+
+    if(empty($Name) || empty($Pax) || $Pax <= 0 || empty($Exchange) || $Exchange <= 0) {
+        $msg_error = $empty_field;
+    }
+    else {
+        //update
+        $update_Bookings = new Database();
+        $query_update_Bookings = "UPDATE Bookings SET
+            Name = :Name,
+            CorporatesId = :CorporatesId,
+            ArvDate = :ArvDate,
+            Pax = :Pax,
+            Status = :Status,
+            Remark = :Remark,
+            Exchange = :Exchange,
+            UserId = :UserId
+            WHERE Id = :BookingsId
+        ;";
+        $update_Bookings->query($query_update_Bookings);
+        $update_Bookings->bind(':Name', $Name);
+        $update_Bookings->bind(':CorporatesId', $CorporatesId);
+        $update_Bookings->bind(':ArvDate', $ArvDate);
+        $update_Bookings->bind(':Pax', $Pax);
+        $update_Bookings->bind(':Status', $Status);
+        $update_Bookings->bind(':Remark', $Remark);
+        $update_Bookings->bind(':Exchange', $Exchange);
+        $update_Bookings->bind(':UserId', $UserId);
+        $update_Bookings->bind(':BookingsId', $BookingsId);
+        if($update_Bookings->execute()) {
+            $msg_error = NULL;
+        }
+        else {
+            $msg_error = $connection_problem;
+        }
+    }
+}
+
+//getting one data from Bookings
+$row_Bookings = get_row_Bookings($BookingsId);
 foreach ($row_Bookings AS $data_Bookings) {
     $Name = $data_Bookings->BookingsName;
     $CorporatesId = $data_Bookings->CorporatesId;
@@ -56,7 +86,6 @@ foreach ($row_Bookings AS $data_Bookings) {
                         <li>
                             Corporate:
                             <select name="CorporatesId">
-                                <option value="">Select Corporates</option>
                                 <?php
                                 $getRows_Corporates = new Database();
                                 $query_getRows_Corporates = "SELECT
@@ -133,7 +162,7 @@ foreach ($row_Bookings AS $data_Bookings) {
                         </li>
                         <li>
                             <button type="submit" name="buttonSubmit">Submit</button>
-                        </li>                        
+                        </li>
                     </ul>
                 </form>
             </section>
