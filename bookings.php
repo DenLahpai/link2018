@@ -44,6 +44,7 @@ require "functions.php";
                         echo "<li>".$row_Bookings->CorporateName."</li>";
                         echo "<li style=\"font-weight: bold;\">";
                         echo date("d-M-Y", strtotime($row_Bookings->ArvDate))."</li>";
+                        echo "<li>".$row_Bookings->Status."</li>";
                         echo "<li style=\"font-style: italic;\">By ";
                         echo $row_Bookings->Username."</li>";
                         echo "<li><a href=\"bookingsEdit.php?BookingsId=$row_Bookings->BookingsId\">Edit</a></li>";
