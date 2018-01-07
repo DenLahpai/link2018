@@ -31,6 +31,26 @@ foreach ($row_Bookings AS $data_Bookings) {
             include "includes/nav.html";
             include "includes/menu_bookings.html";
             ?>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th colspan="3">Invoices</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>Invoice No</th>
+                            <th>Invoice Date</th>
+                            <th>USD</th>
+                            <th>MMK</th>
+                            <th>Status</th>
+                            <th>Paid On</th>
+                            <th></th>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
         </div><!-- end of content -->
     </body>
 </html>
