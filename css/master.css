@@ -90,8 +90,10 @@ header p {
 
 .form {
     display: inline-block;
-    background: #787878;
+    background: silver;
     border-radius: 12px;
+    color: black;
+    margin: 3px;
 }
 
 .form ul li {
@@ -105,8 +107,7 @@ header p {
 }
 
 .form ul li input {
-    background: #787878;
-    color: white;
+    background: silver;
     border: none;
     border-bottom: 1px solid #009f00;
 }
@@ -121,22 +122,28 @@ header p {
     width: 100%;
 }
 
-.form.table table tr th {
-    background: #009f00;
-    padding: 12px;
-}
-
-.table table tr td {
-    padding: 12px;
-}
-
-.table table tbody tr {
+main table {
+    border-collapse: collapse;
+    margin: 3px auto;
+    max-width: 95%;
     background: white;
     color: black;
 }
 
-.table table tbody tr:nth-child(odd) {
-    background: silver;
+main table thead tr th {
+    background: #009f00;
+    border: 1px solid black;
+    padding: 6px;
+}
+
+main table tbody tr td {
+    border: 1px solid black;
+    padding: 6px;
+}
+
+main table tbody tr:nth-child(even) {
+    background: #787878;
+    color: white;
 }
 
 .links ul li {

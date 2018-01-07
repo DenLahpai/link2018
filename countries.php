@@ -62,48 +62,56 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             include "includes/header.html";
             include "includes/nav.html";
             ?>
-            <main>
-                <form class="form table small" id="form_Countries" action="#" method="post">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    <label for="Code">Code:</label>
-                                    <input type="text" name="Code" id="Code" size="2" maxlength="2">
-                                </th>
-                                <th>
-                                    <label for="Country">Country:</label>
-                                    <input type="text" name="Country" id="Country"
-                                    placeholder="Country Name">
-                                </th>
-                                <th>
-                                    <label for="Region">Region:</label>
-                                    <input type="text" name="Region" id="Region" placeholder="region">
-                                </th>
-                                <th>
-                                    <input type="submit" name="buttonSubmit" value="Save">
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php
-                        //getting the data from the table Countries
-                        $getRows_Countries = new Database();
-                        $query_getRows_Countries = "SELECT * FROM Countries ORDER BY Id;";
-                        $getRows_Countries->query($query_getRows_Countries);
-                        $rows_Countries = $getRows_Countries->resultset();
-                        foreach ($rows_Countries as $row_Countries) {
-                            echo "<tr>";
-                            echo "<td>".$row_Countries->Code."</td>";
-                            echo "<td>".$row_Countries->Country."</td>";
-                            echo "<td>".$row_Countries->Region."</td>";
-                            echo "<td><a href=\"CountriesEdit.php?CountriesId=$row_Countries->Id\">Edit</a></td>";
-                            echo "</tr>";
-                        }
-                        ?>
-                        </tbody>
-                    </table>
+            <section>
+                <form class="form countries" id="form_countries" action="#" method="post">
+                    <ul>
+                        <li>
+                            <label for="Code">Country Code:</label>
+                            <input type="text" name="Code" id="Code" size="2" maxlength="2" required>
+                        </li>
+                        <li>
+                            <label for="Country">Country:</label>
+                            <input type="text" name="Country" id="Country"
+                            placeholder="Country Name">
+                        </li>
+                        <li>
+                            <label for="Region">Region:</label>
+                            <input type="text" name="Region" id="Region" placeholder="Region">
+                        </li>
+                        <li>
+                            <button type="submit" name="buttonSubmit">Submit</button>
+                        </li>
+                    </ul>
                 </form>
+            </section>
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Country</th>
+                            <th>Region</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    //getting the data from the table Countries
+                    $getRows_Countries = new Database();
+                    $query_getRows_Countries = "SELECT * FROM Countries ORDER BY Id;";
+                    $getRows_Countries->query($query_getRows_Countries);
+                    $rows_Countries = $getRows_Countries->resultset();
+                    foreach ($rows_Countries as $row_Countries) {
+                        echo "<tr>";
+                        echo "<td>".$row_Countries->Code."</td>";
+                        echo "<td>".$row_Countries->Country."</td>";
+                        echo "<td>".$row_Countries->Region."</td>";
+                        echo "<td><a href=\"CountriesEdit.php?CountriesId=$row_Countries->Id\">Edit</a></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
             </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
