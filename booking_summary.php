@@ -18,10 +18,19 @@ foreach ($row_Bookings AS $data_Bookings) {
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8">
-        <title></title>
+        <?php
+        $title = $data_Bookings->Reference;
+        include "includes/head.html";
+        ?>
     </head>
     <body>
-
+        <div class="content"><!-- content -->
+            <?php
+            $pageTitle = "Summary: ".$data_Bookings->Reference;
+            include "includes/header.html";
+            include "includes/nav.html";
+            include "includes/menu_bookings.html";
+            ?>
+        </div><!-- end of content -->
     </body>
 </html>

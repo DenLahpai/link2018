@@ -8,11 +8,12 @@
     background: black;
     color: white;
     display: grid;
-    grid-gap: 6px;
+    grid-gap: 3px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-areas:
     " nav nav nav "
     " header header header "
+    " sub-menu sub-menu sub-menu "
     " section section section "
     " main main main "
     " aside aside aside "
@@ -21,6 +22,10 @@
 
 nav {
     grid-area: nav;
+}
+
+.sub-menu {
+    grid-area: sub-menu;
 }
 
 header {
@@ -73,10 +78,9 @@ nav ul li a {
 
 header {
     text-align: center;
-    margin: 6px;
 }
 
-header h1 {
+header h3 {
     color: #01CFFF;
 }
 
@@ -192,9 +196,7 @@ main h3 {
     font-weight: bold;
 }
 
-.menu {
-    
-}
+
 
 /*styles for tablets*/
 @media screen and (min-width: 768px) {
@@ -210,6 +212,7 @@ main h3 {
         grid-template-columns: repeat(6, 1fr);
         grid-template-areas:
         " nav header header header header header "
+        " nav sub-menu sub-menu sub-menu sub-menu sub-menu "
         " nav section section section section section "
         " nav main main main main main "
         " nav aside aside aside aside aside "

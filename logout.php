@@ -1,5 +1,5 @@
 <?php
-require_once "..conn/conn.php";
+require_once "functions.php";
 session_destroy();
 header("location: index.php");
 ?>

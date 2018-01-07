@@ -196,7 +196,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     foreach ($rows_Bookings as $row_Bookings) {
                         echo "<div class=\"grid-item\"><!-- grid-item -->";
                         echo "<ul>";
-                        echo "<li><a href=\"booking_details.php?BookingsId=$row_Bookings->BookingsId\">".$row_Bookings->Reference."</a></li>";
+                        echo "<li><a href=\"booking_summary.php?BookingsId=$row_Bookings->BookingsId\">".$row_Bookings->Reference."</a></li>";
                         echo "<li>".$row_Bookings->BookingName;
                         echo " X ".$row_Bookings->Pax." Pers</li>";
                         echo "<li>".$row_Bookings->CorporateName."</li>";
