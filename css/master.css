@@ -125,7 +125,7 @@ header p {
 main table {
     border-collapse: collapse;
     margin: 3px auto;
-    max-width: 95%;
+    width: 95%;
     background: white;
     color: black;
 }
@@ -134,6 +134,7 @@ main table thead tr th {
     background: #009f00;
     border: 1px solid black;
     padding: 6px;
+    color: white;
 }
 
 main table tbody tr td {
