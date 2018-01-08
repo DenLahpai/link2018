@@ -102,10 +102,6 @@ header p {
     list-style: none;
 }
 
-.form ul li:last-child {
-    text-align: center;
-}
-
 .form ul li input {
     background: silver;
     border: none;

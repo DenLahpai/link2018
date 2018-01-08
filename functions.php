@@ -22,7 +22,6 @@ function get_row_Bookings($BookingsId) {
     $getRow_Bookings->query($query_getRow_Bookings);
     $getRow_Bookings->bind(':BookingsId', $BookingsId);
     return $row_Bookings = $getRow_Bookings->resultset();
-
 }
 
 ?>
