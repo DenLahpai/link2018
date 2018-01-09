@@ -135,12 +135,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $insert_Invoices->bind(':sum', $sum);
     $insert_Invoices->bind(':Status', $Status);
     if($insert_Invoices->execute()) {
-        header("location:generate_invoice.php?InvoiceNo=$InvoiceNo");
+        header("location:generate_invoice.php?InvoiceNo=$InvoiceNo&currency=$currency");
     }
 }
-
-
-
 
 ?>
 <!DOCTYPE html>

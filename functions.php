@@ -24,4 +24,34 @@ function get_row_Bookings($BookingsId) {
     return $row_Bookings = $getRow_Bookings->resultset();
 }
 
+//function to get data from the tables Invoices, InvoiceHeader and InvoiceDetails
+function getData_Invoice($InvoiceNo) {
+    $getRow = new Database();
+    $query = "SELECT
+        Invoices.BookingsId AS BookingsId,
+        Invoices.InvoiceDate AS InvoiceDate,
+        Invoices.USD AS USD,
+        Invoices.MMK AS MMK,
+        InvoiceHeader.Addressee AS Addressee,
+        InvoiceHeader.Address AS Address,
+        InvoiceHeader.City AS City,
+        InvoiceHeader.Attn AS Attn
+        FROM Invoices, InvoiceHeader
+        WHERE Invoices.InvoiceNo = InvoiceHeader.InvoiceNo
+        AND Invoices.InvoiceNo = :InvoiceNo
+    ;";
+    $getRow->query($query);
+    $getRow->bind(':InvoiceNo', $InvoiceNo);
+    return $r = $getRow->resultset();
+}
+
+//function to get data from the table InvoiceDetails
+function getData_InvoiceDetails($InvoiceNo) {
+    $getRow = new Database();
+    $query = "SELECT * FROM InvoiceDetails WHERE InvoiceNo = :InvoiceNo ;";
+    $getRow->query($query);
+    $getRow->bind(':InvoiceNo', $InvoiceNo);
+    return $r = $getRow->resultset();
+}
+
 ?>
