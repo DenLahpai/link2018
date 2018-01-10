@@ -157,6 +157,7 @@ main table tbody tr:nth-child(even) {
 }
 
 button {
+    margin: 3px 12px;
     padding: 12px 24px;
     background: #009f00;
     color: white;

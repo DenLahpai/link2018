@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "helvetica";
+}
+
+header {
+    border-bottom: 1px solid silver;
+    
+}
+
+header table tr td {
+    padding: 12px;
+}
+
+header table thead tr td img {
+    width: 300px;    
+}
+
+header table thead tr td ul li {
+    list-style: none;
+}
