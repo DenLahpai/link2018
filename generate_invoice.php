@@ -21,6 +21,21 @@ foreach ($row_Bookings AS $data_Bookings) {
     $Reference = $data_Bookings->Reference;
 }
 
+//getting the SUM
+$getSum_InvoiceDetails = new Database();
+$query_getSum_InvoiceDetails = "SELECT SUM($currency) AS $currency FROM InvoiceDetails
+        WHERE InvoiceNo = :InvoiceNo
+;";
+$getSum_InvoiceDetails->query($query_getSum_InvoiceDetails);
+$getSum_InvoiceDetails->bind(':InvoiceNo', $InvoiceNo);
+$results = $getSum_InvoiceDetails->resultset();
+foreach ($results as $result) {
+    $sum = $result->$currency;
+}
+
+
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -97,10 +112,14 @@ foreach ($row_Bookings AS $data_Bookings) {
                                     echo "<td>".$row_InvoiceDetails->MMK."</td>";
                                 }
                             }
-
                         }
                         ?>
-
+                        <tr>
+                            <th colspan="3">TOTAL</th>
+                            <th>
+                                <?php echo $sum; ?>
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
             </main>
