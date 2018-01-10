@@ -33,9 +33,6 @@ foreach ($results as $result) {
     $sum = $result->$currency;
 }
 
-
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -119,6 +116,16 @@ foreach ($results as $result) {
                             <th>
                                 <?php echo $sum; ?>
                             </th>
+                        </tr>
+                        <tr>
+                          <th colspan="4">
+                              <a href="#">
+                                  <button type="button" name="button">Edit</button>
+                              </a>
+                              <a href="#">
+                                  <button type="button" name="button">Print</button>
+                              </a>
+                          </th>
                         </tr>
                     </tbody>
                 </table>
