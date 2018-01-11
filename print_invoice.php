@@ -1,5 +1,42 @@
 <?php
 require "functions.php";
+
+$currency = trim($_REQUEST['currency']);
+
+//Getting data from the table Invoices and InvoiceHeader
+$InvoiceNo = trim($_REQUEST['InvoiceNo']);
+$datas_Invoice = getData_Invoice($InvoiceNo);
+foreach ($datas_Invoice as $data_Invoice) {
+    $BookingsId = $data_Invoice->BookingsId;
+}
+
+//Getting data from the table InvoiceDetails
+$rows_InvoiceDetails = getData_InvoiceDetails($InvoiceNo);
+
+//getting one data from Bookings
+$row_Bookings = get_row_Bookings($BookingsId);
+foreach ($row_Bookings AS $data_Bookings) {
+    $Name = $data_Bookings->BookingsName;
+    $Reference = $data_Bookings->Reference;
+}
+
+//getting the SUM
+$getSum_InvoiceDetails = new Database();
+$query_getSum_InvoiceDetails = "SELECT SUM($currency) AS $currency FROM InvoiceDetails
+        WHERE InvoiceNo = :InvoiceNo
+;";
+$getSum_InvoiceDetails->query($query_getSum_InvoiceDetails);
+$getSum_InvoiceDetails->bind(':InvoiceNo', $InvoiceNo);
+$results = $getSum_InvoiceDetails->resultset();
+foreach ($results as $result) {
+    $sum = $result->$currency;
+}
+
+$datas_Users = get_row_Users($_SESSION['UsersId']);
+foreach ($datas_Users as $data_Users) {
+    $Fullname = $data_Users->Fullname;
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,8 +48,98 @@ require "functions.php";
     <body>
         <div class="content"><!-- content -->
             <?php include "includes/print_header.html"; ?>
+            <section>
+                <h2>Invoice</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Addressee:</td>
+                            <td>
+                                <?php echo $data_Invoice->Addressee; ?>    
+                            </td>
+                            <td>Date:</td>
+                            <td>
+                                <?php echo $data_Invoice->InvoiceDate; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Address:</td>
+                            <td>
+                                <?php echo $data_Invoice->Address; ?>
+                            </td>
+                            <td>Invoice No:</td>
+                            <td>
+                                <?php echo $InvoiceNo;?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City:</td>
+                            <td>
+                                <?php echo $data_Invoice->City; ?>
+                            </td>
+                            <td>
+                                Booking Reference:
+                            </td>
+                            <td>
+                                <?php echo $Reference; ?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Attn:</td>
+                            <td>
+                                <?php echo $data_Invoice->Attn; ?>
+                            </td>
+                            <td>Booking Name:</td>
+                            <td>
+                                <?php echo $data_Bookings->BookingsName; ?> 
+                            </td>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </section>
             <main>
-            
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Description</th>
+                            <th>Amount in <?php echo $currency; ?></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                            $year = 2018;
+                            foreach ($rows_InvoiceDetails as $row_InvoiceDetails) {
+                                if(date('Y',strtotime($row_InvoiceDetails->Date)) >= $year){
+                                    echo "<tr>";
+                                    echo "<td>".date('d-m-Y', strtotime($row_InvoiceDetails->Date))."</td>";
+                                    echo "<td>".$row_InvoiceDetails->Description."</td>";
+                                    if ($currency == 'USD') {
+                                        echo "<td>".$row_InvoiceDetails->USD."</td>";
+                                    }
+                                    else {
+                                        echo "<td>".$row_InvoiceDetails->MMK."</td>";
+                                    }
+                                }
+                            }
+                            ?>
+                            <tr>
+                                <th colspan="2">TOTAL in <?php echo $currency; ?></th>
+                                <th>
+                                    <?php echo $currency.' '. $sum; ?>
+                                </th>
+                            </tr>
+                    </tbody>
+                </table>
+                <p>
+                Amount in <?php echo $currency; ?> : 
+                <?php 
+                $total = round($sum, 2);
+                echo convert_number_to_words($total). ' ONLY!<br>';            
+                ?>
+                Sales Person: <?php echo $Fullname; ?>  
+                </p>
             </main>
         </div><!-- end of content -->
     </body>
