@@ -10,7 +10,10 @@ require "functions.php";
     </head>
     <body>
         <div class="content"><!-- content -->
-            <?php include "includes/print_header.html"; //TODO RESUME HERE! ?>
+            <?php include "includes/print_header.html"; ?>
+            <main>
+            
+            </main>
         </div><!-- end of content -->
     </body>
 </html>
