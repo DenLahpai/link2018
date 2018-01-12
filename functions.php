@@ -175,4 +175,20 @@ function convert_number_to_words($number) {
     return $string;
 }
 
+//function to get rows from the table Invoices
+function getRows_Invoices($BookingsId) {
+    $getRows_Invoices = new Database();
+
+    if(empty($BookingsId)) {
+        $query_getRows_Invoices = "SELECT * FROM Invoices ORDER BY Id";
+    }
+    else {
+        $query_getRows_Invoices = "SELECT * FROM Invoices WHERE BookingsId = :BookingsId ORDER BY Id;";
+    }
+
+    $getRows_Invoices->query($query_getRows_Invoices);
+    $getRows_Invoices->bind(':BookingsId', $BookingsId);
+    return $r = $getRows_Invoices->resultset();
+}
+
 ?>

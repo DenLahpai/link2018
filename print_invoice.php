@@ -49,14 +49,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     <head>
         <meta charset="utf-8">
         <link rel="stylesheet" href="css/print.css">
-        <title>Invoice</title>
+        <title>
+            <?php echo "Invoice ".$Reference." - ".$InvoiceNo ; ?>
+        </title>
     </head>
     <body>
         <div class="content"><!-- content -->
-            <div class="hidden">
-
-            </div>
-            <?php include "includes/print_header.html"; ?>
+        <?php include "includes/print_header.html"; ?>
             <section>
                 <h2>Invoice</h2>
                 <table>

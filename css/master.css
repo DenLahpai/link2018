@@ -201,6 +201,21 @@ main h3 {
     font-weight: bold;
 }
 
+section table {
+    margin: 12px auto;
+    border-collapse: collapse;
+}
+
+section table tr th {
+    padding: 6px;
+    border: 1px solid white;
+}
+
+section table tr td {
+    padding: 6px;
+    border: 1px solid white;
+}
+
 
 
 /*styles for tablets*/
