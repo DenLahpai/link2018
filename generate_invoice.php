@@ -210,10 +210,6 @@ foreach ($results as $result) {
                             </th>
                         </tr>
                         <tr>
-                            <th colspan="4">Payment Method:</th>
-                        </tr>
-
-                        <tr>
                           <th colspan="4">
                               <a href="#">
                                   <button type="button" name="button">Edit</button></a>

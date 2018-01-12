@@ -37,6 +37,12 @@ foreach ($datas_Users as $data_Users) {
     $Fullname = $data_Users->Fullname;
 }
 
+$method = '1';
+
+if($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $method = $_REQUEST['method'];
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,6 +53,9 @@ foreach ($datas_Users as $data_Users) {
     </head>
     <body>
         <div class="content"><!-- content -->
+            <div class="hidden">
+
+            </div>
             <?php include "includes/print_header.html"; ?>
             <section>
                 <h2>Invoice</h2>
@@ -55,7 +64,7 @@ foreach ($datas_Users as $data_Users) {
                         <tr>
                             <td>Addressee:</td>
                             <td>
-                                <?php echo $data_Invoice->Addressee; ?>    
+                                <?php echo $data_Invoice->Addressee; ?>
                             </td>
                             <td>Date:</td>
                             <td>
@@ -91,7 +100,7 @@ foreach ($datas_Users as $data_Users) {
                             </td>
                             <td>Booking Name:</td>
                             <td>
-                                <?php echo $data_Bookings->BookingsName; ?> 
+                                <?php echo $data_Bookings->BookingsName; ?>
                             </td>
                         </tr>
                     </thead>
@@ -133,14 +142,67 @@ foreach ($datas_Users as $data_Users) {
                     </tbody>
                 </table>
                 <p>
-                Amount in <?php echo $currency; ?> : 
-                <?php 
+                Amount in <?php echo $currency; ?> :
+                <?php
                 $total = round($sum, 2);
-                echo convert_number_to_words($total). ' ONLY!<br>';            
+                echo convert_number_to_words($total). ' ONLY!<br>';
                 ?>
-                Sales Person: <?php echo $Fullname; ?>  
+                Sales Person: <?php echo $Fullname; ?>
                 </p>
             </main>
+            <aside>
+                <form action="#" method="post">
+                    Payment Method:
+                    <select name="method" onchange="this.form.submit()">
+                    <?php
+                    if($method == '1') {
+                        echo "<option value=\"1\" selected>Cash in $currency</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\">KBZ</option>";
+                    }
+                    else if ($method == '2') {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\" selected>UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\">KBZ</option>";
+                    }
+                    else if ($method == '3') {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\" selected>Visa / Master</option>";
+                        echo "<option value=\"4\">KBZ</option>";
+                    }
+                    else {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\" selected>KBZ</option>";
+                    }
+                    ?>
+                    </select>
+                </form>
+                <?php
+                switch ($method) {
+                    case '1':
+                        include "includes/cash.html";
+                        break;
+                    case '2':
+                        include "includes/uob.html";
+                        break;
+                    case '3':
+                        include "includes/VisaMaster.html";
+                        break;
+                    case '4':
+                        include "includes/kbz.html";
+                        break;
+                    default:
+                        # code...
+                        break;
+                }
+                ?>
+
+            </aside>
         </div><!-- end of content -->
     </body>
 </html>

@@ -50,3 +50,21 @@ main table tr td {
     padding: 6px 12px;
     border: 1px solid black;
 }
+
+main p {
+    margin: 6px;
+}
+
+aside select {
+    padding: 3px;
+    background: none;
+    border: none;
+}
+
+aside {
+    margin: 6px;
+}
+
+aside ul li {
+    padding: 6px 0px;
+}
