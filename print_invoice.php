@@ -68,7 +68,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </td>
                             <td>Date:</td>
                             <td>
-                                <?php echo $data_Invoice->InvoiceDate; ?>
+                                <?php echo date('d-m-y', strtotime($data_Invoice->InvoiceDate)); ?>
                             </td>
                         </tr>
                         <tr>
