@@ -201,7 +201,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         break;
                 }
                 ?>
-
             </aside>
         </div><!-- end of content -->
     </body>
