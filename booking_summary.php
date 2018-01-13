@@ -19,8 +19,6 @@ foreach ($row_Bookings AS $data_Bookings) {
 // $BookingsId = NULL;
 $rows_Invoices = getRows_Invoices($BookingsId);
 
-
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -71,7 +69,7 @@ $rows_Invoices = getRows_Invoices($BookingsId);
                                 echo "<td></td>";
                             }
                             $InvoiceNo = $row_Invoices->InvoiceNo;
-                            echo "<td><a href=\"booking_invoiceEdit.php?InvoiceId=$InvoiceNo\">
+                            echo "<td><a href=\"booking_invoiceEdit.php?InvoiceNo=$InvoiceNo\">
                             <button>Edit</button></a>";
                             echo "<a href=\"\"><button>Receipt</button></a></td>";
                         }
@@ -80,9 +78,9 @@ $rows_Invoices = getRows_Invoices($BookingsId);
                 </table>
             </section>
 	    <main>
-		<table>
-			
-		</table>
+            <div class="grid-div"><!-- grid-div -->
+
+            </div><!-- end of grid-div -->
 	    </main>
         </div><!-- end of content -->
     </body>
