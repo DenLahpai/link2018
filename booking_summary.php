@@ -46,15 +46,15 @@ $rows_Invoices = getRows_Invoices($BookingsId);
                         echo "<li>Invoiec Date: ".date('d-m-Y', strtotime($row_Invoices->InvoiceDate))."</li>";
                         echo "<li>Amount: ".$row_Invoices->USD." USD</li>";
                         echo "<li>Amount: ".$row_Invoices->MMK." MMK</li>";
-                        echo "<li>Status: ".$row_Invoices->Status."</li>";
+                        echo "<li>Status: ".$row_Invoices->Status." on: ";
                         $thisYear = date('Y', strtotime($row_Invoices->PaidOn));
                         if($thisYear >= 2018) {
-                            echo "<li>".date('d-m-Y', strtotime($row_Invoices->PaidOn))."</li>";
+                            echo date('d-m-Y', strtotime($row_Invoices->PaidOn))."</li>";
                         }
                         $InvoiceNo = $row_Invoices->InvoiceNo;
                         echo "<li><a href=\"booking_invoiceEdit.php?InvoiceNo=$InvoiceNo\">
                         Edit</a></li>";
-                        echo "<li><a href=\"invoice_receipt.php?InvoiceNo=$InvoiceNo\">Receipt</a></li>";
+                        echo "<li><a href=\"invoice_receipt.php?InvoiceNo=$InvoiceNo\" target=\"_blank\">Receipt</a></li>";
                         echo "</div>";
                     }
                     ?>
