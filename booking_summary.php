@@ -37,49 +37,32 @@ $rows_Invoices = getRows_Invoices($BookingsId);
             include "includes/menu_bookings.html";
             ?>
             <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="7">Invoices</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th>Invoice No</th>
-                            <th>Invoice Date</th>
-                            <th>USD</th>
-                            <th>MMK</th>
-                            <th>Status</th>
-                            <th>Paid On</th>
-                            <th>#</th>
-                        </tr>
-                        <?php
-                        foreach ($rows_Invoices as $row_Invoices) {
-                            echo "<tr>";
-                            echo "<td>".$row_Invoices->InvoiceNo."</td>";
-                            echo "<td>".date('d-m-Y', strtotime($row_Invoices->InvoiceDate))."</td>";
-                            echo "<td>".$row_Invoices->USD."</td>";
-                            echo "<td>".$row_Invoices->MMK."</td>";
-                            echo "<td>".$row_Invoices->Status."</td>";
-                            $thisYear = date('Y', strtotime($row_Invoices->PaidOn));
-                            if($thisYear >= 2018) {
-                                echo "<td>".date('d-m-Y', strtotime($row_Invoices->PaidOn))."</td>";
-                            }
-                            else {
-                                echo "<td></td>";
-                            }
-                            $InvoiceNo = $row_Invoices->InvoiceNo;
-                            echo "<td><a href=\"booking_invoiceEdit.php?InvoiceNo=$InvoiceNo\">
-                            <button>Edit</button></a>";
-                            echo "<a href=\"\"><button>Receipt</button></a></td>";
+                <div class="grid-div">
+                    <?php
+                    foreach ($rows_Invoices as $row_Invoices) {
+                        echo "<div class=\"grid-item\">";
+                        echo "<ul>";
+                        echo "<li>Invoice No: ".$row_Invoices->InvoiceNo."</li>";
+                        echo "<li>Invoiec Date: ".date('d-m-Y', strtotime($row_Invoices->InvoiceDate))."</li>";
+                        echo "<li>Amount: ".$row_Invoices->USD." USD</li>";
+                        echo "<li>Amount: ".$row_Invoices->MMK." MMK</li>";
+                        echo "<li>Status: ".$row_Invoices->Status."</li>";
+                        $thisYear = date('Y', strtotime($row_Invoices->PaidOn));
+                        if($thisYear >= 2018) {
+                            echo "<li>".date('d-m-Y', strtotime($row_Invoices->PaidOn))."</li>";
                         }
-                        ?>
-                    </tbody>
-                </table>
+                        $InvoiceNo = $row_Invoices->InvoiceNo;
+                        echo "<li><a href=\"booking_invoiceEdit.php?InvoiceNo=$InvoiceNo\">
+                        Edit</a></li>";
+                        echo "<li><a href=\"invoice_receipt.php?InvoiceNo=$InvoiceNo\">Receipt</a></li>";
+                        echo "</div>";
+                    }
+                    ?>
+                </div>
             </section>
 	    <main>
             <div class="grid-div"><!-- grid-div -->
-
+                <!-- TODO Services -->
             </div><!-- end of grid-div -->
 	    </main>
         </div><!-- end of content -->
