@@ -44,7 +44,7 @@ foreach ($datas_Users as $data_Users) {
     $Fullname = $data_Users->Fullname;
 }
 
-$method = '1';
+$method = 0 ;
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $method = $_REQUEST['method'];
@@ -143,27 +143,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
                     <tbody>
                     <?php
-                            $year = 2018;
-                            foreach ($rows_InvoiceDetails as $row_InvoiceDetails) {
-                                if(date('Y',strtotime($row_InvoiceDetails->Date)) >= $year){
-                                    echo "<tr>";
-                                    echo "<td>".date('d-m-Y', strtotime($row_InvoiceDetails->Date))."</td>";
-                                    echo "<td>".$row_InvoiceDetails->Description."</td>";
-                                    if ($currency == 'USD') {
-                                        echo "<td>".$row_InvoiceDetails->USD."</td>";
-                                    }
-                                    else {
-                                        echo "<td>".$row_InvoiceDetails->MMK."</td>";
-                                    }
+                        $year = 2018;
+                        foreach ($rows_InvoiceDetails as $row_InvoiceDetails) {
+                            if(date('Y',strtotime($row_InvoiceDetails->Date)) >= $year){
+                                echo "<tr>";
+                                echo "<td>".date('d-m-Y', strtotime($row_InvoiceDetails->Date))."</td>";
+                                echo "<td>".$row_InvoiceDetails->Description."</td>";
+                                if ($currency == 'USD') {
+                                    echo "<td>".$row_InvoiceDetails->USD."</td>";
+                                }
+                                else {
+                                    echo "<td>".$row_InvoiceDetails->MMK."</td>";
                                 }
                             }
-                            ?>
-                            <tr>
-                                <th colspan="2">TOTAL in <?php echo $currency; ?></th>
-                                <th>
-                                    <?php echo $currency.' '. $sum; ?>
-                                </th>
-                            </tr>
+                        }
+                    ?>
+                        <tr>
+                            <th colspan="2">TOTAL in <?php echo $currency; ?></th>
+                            <th>
+                                <?php echo $currency.' '. $sum; ?>
+                            </th>
+                        </tr>
                     </tbody>
                 </table>
                 <p>
@@ -179,52 +179,60 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <form action="#" method="post">
                     Payment Method:
                     <select name="method" onchange="this.form.submit()">
+                        <option value="0">Select Payment Option</option>
                     <?php
-                    if($method == '1') {
+                    if($method == 1) {
                         echo "<option value=\"1\" selected>Cash in $currency</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
                     }
-                    else if ($method == '2') {
+                    else if ($method == 2) {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\" selected>UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
                     }
-                    else if ($method == '3') {
+                    else if ($method == 3) {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\" selected>Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
                     }
-                    else {
+                    else if ($method == 4) {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\" selected>KBZ</option>";
                     }
+
+                    else {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\">KBZ</option>";
+                    }
                     ?>
                     </select>
                 </form>
                 <?php
-                switch ($method) {
-                    case '1':
-                        include "includes/cash.html";
-                        break;
-                    case '2':
-                        include "includes/uob.html";
-                        break;
-                    case '3':
-                        include "includes/VisaMaster.html";
-                        break;
-                    case '4':
-                        include "includes/kbz.html";
-                        break;
-                    default:
-                        # code...
-                        break;
-                }
+                // switch ($method) {
+                //     case '1':
+                //         include "includes/cash.html";
+                //         break;
+                //     case '2':
+                //         include "includes/uob.html";
+                //         break;
+                //     case '3':
+                //         include "includes/VisaMaster.html";
+                //         break;
+                //     case '4':
+                //         include "includes/kbz.html";
+                //         break;
+                //     default:
+                //         # code...
+                //         break;
+                // }
                 ?>
             </aside>
         </div><!-- end of content -->
