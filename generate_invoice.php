@@ -119,7 +119,7 @@ foreach ($results as $result) {
                         </tr>
                         <tr>
                           <th colspan="4">
-                              <a href="#">
+                              <a href="<?php echo "booking_invoiceEdit.php?InvoiceNo=$InvoiceNo&currency=$currency"; ?>">
                                   <button type="button" name="button">Edit</button></a>
                               <a href="<?php echo "print_invoice.php?InvoiceNo=$InvoiceNo&currency=$currency"; ?>" target="_blank">
                                   <button type="button" name="button">Print</button></a>
