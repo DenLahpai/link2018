@@ -191,4 +191,29 @@ function getRows_Invoices($BookingsId) {
     return $r = $getRows_Invoices->resultset();
 }
 
+//function to generate select options for titles
+function selectTitles($Title) {
+    if ($Title == 'Mr.'){
+        echo "<option value=\"Mr.\" selected=\"selected\">Mr.</option>";
+        echo "<option value=\"Ms.\">Ms.</option>";
+        echo "<option value=\"Mrs.\">Mrs.</option>";
+    }
+    else if ($Title == 'Ms.'){
+        echo "<option value=\"Mr.\">Mr.</option>";
+        echo "<option value=\"Ms.\" selected=\"selected\">Ms.</option>";
+        echo "<option value=\"Mrs.\">Mrs.</option>";
+    }
+    else if ($Title == 'Mrs.') {
+        echo "<option value=\"Mr.\">Mr.</option>";
+        echo "<option value=\"Ms.\">Ms.</option>";
+        echo "<option value=\"Mrs.\" selected=\"selected\">Mrs.</option>";
+    }
+    else {
+        echo "<option value=\"\">Select</option>";
+        echo "<option value=\"Mr.\">Mr.</option>";
+        echo "<option value=\"Ms.\">Ms.</option>";
+        echo "<option value=\"Mrs.\">Mrs.</option>";
+    }
+}
+
 ?>
