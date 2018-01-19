@@ -120,6 +120,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pageTitle = "Edit Invoice: ".$Reference;
             include "includes/header.html";
             include "includes/nav.html";
+            include "includes/menu_bookings.html";
             ?>
             <main>
                 <form action="#" method="post">

@@ -46,6 +46,7 @@ foreach ($results as $result) {
             $pageTitle = "Invoice";
             include "includes/header.html";
             include "includes/nav.html";
+            include "includes/menu_bookings.html";
             ?>
             <main>
                 <table>
