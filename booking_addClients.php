@@ -1,6 +1,10 @@
 <?php
 require "functions.php";
 $BookingsId = trim($_REQUEST['BookingsId']);
+$rows_Bookings = get_row_Bookings($BookingsId);
+foreach ($rows_Bookings as $row_Bookings) {
+    $Reference = $row_Bookings->Reference;
+}
 
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Getting data from the form to the variables
@@ -80,7 +84,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_Clients->bind(':Email', $Email);
             $insert_Clients->bind(':Website', $Website);
             if($insert_Clients->execute()) {
-                header("location:clientsAdd.php?BookingsId=$BookingsId");
+                header("location:clients_add.php?BookingsId=$BookingsId");
             }
             else {
                 $msg_error = $connection_problem;
@@ -91,7 +95,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -105,9 +108,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $pageTitle = "Add Client";
             include "includes/header.html";
             include "includes/nav.html";
+            include "includes/menu_bookings.html";
             ?>
             <section>
                 <form class="form clients" action="#" method="post">
+                    <h3 style="text-align: center;">New Client</h3>
                     <ul>
                         <li>
                             <label for="Title">Title:</label>
@@ -163,9 +168,27 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li>
                             <button type="submit" name="buttonSubit">Submit</button>
                         </li>
+                        <li>
+                            <a href="<?php echo "booking_addExistingClient.php?BookingsId=$BookingsId"; ?>" target="_blank">Add from Existing Clients</a>
+                        </li>
                     </ul>
                 </form>
             </section>
+            <main>
+                <h3>Clients for <?php echo $Reference; ?></h3>
+                <?php
+                //getting Clients from the booking
+                $rows_Clients = getRows_Clients($BookingsId);
+                foreach ($rows_Clients as $row_Clients) {
+                    echo "<ul>";
+                    echo "<li>".$row_Clients->Title;
+                    echo " ".$row_Clients->FirstName;
+                    echo " ".$row_Clients->LastName."</li>";
+                    echo "<li>".$row_Clients->NRCNo."</li>";
+                    echo "<li><a href=\"clientsEdit.php?ClientsId=$row_Clients->Id\" target=\"_blank\">Edit</a></li>";
+                }
+                ?>
+            </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
     </body>

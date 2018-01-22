@@ -168,6 +168,10 @@ main h3 {
     text-align: center;
 }
 
+main ul li {
+    list-style: none;
+}
+
 .grid-div {
     display: grid;
     grid-template-columns: 1fr;

@@ -216,4 +216,52 @@ function selectTitles($Title) {
     }
 }
 
+//function to get data from the table Clients
+function getRows_Clients($BookingsId) {
+    $getRows_Clients = new Database();
+    if($BookingsId == NULL || empty($BookingsId)) {
+        $query_getRows_Clients = "SELECT
+            Clients.Id,
+            Clients.Title,
+            Clients.FirstName,
+            Clients.LastName,
+            Clients.PassportNo,
+            Clients.PassportExpiry,
+            Clients.NRCNo,
+            Clients.DOB,
+            Clients.Country,
+            Clients.FrequentFlyer,
+            Clients.Company,
+            Clients.Phone,
+            Clients.Email,
+            Clients.Website
+            FROM Clients ORDER BY Clients.Id DESC
+        ;";
+    }
+    else {
+        $query_getRows_Clients = "SELECT
+            Clients.Id,
+            Clients.Title,
+            Clients.FirstName,
+            Clients.LastName,
+            Clients.PassportNo,
+            Clients.PassportExpiry,
+            Clients.NRCNo,
+            Clients.DOB,
+            Clients.Country,
+            Clients.FrequentFlyer,
+            Clients.Company,
+            Clients.Phone,
+            Clients.Email,
+            Clients.Website
+            FROM Clients, Bookings_Clients
+            WHERE Bookings_Clients.ClientsId = Clients.Id
+            AND Bookings_Clients.BookingsId = :BookingsId
+        ;";
+    }
+    $getRows_Clients->query($query_getRows_Clients);
+    $getRows_Clients->bind(':BookingsId', $BookingsId);
+    return $rows_Clients = $getRows_Clients->resultset();
+}
+
 ?>
