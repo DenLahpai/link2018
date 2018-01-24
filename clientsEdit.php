@@ -41,6 +41,54 @@ foreach ($row_Clients as $data_Clients) {
                             <input type="text" name="LastName" id="LastName" 
                             value="<?php echo $data_Clients->LastName; ?>">
                         </li>
+                        <li>
+                            <label for="PassportNo">Passport No:</label>
+                            <input type="text" name="PassportNo" id="PassportNo" 
+                            value="<?php echo $data_Clients->PassportNo; ?>">
+                        </li>
+                        <li>
+                            <label for="PassportExpiry">Expiry Date:</label>
+                            <input type="date" name="PassportExpiry" id="PassportExpiry"
+                            value="<?php echo $data_Clients->PassportExpiry; ?>">
+                        </li>
+                        <li>
+                            <label for="NRCNo">NRC:</label>
+                            <input type="text" name="NRCNo" id="NRCNo" 
+                            value="<?php echo $data_Clients->NRCNo; ?>">
+                        </li>
+                        <li>
+                            <label for="DOB">DBO:</label>
+                            <input type="date" name="DOB" id="DOB"
+                            value="<?php echo $data_Clients->PassportNo; ?>">
+                        </li>
+                        <li>
+                            <label for="Country">Country:</label>
+                            <input type="text" name="Country" id="Country" 
+                            value="<?php echo $data_Clients->Country; ?>">
+                        </li>
+                        <li>
+                            <label for="Company">Company:</label>
+                            <input type="text" name="Company" id="Company" 
+                            value="<?php echo $data_Clients->Company; ?>">
+                        </li>
+                        <li>
+                            <label for="Phone">Phone:</label>
+                            <input type="text" name="Phone" id="Phone" 
+                            value="<?php echo $data_Clients->Phone; ?>">
+                        </li>
+                        <li>
+                            <label for="Email">Email:</label>
+                            <input type="text" name="Email" id="Email" 
+                            value="<?php echo $data_Clients->Email; ?>">
+                        </li>
+                        <li>
+                            <label for="Website">Website:</label>
+                            <input type="text" name="Website" id="Website" 
+                            value="<?php echo $data_Clients->Website; ?>">
+                        </li>
+                        <li>
+                            <button type="submit" name="buttonSubit">Submit</button>
+                        </li>
                     </ul>
                 </form>
             </section>       
