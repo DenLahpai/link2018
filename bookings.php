@@ -32,7 +32,7 @@ require "functions.php";
                         FROM Bookings, Corporates, Users
                         WHERE Bookings.CorporatesId = Corporates.Id
                         AND Bookings.UserId = Users.Id
-                        ORDER BY Bookings.Id
+                        ORDER BY Bookings.Id DESC
                     ;";
                     $getRows_Bookings->query($query_getRows_Bookings);
                     $rows_Bookings = $getRows_Bookings->resultset();

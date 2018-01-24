@@ -143,6 +143,11 @@ main table tbody tr:nth-child(even) {
     color: white;
 }
 
+main ol {
+    background: #787878;
+    padding: 6px 18px;
+}
+
 .links ul li {
     padding: 12px;
     list-style:none;

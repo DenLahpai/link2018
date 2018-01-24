@@ -174,21 +174,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </form>
             </section>
-            <main>
-                <h3>Clients for <?php echo $Reference; ?></h3>
-                <?php
-                //getting Clients from the booking
-                $rows_Clients = getRows_Clients($BookingsId);
-                foreach ($rows_Clients as $row_Clients) {
-                    echo "<ul>";
-                    echo "<li>".$row_Clients->Title;
-                    echo " ".$row_Clients->FirstName;
-                    echo " ".$row_Clients->LastName."</li>";
-                    echo "<li>".$row_Clients->NRCNo."</li>";
-                    echo "<li><a href=\"clientsEdit.php?ClientsId=$row_Clients->Id\" target=\"_blank\">Edit</a></li>";
-                }
-                ?>
-            </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
     </body>
