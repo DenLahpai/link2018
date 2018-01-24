@@ -264,4 +264,12 @@ function getRows_Clients($BookingsId) {
     return $rows_Clients = $getRows_Clients->resultset();
 }
 
+function getRow_Clients($ClientsId) {
+    $getRow_Clients = new Database();
+    $query_getRow_Clients = "SELECT * FROM Clients WHERE Id = :ClientsId ;";
+    $getRow_Clients->query($query_getRow_Clients);
+    $getRow_Clients->bind(':ClientsId', $ClientsId);
+    return $r = $getRow_Clients->resultset();
+}
+
 ?>
