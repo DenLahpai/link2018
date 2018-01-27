@@ -264,12 +264,29 @@ function getRows_Clients($BookingsId) {
     return $rows_Clients = $getRows_Clients->resultset();
 }
 
+//function to get row from the Table Clients
 function getRow_Clients($ClientsId) {
     $getRow_Clients = new Database();
     $query_getRow_Clients = "SELECT * FROM Clients WHERE Id = :ClientsId ;";
     $getRow_Clients->query($query_getRow_Clients);
     $getRow_Clients->bind(':ClientsId', $ClientsId);
     return $r = $getRow_Clients->resultset();
+}
+
+//function to get rows from the table Suppliers
+function getRows_Suppliers($SuppliersId) {
+    $database = new Database();
+    if (empty($SuppliersId) || $SuppliersId == NULL) {
+        $query = "SELECT * FROM Suppliers ORDER BY Name ;";
+    }
+    else {
+        $query = "SELECT * FROM Suppliers
+        WHERE Id = :SuppliersId
+        ;";
+    }
+    $database->query($query);
+    $database->bind(':SuppliersId', $SuppliersId);
+    return $r = $database->resultset();
 }
 
 ?>
