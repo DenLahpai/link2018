@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <ul>
                         <li>
                             <label for="Name">Name:</label>
-                            <input type="text" name="Name" id="Name" placeholder="Supplier Name">
+                            <input type="text" name="Name" id="Name" placeholder="Supplier Name" required>
                         </li>
                         <li>
                             <label for="Address">Address:</label>
@@ -108,7 +108,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<tr>";
                         echo "<td>".$row_Suppliers->Name."</td>";
                         echo "<td>".$row_Suppliers->City."</td>";
-                        echo "<td><a href=\"SuppliersEdit.php?SuppliersId=$row_Suppliers->Id\">";
+                        echo "<td><a href=\"suppliersEdit.php?SuppliersId=$row_Suppliers->Id\">";
                         echo "Edit</a></td>";
                         echo "</tr>";
                     }
