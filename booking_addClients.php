@@ -16,6 +16,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $NRCNo = trim($_REQUEST['NRCNo']);
     $DOB = trim($_REQUEST['DOB']);
     $Country = trim($_REQUEST['Country']);
+    $FrequentFlyer = trim($_REQUEST['FrequentFlyer']);
     $Company = trim($_REQUEST['Company']);
     $Phone = trim($_REQUEST['Phone']);
     $Email = trim($_REQUEST['Email']);
@@ -84,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $insert_Clients->bind(':Email', $Email);
             $insert_Clients->bind(':Website', $Website);
             if($insert_Clients->execute()) {
-                header("location:clients_add.php?BookingsId=$BookingsId");
+                header("location:booking_addExistingClient.php?BookingsId=$BookingsId");
             }
             else {
                 $msg_error = $connection_problem;
@@ -148,6 +149,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li>
                             <label for="Country">Country:</label>
                             <input type="text" name="Country" id="Country" placeholder="Country">
+                        </li>
+                        <li>
+                            <label for="FrequentFlyer">Frequent Flyer:</label>
+                            <input type="text" name="FrequentFlyer" id="FrequentFlyer"
+                            placeholder="Frequent Flyer Numbers">
                         </li>
                         <li>
                             <label for="Company">Company:</label>

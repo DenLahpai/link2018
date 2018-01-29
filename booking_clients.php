@@ -30,10 +30,11 @@ foreach ($rows_Bookings as $row_Bookings) {
             <main>
                 <h3>Clients in this Booking</h3>
                 <?php
+                echo "<ol>";
                 //getting Clients from the booking
                 $rows_Clients = getRows_Clients($BookingsId);
                 foreach ($rows_Clients as $row_Clients) {
-                    echo "<ol>";
+
                     echo "<li>".$row_Clients->Title;
                     echo " ".$row_Clients->FirstName." ";
                     echo $row_Clients->LastName." | ";
@@ -42,6 +43,7 @@ foreach ($rows_Bookings as $row_Bookings) {
                     echo $row_Clients->FrequentFlyer." | ";
                     echo "<a href=\"clientsEdit.php?ClientsId=$row_Clients->Id\" target=\"_blank\">Edit</a></li>";
                 }
+                echo "</ol>";
                 ?>
             </main>
         </div><!-- end of content -->

@@ -148,6 +148,10 @@ main ol {
     padding: 6px 18px;
 }
 
+main ol li {
+    padding: 6px;
+}
+
 .links ul li {
     padding: 12px;
     list-style:none;
