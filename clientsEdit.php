@@ -139,7 +139,7 @@ foreach ($row_Clients as $data_Clients) {
                             value="<?php echo $data_Clients->Website; ?>">
                         </li>
                         <li>
-                            <button type="submit" name="buttonSubit">Submit</button>
+                            <button type="submit" name="buttonSubmit">Submit</button>
                         </li>
                     </ul>
                 </form>
