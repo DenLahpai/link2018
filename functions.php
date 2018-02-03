@@ -289,4 +289,18 @@ function getRows_Suppliers($SuppliersId) {
     return $r = $database->resultset();
 }
 
+//function to get rows from the table ServiceStatus
+function getRows_ServiceStatus($ServiceStatusId) {
+    $database = new Database();
+    if (empty($ServiceStatusId) || $ServiceStatusId == NULL) {
+        $query = "SELECT * FROM ServiceStatus ORDER BY Id";
+    }
+    else {
+        $query = "SELECT * FROM ServiceStatus
+        WHERE Id = :ServiceStatusId";
+    }
+    $database->query($query);
+    $database->bind(':ServiceStatusId', $ServiceStatusId);
+    return $r = $database->resultset();
+}
 ?>
