@@ -57,5 +57,6 @@ foreach ($rows_ServiceStatus as $row_ServiceStatus) {
                 </ul>
             </form>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>

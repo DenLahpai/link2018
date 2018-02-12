@@ -43,7 +43,7 @@ $rows_Invoices = getRows_Invoices($BookingsId);
                         echo "<div class=\"grid-item\">";
                         echo "<ul>";
                         echo "<li>Invoice No: ".$row_Invoices->InvoiceNo."</li>";
-                        echo "<li>Invoiec Date: ".date('d-m-Y', strtotime($row_Invoices->InvoiceDate))."</li>";
+                        echo "<li>Invoice Date: ".date('d-m-Y', strtotime($row_Invoices->InvoiceDate))."</li>";
                         echo "<li>Amount: ".$row_Invoices->USD." USD</li>";
                         echo "<li>Amount: ".$row_Invoices->MMK." MMK</li>";
                         echo "<li>Status: ".$row_Invoices->Status." on: ";
