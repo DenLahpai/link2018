@@ -13,7 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $check_ServiceType->bind(':Code', $Code);
     $check_ServiceType->bind(':Type', $Type);
     $rowCount_ServiceType = $check_ServiceType->rowCount();
-    if ($rowCount > 0) {
+    if ($rowCount_ServiceType > 0) {
         $msg_error = $duplicate_entry;
     }
     else {
@@ -21,7 +21,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
         $insert_ServiceType = new Database();
         $query_insert_ServiceType = "INSERT INTO ServiceType (
             Code,
-            Type,
+            Type
             ) VALUES(
             :Code,
             :Type
@@ -70,6 +70,22 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </form>
             </section>
+            <main>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code</th>
+                            <th>Type</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                    //function to get service Type TODO 
+                    ?>
+                    </tbody>
+                </table>
+            </main>
         </div><!-- end of content -->
     </body>
 </html>
