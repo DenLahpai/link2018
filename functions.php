@@ -319,4 +319,8 @@ function getRows_ServiceType($ServiceTypeId) {
     $database->bind(':ServiceTypeId', $ServiceTypeId);
     return $r = $database->resultset();
 }
+
+//function to get rows from the table SupplierContacts
+//TODO
+
 ?>

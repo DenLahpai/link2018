@@ -33,7 +33,7 @@
                             <a href="suppliers.php">Suppliers</a>
                         </li>
                         <li>
-                            <a href="suppliersContacts.php">Suppplier Contacts</a>
+                            <a href="supplierContacts.php">Suppplier Contacts</a>
                         </li>
                         <li>
                             <a href="serviceStatus.php">Service Status</a>
