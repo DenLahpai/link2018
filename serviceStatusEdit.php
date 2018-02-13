@@ -20,6 +20,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $update_ServiceStatus->execute();
 }
 
+//getting data from the table ServiceStatus
 $rows_ServiceStatus = getRows_ServiceStatus($ServiceStatusId);
 foreach ($rows_ServiceStatus as $row_ServiceStatus) {
     # code...

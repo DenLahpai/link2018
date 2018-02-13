@@ -303,4 +303,20 @@ function getRows_ServiceStatus($ServiceStatusId) {
     $database->bind(':ServiceStatusId', $ServiceStatusId);
     return $r = $database->resultset();
 }
+
+//functionto get rows from the table ServiceType
+function getRows_ServiceType($ServiceTypeId) {
+    $database = new Database();
+    if (empty($ServiceTypeId) || $ServiceTypeId == NULL) {
+        $query = "SELECT * FROM ServiceType ORDER BY Id";
+    }
+    else {
+        $query = "SELECT * FROM ServiceType
+        WHERE Id = :ServiceTypeId
+        ;";
+    }
+    $database->query($query);
+    $database->bind(':ServiceTypeId', $ServiceTypeId);
+    return $r = $database->resultset();
+}
 ?>

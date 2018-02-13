@@ -89,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<td>".$row_ServiceStatus->Code."</td>";
                         echo "<td>".$row_ServiceStatus->Status."</td>";
                         echo "<td><a href=\"serviceStatusEdit.php?ServiceStatusId=$row_ServiceStatus->Id\">Edit</a></td>";
+                        echo "</tr>";
                     }
                     ?>
                     </tbody>

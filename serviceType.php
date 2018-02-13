@@ -81,11 +81,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
                     <tbody>
                     <?php
-                    //function to get service Type TODO 
+                    //getting data from the table ServiceType
+                    $rows_ServiceType = getRows_ServiceType(NULL);
+                    foreach ($rows_ServiceType as $row_ServiceType) {
+                        echo "<tr>";
+                        echo "<td>".$row_ServiceType->Code."</td>";
+                        echo "<td>".$row_ServiceType->Type."</td>";
+                        echo "<td><a href=\"serviceTypeEdit.php?ServiceTypeId=$row_ServiceType->Id\">Edit</a></td>";
+                        echo "</tr>";
+                    }
                     ?>
                     </tbody>
                 </table>
             </main>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>
