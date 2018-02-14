@@ -321,6 +321,40 @@ function getRows_ServiceType($ServiceTypeId) {
 }
 
 //function to get rows from the table SupplierContacts
-//TODO
+function getRows_SupplierContacts($SupplierContactsId) {
+    $database = new Database();
+    if (empty($SupplierContactsId) || $SupplierContactsId == NULL || $SupplierContactsId == "") {
+        $query = "SELECT 
+            SupplierContacts.Id,
+            SupplierContacts.Title,
+            SupplierContacts.FirstName,
+            SupplierContacts.LastName,
+            Suppliers.Name AS SupplierName,
+            SupplierContacts.Email,
+            SupplierContacts.Phone
+            FROM SupplierContacts, Suppliers
+            WHERE Suppliers.Id = SupplierContacts.SupplierId 
+            ORDER BY Id 
+        ;";
+    }
+    else {
+        $query = "SELECT 
+            FROM SupplierContacts 
+            SupplierContacts.Id,
+            SupplierContacts.Title,
+            SupplierContacts.FirstName,
+            SupplierContacts.LastName,
+            Suppliers.Name AS SupplierName,
+            SupplierContacts.Email,
+            SupplierContacts.Phone
+            FROM SupplierContacts, Suppliers
+            WHERE Suppliers.Id = SupplierContacts.SupplierId 
+            AND SupplierContacts.Id = :SupplierContactsId            
+        ;";
+    }
+    $database->query($query);
+    $database->bind(':SupplierContactsId', $SupplierContactsId);
+    return $r = $database->resultset();
+}
 
 ?>

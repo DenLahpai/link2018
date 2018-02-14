@@ -121,7 +121,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <main>
                 <div class="grid-div"><!-- grid-div -->
                     <?php
-                    //TODO
+                    $rows_SupplierContacts = getRows_SupplierContacts(NULL);
+                    foreach($rows_SupplierContacts as $row_SupplierContacts) {
+                        echo "<div class=\"grid-item\"><!-- grid-item -->";
+                        echo "<ul>";
+                        echo "<li>".$row_SupplierContacts->Title." ";
+                        echo $row_SupplierContacts->FirstName." ";
+                        echo $row_SupplierContacts->LastName."</li>";
+                        echo "<li>".$row_SupplierContacts->SupplierName."</li>";
+                        echo "<li>".$row_SupplierContacts->Email."</li>";
+                        echo "<li>".$row_SupplierContacts->Phone."</li>";
+                        echo "<li><a href=\"supplierContactsEdit.php?SupplierContactsId=$row_SupplierContacts->Id\">";
+                        echo "Edit</a></li>";
+                        echo "<ul></div><!-- end of grid-item-->";
+                    }
                     ?>
                 </div><!-- end of grid-div -->
             </main>
