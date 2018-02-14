@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include "includes/nav.html";
             ?>
             <section>
-                <form class="form supplierscontacts" action="#" method="post">
+                <form class="form suppliercontacts" action="#" method="post">
                     <ul>
                         <li>
                             <label for="Title">Title:</label>
