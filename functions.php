@@ -358,4 +358,55 @@ function getRows_SupplierContacts($SupplierContactsId) {
     return $r = $database->resultset();
 }
 
+//function to get data from the table Cost
+function getRows_Cost($ServiceType, $CostId) {
+    $database = new Database();
+    if (empty($CostId)) {
+        $query = "SELECT
+            Cost.Id,
+            Cost.SupplierId,
+            Cost.Service,
+            Cost.Additional,
+            Cost.StartDate,
+            Cost.EndDate,
+            Cost.MaxPax,
+            Cost.Cost1_USD,
+            Cost.Cost1_MMK,
+            Cost.Cost2_USD,
+            Cost.Cost2_MMK,
+            Cost.Cost3_USD,
+            Cost.Cost3_MMK,
+            Suppliers.Name AS SupplierName,
+            Suppliers.City
+            FROM Cost, Suppliers
+            WHERE Cost.ServiceType = :ServiceType
+            ORDER BY Cost.Id ;";
+        $database->query($query);
+        $database->bind(':ServiceType', $ServiceType);
+    }
+    else {
+        $query = "SELECT
+            Cost.Id,
+            Cost.SupplierId,
+            Cost.Service,
+            Cost.Additional,
+            Cost.StartDate,
+            Cost.EndDate,
+            Cost.MaxPax,
+            Cost.Cost1_USD,
+            Cost.Cost1_MMK,
+            Cost.Cost2_USD,
+            Cost.Cost2_MMK,
+            Cost.Cost3_USD,
+            Cost.Cost3_MMK,
+            Suppliers.Name AS SupplierName,
+            Suppliers.City
+            FROM Cost, Suppliers
+            WHERE Id = :CostId ;";
+        $database->query($query);
+        $database->bind(':CostId', $CostId);
+    }
+    return $r = $database->resultset();
+}
+
 ?>
