@@ -40,10 +40,7 @@
                         </li>
                         <li>
                             <a href="serviceType.php">Service Type</a>
-                        </li>
-                        <li>
-                            <a href="service.php">Services</a>
-                        </li>
+                        </li>                        
                     </ul>
                 </div>
             </main>
