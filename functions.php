@@ -359,7 +359,7 @@ function getRows_SupplierContacts($SupplierContactsId) {
 }
 
 //function to get data from the table Cost
-function getRows_Cost($ServiceType, $CostId) {
+function getRows_Cost($ServiceTypeId, $CostId) {
     $database = new Database();
     if (empty($CostId)) {
         $query = "SELECT
@@ -379,10 +379,11 @@ function getRows_Cost($ServiceType, $CostId) {
             Suppliers.Name AS SupplierName,
             Suppliers.City
             FROM Cost, Suppliers
-            WHERE Cost.ServiceType = :ServiceType
+            WHERE Cost.SupplierId = Suppliers.Id
+            AND Cost.ServiceTypeId = :ServiceTypeId
             ORDER BY Cost.Id ;";
         $database->query($query);
-        $database->bind(':ServiceType', $ServiceType);
+        $database->bind(':ServiceTypeId', $ServiceTypeId);
     }
     else {
         $query = "SELECT
