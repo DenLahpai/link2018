@@ -40,23 +40,25 @@ foreach ($rows_ServiceStatus as $row_ServiceStatus) {
             include "includes/header.html";
             include "includes/nav.html";
             ?>
-            <form class="form ServiceStatus" action="#" method="post">
-                <ul>
-                    <li>
-                        <label for="Code">Code:</label>
-                        <input type="text" name="Code" id="Code"
-                        value="<?php echo $row_ServiceStatus->Code; ?>">
-                    </li>
-                    <li>
-                        <label for="Status">Status:</label>
-                        <input type="text" name="Status" id="Status"
-                        value="<?php echo $row_ServiceStatus->Status; ?>">
-                    </li>
-                    <li>
-                        <button type="submit" name="buttonSubmit">Update</button>
-                    </li>
-                </ul>
-            </form>
+            <section>
+                <form class="form ServiceStatus" action="#" method="post">
+                    <ul>
+                        <li>
+                            <label for="Code">Code:</label>
+                            <input type="text" name="Code" id="Code"
+                            value="<?php echo $row_ServiceStatus->Code; ?>">
+                        </li>
+                        <li>
+                            <label for="Status">Status:</label>
+                            <input type="text" name="Status" id="Status"
+                            value="<?php echo $row_ServiceStatus->Status; ?>">
+                        </li>
+                        <li>
+                            <button type="submit" name="buttonSubmit">Update</button>
+                        </li>
+                    </ul>
+                </form>
+            </section>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
     </body>

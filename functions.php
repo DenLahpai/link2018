@@ -397,13 +397,13 @@ function getRows_Cost($ServiceTypeId, $CostId) {
             Cost.Cost1_USD,
             Cost.Cost1_MMK,
             Cost.Cost2_USD,
-            Cost.Cost2_MMK,
+            Cost.Cost2_MMK,# code...
             Cost.Cost3_USD,
             Cost.Cost3_MMK,
             Suppliers.Name AS SupplierName,
             Suppliers.City
             FROM Cost, Suppliers
-            WHERE Id = :CostId ;";
+            WHERE Cost.Id = :CostId ;";
         $database->query($query);
         $database->bind(':CostId', $CostId);
     }
