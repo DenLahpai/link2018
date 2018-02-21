@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     else {
         $check_Cost = new Database();
-
         $query_check_Cost = "SELECT Id FROM Cost
             WHERE SupplierId = :SupplierId
             AND Service = :Service
