@@ -76,7 +76,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             include "includes/nav.html"
             ?>
             <section>
-                <form class="form serviceFl" action="#" method="post">
+                <form class="form serviceFL" action="#" method="post">
                     <ul>
                         <li>
                             <label for="SupplierId">Airline:</label>
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<li>".$row_Cost->Service."</li>";
                         echo "<li>".date("d-M-Y", strtotime($row_Cost->StartDate));
                         echo " Until ".date("d-M-Y", strtotime($row_Cost->EndDate))."</li>";
-                        echo "<li><a href=\"serviceACEdit.php?CostId=$row_Cost->Id\">Edit</a></li>";
+                        echo "<li><a href=\"serviceFLEdit.php?CostId=$row_Cost->Id\">Edit</a></li>";
                         echo "</ul></div><!-- end of grid-item -->";
                     }
                     ?>

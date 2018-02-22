@@ -19,10 +19,10 @@
                             <a href="serviceAC.php">Accommodation</a>
                         </li>
                         <li>
-                            <a href="serviceFl.php">Flight</a>
+                            <a href="serviceFL.php">Flight</a>
                         </li>
                         <li>
-                            <a href="serviceTP">Land Transfer</a>
+                            <a href="serviceLT.php">Land Transfer</a>
                         </li>
                     </ul>
                 </div><!-- end of links -->
