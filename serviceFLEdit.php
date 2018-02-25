@@ -8,9 +8,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $StartDate = $_REQUEST['StartDate'];
     $EndDate = $_REQUEST['EndDate'];
 
-    //TODO GERE
+    $update_Cost = new Database();
+    $query_update_Cost = "UPDATE Cost SET
+      SupplierId = :SupplierId,
+      StartDate = :StartDate,
+      EndDate = :EndDate
+      WHERE Id = :CostId
+    ;";
+    $update_Cost->query($query_update_Cost);
+    $update_Cost->bind(':SupplierId', $SupplierId);
+    $update_Cost->bind(':StartDate', $StartDate);
+    $update_Cost->bind(':EndDate', $EndDate);
+    $update_Cost->bind(':CostId', $CostId);
+    $update_Cost->execute();
 }
-
 
 //getting data from the table Cost
 $rows_Cost = getRows_Cost(NULL, $CostId);
