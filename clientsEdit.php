@@ -106,7 +106,7 @@ foreach ($row_Clients as $data_Clients) {
                         <li>
                             <label for="DOB">DBO:</label>
                             <input type="date" name="DOB" id="DOB"
-                            value="<?php echo $data_Clients->PassportNo; ?>">
+                            value="<?php echo $data_Clients->DOB; ?>">
                         </li>
                         <li>
                             <label for="Country">Country:</label>
