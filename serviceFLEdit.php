@@ -77,5 +77,6 @@ foreach ($rows_Cost as $row_Cost) {
                 </form>
             </section>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>
