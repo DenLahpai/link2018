@@ -1,8 +1,8 @@
-<?php
+Invoice<?php
 require "functions.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $ServiceTypeId = '3';
+    $ServiceTypeId = '4';
     $SupplierId = $_REQUEST['SupplierId'];
     $Service = trim($_REQUEST['Service']);
     $Additional = trim($_REQUEST['Additional']);
@@ -81,21 +81,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php
-        $title = "Service: Land Transfers";
+     <?php
+        $title = "Service: Boat";
         include "includes/head.html";
-        ?>
-    </head>
+    ?>
     <body>
         <div class="content"><!-- content -->
             <?php
-            $pageTitle = "Service: Land Transfers";
+            $pageTitle = "Service: Boat";
             include "includes/header.html";
             include "includes/nav.html";
             ?>
             <section>
-                <form class="form ServiceLT" action="#" method="post">
+                <form class="form ServiceBO" action="#" method="post">
                     <ul>
                         <li>
                             <label for="SupplierId">Supplier:</label>
@@ -130,7 +128,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </li>
                         <li>
                             <label for="MaxPax">Maximum Pax:</label>
-                            <input type="number" name="MaxPax" id="MaxPax" value="2" min="1">
+                            <input type="number" name="MaxPax" id="MaxPax" value="2" min="1" required>
                         </li>
                         <li>
                             <label for="Cost1_USD">Cost in USD:</label>
@@ -149,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <main>
                 <div class="grid-div"><!-- grid-div -->
                     <?php
-                    $rows_Cost = getRows_Cost('3', NULL);
+                    $rows_Cost = getRows_Cost('4', NULL);
                     foreach ($rows_Cost as $row_Cost) {
                         echo "<div class=\"grid-item\"><!-- grid-item -->";
                         echo "<ul>";
@@ -158,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo $row_Cost->Additional."</li>";
                         echo "<li>".date("d-M-Y", strtotime($row_Cost->StartDate));
                         echo " Until ".date("d-M-Y", strtotime($row_Cost->EndDate))."</li>";
-                        echo "<li><a href=\"serviceLTEdit.php?CostId=$row_Cost->Id\">Edit</a></li>";
+                        echo "<li><a href=\"serviceBOEdit.php?CostId=$row_Cost->Id\">Edit</a></li>";
                         echo "</ul></div><!-- end of grid-item -->";
                     }
                     ?>

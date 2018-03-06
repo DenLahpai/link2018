@@ -24,9 +24,13 @@
                         <li>
                             <a href="serviceLT.php">Land Transfer</a>
                         </li>
+                        <li>
+                            <a href="serviceBO.php">Boat</a>
+                        </li>
                     </ul>
                 </div><!-- end of links -->
             </main>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>
