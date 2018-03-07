@@ -57,7 +57,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
     $query_update_Invoices = "UPDATE Invoices SET
         PaidOn = :PaidOn,
         Status = :Status,
-        Method = :Method
+        MethodId = :Method
         WHERE InvoiceNo = :InvoiceNo
     ;";
     $update_Invoices->query($query_update_Invoices);

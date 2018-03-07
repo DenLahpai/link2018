@@ -410,4 +410,58 @@ function getRows_Cost($ServiceTypeId, $CostId) {
     return $r = $database->resultset();
 }
 
+///             Funcitons for Reports /////
+
+//getting data from the table Invoice and Bookings filter by Search
+function getReport_bySearch_Invoice($search) {
+    $database = new Database();
+    if($search == NULL || empty($search) || $search == "") {
+        $query = "SELECT
+            Invoices.InvoiceNo,
+            Invoices.InvoiceDate,
+            Invoices.USD,
+            Invoices.MMK,
+            Invoices.PaidOn,
+            Invoices.Status,
+            PaymentMethods.Method,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName
+            FROM Invoices, Bookings, Corporates, PaymentMethods
+            WHERE Invoices.BookingsId = Bookings.Id
+            AND Bookings.CorporatesId = Corporates.Id
+            AND Invoices.MethodId = PaymentMethods.Id
+            ORDER BY Bookings.Reference DESC
+        ;";
+    }
+    else {
+        $mySearch = '%'.$search.'%';
+        $query = "SELECT
+            Invoices.InvoiceNo,
+            Invoices.InvoiceDate,
+            Invoices.USD,
+            Invoices.MMK,
+            Invoices.PaidOn,
+            Invoices.Status,
+            PaymentMethods.Method,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName
+            FROM Invoices, Bookings, Corporates, PaymentMethods
+            WHERE Invoices.BookingsId = Bookings.Id
+            AND Bookings.CorporatesId = Corporates.Id
+            AND CONCAT(
+            Invoices.InvoiceNo,
+            Bookings.Reference,
+            Bookings.Name,
+            Corporates.Name
+            ) LIKE :mySearch
+            ORDER BY Bookings.Reference DESC
+        ;";
+    }
+    $database->query($query);
+    $database->bind(':mySearch', $mySearch);
+    return $r = $database->resultset();
+}
+
 ?>

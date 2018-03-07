@@ -1,12 +1,10 @@
 <?php require "functions.php"; ?>
 <!DOCTYPE html>
 <html>
-    <head>
-        <?php
-        $title = "Admin";
-        include "includes/head.html";
-        ?>
-    </head>
+    <?php
+    $title = "Admin";
+    include "includes/head.html";
+    ?>
     <body>
         <div class="content"><!-- content -->
             <?php
@@ -40,7 +38,7 @@
                         </li>
                         <li>
                             <a href="serviceType.php">Service Type</a>
-                        </li>                        
+                        </li>
                     </ul>
                 </div>
             </main>
