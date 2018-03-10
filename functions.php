@@ -436,6 +436,7 @@ function getRows_Cost($ServiceTypeId, $CostId) {
 function getReport_bySearch_Invoice($search) {
     $database = new Database();
     if($search == NULL || empty($search) || $search == "") {
+        $mySearch = NULL;
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,

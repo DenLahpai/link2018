@@ -229,8 +229,17 @@ section table tr td {
     border: 1px solid white;
 }
 
+.search {
+    margin: 6px;
+}
 
+.search ul li {
+    text-align: center;
+}
 
+.search ul li input {
+    text-align: center;    
+}
 
 /*styles for tablets*/
 @media screen and (min-width: 768px) {

@@ -1,5 +1,7 @@
 <?php
 require "functions.php";
+
+
 $rows_Invoices = getReport_bySearch_Invoice(NULL);
 foreach ($rows_Invoices as $row_Invoices) {
 //
@@ -12,12 +14,12 @@ foreach ($rows_Invoices as $row_Invoices) {
     include "includes/head.html";
     ?>
     <body>
+        <?php include "includes/search.html"; ?>
         <div class="content"><!-- content -->
             <?php
             $pageTitle = "Invoices Report";
             include "includes/header.html";
             include "includes/nav.html";
-            include "includes/search.html";
             ?>
             <section>
                 <form class="form report invoices" action="#" method="post">
