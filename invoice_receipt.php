@@ -188,7 +188,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\">KBZ</option>";
                     }
                     else if ($method == 2) {
-                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"1\">Cash</option>";
                         echo "<option value=\"2\" selected>UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";

@@ -10,6 +10,26 @@ function get_row_Users($UsersId) {
     return $r = $get_row_Users->resultset();
 }
 
+//function to get rows from the table Corporates
+function getRows_Corporates() {
+    $database = new Database();
+    $query = "SELECT
+        Corporates.Id,
+        Corporates.Name,
+        Corporates.Chain,
+        Corporates.Type,
+        Countries.Country,
+        Corporates.Email,
+        Corporates.Website
+        FROM Corporates, Countries
+        WHERE Corporates.CountryCode = Countries.Code
+        ORDER BY Corporates.Name
+    ;";
+    $database->query($query);
+    $database->execute();
+    return $r = $database->resultset();
+}
+
 //function to get one row from the table Bookings
 function get_row_Bookings($BookingsId) {
 
@@ -427,10 +447,12 @@ function getReport_bySearch_Invoice($search) {
             Bookings.Reference,
             Bookings.Name AS BookingsName,
             Corporates.Name AS CorporatesName
-            FROM Invoices, Bookings, Corporates, PaymentMethods
-            WHERE Invoices.BookingsId = Bookings.Id
-            AND Bookings.CorporatesId = Corporates.Id
-            AND Invoices.MethodId = PaymentMethods.Id
+            FROM Invoices LEFT OUTER JOIN Bookings
+            ON Invoices.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN PaymentMethods ON
+            Invoices.MethodId = PaymentMethods.Id
             ORDER BY Bookings.Reference DESC
         ;";
     }
@@ -447,10 +469,13 @@ function getReport_bySearch_Invoice($search) {
             Bookings.Reference,
             Bookings.Name AS BookingsName,
             Corporates.Name AS CorporatesName
-            FROM Invoices, Bookings, Corporates, PaymentMethods
-            WHERE Invoices.BookingsId = Bookings.Id
-            AND Bookings.CorporatesId = Corporates.Id
-            AND CONCAT(
+            FROM Invoices LEFT OUTER JOIN Bookings
+            ON Invoices.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN PaymentMethods ON
+            Invoices.MethodId = PaymentMethods.Id
+            WHERE CONCAT(
             Invoices.InvoiceNo,
             Bookings.Reference,
             Bookings.Name,

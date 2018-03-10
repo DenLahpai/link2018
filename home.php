@@ -112,21 +112,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <select name="CorporatesId">
                                 <option value="">Select Corporates</option>
                                 <?php
-                                $getRows_Corporates = new Database();
-                                $query_getRows_Corporates = "SELECT
-                                    Corporates.Id,
-                                    Corporates.Name,
-                                    Corporates.Chain,
-                                    Corporates.Type,
-                                    Countries.Country,
-                                    Corporates.Email,
-                                    Corporates.Website
-                                    FROM Corporates, Countries
-                                    WHERE Corporates.CountryCode = Countries.Code
-                                    ORDER BY Corporates.Name
-                                ;";
-                                $getRows_Corporates->query($query_getRows_Corporates);
-                                $rows_Corporates = $getRows_Corporates->resultset();
+                                $rows_Corporates = getRows_Corporates();
                                 foreach ($rows_Corporates as $row_Corporates) {
                                     echo "<option value=\"$row_Corporates->Id\">";
                                     echo $row_Corporates->Name."</option>";
