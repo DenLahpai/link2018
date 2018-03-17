@@ -490,4 +490,45 @@ function getReport_bySearch_Invoice($search) {
     return $r = $database->resultset();
 }
 
+
+//function to get Invoice Report filter by Invoice Date
+function get_InvoiceReport_Filterby_InvoiceDate() {
+    $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
+    $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
+    if(empty($InvoiceDate1)) {
+        $msg_error = $empty_field;
+    }
+    else {
+        if(empty($InvoiceDate2)){
+            $InvoiceDate2 = $InvoiceDate1;
+        }
+        $database = new Database();
+        $query = "SELECT
+            Invoices.InvoiceNo,
+            Invoices.InvoiceDate,
+            Invoices.USD,
+            Invoices.MMK,
+            Invoices.PaidOn,
+            Invoices.Status,
+            PaymentMethods.Method,
+            Bookings.Reference,
+            Bookings.Name As BookingsName,
+            Corporates.Name AS CorporatesName
+            FROM Invoices LEFT OUTER JOIN Bookings
+            ON Invoices.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN PaymentMethods ON
+            Invoices.MethodId = PaymentMethods.Id
+            WHERE Invoices.InvoiceDate >= :InvoiceDate1
+            AND Invoices.InvoiceDate <= :InvoiceDate2
+        ;";
+        $database->query($query);
+        $database->bind(':InvoiceDate1', $InvoiceDate1);
+        $database->bind(':InvoiceDate2', $InvoiceDate2);
+        return $r = $database->resultset();
+    }
+}
+
+
 ?>

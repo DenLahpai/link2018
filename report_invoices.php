@@ -1,8 +1,12 @@
 <?php
 require "functions.php";
 
+if(isset($_REQUEST['buttonInvoiceDate'])) {
+    $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
+    $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
+    $rows_Invoices = get_InvoiceReport_Filterby_InvoiceDate();
+}
 
-$rows_Invoices = getReport_bySearch_Invoice(NULL);
 foreach ($rows_Invoices as $row_Invoices) {
 //
 }
@@ -14,7 +18,6 @@ foreach ($rows_Invoices as $row_Invoices) {
     include "includes/head.html";
     ?>
     <body>
-        <?php include "includes/search.html"; ?>
         <div class="content"><!-- content -->
             <?php
             $pageTitle = "Invoices Report";
@@ -24,38 +27,16 @@ foreach ($rows_Invoices as $row_Invoices) {
             <section>
                 <form class="form report invoices" action="#" method="post">
                     <ul>
-                        <li style="font-weight:bold; text-align: center;">Filters</li>
-                        <li>
-                            <label for="CorporatesId">Filter by Comapany:</label>
-                            <select name="CorporatesId">
-                                <option value="0">Select One</option>
-                                <?php
-                                $rows_Corporates = getRows_Corporates();
-                                foreach ($rows_Corporates as $row_Corporates) {
-                                    echo "<option value=\"$row_Corporates->Id\">".$row_Corporates->Name."</option>";
-                                }
-                                ?>
-                            </select>
+                        <li style="font-weight:bold; text-align: center;">Enter Search Criteria</li>
                         </li>
                         <li>
-                            <label for="StatusId">Filter by Payment Status:</label>
-                            <select name="Status">
-                                <option value="0">Select One</option>
-                                <?php
-                                foreach ($rows_Invoices as $row_Invoices) {
-                                    echo "<option value=\"$row_Invoices->Status\">".$row_Invoices->Status."</option>";
-                                }
-                                ?>
-                            </select>
-                        </li>
-                        <li>
-                            <label for="from_InvoiceDate">Invoice From:</label>
-                            <input type="date" name="from_InvoiceDate" id="from_InvoiceDate">
-                            <label for="until_InvoiceDate">Until:</label>
-                            <input type="date" name="until_InvoiceDate" id="until_InvoiceDate">
-                        </li>
-                        <li>
-                            <button type="submit" name="buttonSubmit">Submit</button>
+                            <label for="InvoiceDate1">Invoice From:</label>
+                            <input type="date" name="InvoiceDate1" id="InvoiceDate1"
+                            value="<?php echo $InvoiceDate1; ?>">
+                            <label for="InvoiceDate2">Until:</label>
+                            <input type="date" name="InvoiceDate2" id="InvoiceDate2"
+                            value="<?php echo $InvoiceDate2; ?>">
+                            <button type="submit" name="buttonInvoiceDate">Submit</button>
                         </li>
                     </ul>
                 </form>

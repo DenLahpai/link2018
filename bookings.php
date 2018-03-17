@@ -10,14 +10,11 @@ require "functions.php";
         ?>
     </head>
     <body>
-        <?php
-        include "includes/search.html";
-        ?>
         <div class="content"><!-- content -->
             <?php
             $pageTitle = "Bookings";
             include "includes/header.html";
-            include "includes/nav.html";            
+            include "includes/nav.html";
             ?>
             <main>
                 <div class="grid-div"><!-- grid-div -->
