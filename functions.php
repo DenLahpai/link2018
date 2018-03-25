@@ -577,8 +577,27 @@ function get_InvoiceReport_Filterby_Corporates() {
         WHERE Corporates.Id = :CorporatesId
         ;";
     }
-    else if () {
-        //TODO
+    else if ($CorporatesId != 0 && $InvoicesStatus != 0) {
+        $query = "SELECT
+        Invoices.InvoiceNo,
+        Invoices.InvoiceDate,
+        Invoices.USD,
+        Invoices.MMK,
+        Invoices.PaidOn,
+        Invoices.Status,
+        PaymentMethods.Method,
+        Bookings.Reference,
+        Bookings.Name As BookingsName,
+        Corporates.Name AS CorporatesName
+        FROM Invoices LEFT OUTER JOIN Bookings
+        ON Invoices.BookingsId = Bookings.Id
+        LEFT OUTER JOIN Corporates ON
+        Bookings.CorporatesId = Corporates.Id
+        LEFT OUTER JOIN PaymentMethods ON
+        Invoices.MethodId = PaymentMethods.Id
+        WHERE Corporates.Id = :CorporatesId
+        AND Invoices.Status = :InvoicesStatus
+        ;";
     }
 }
 
