@@ -433,58 +433,35 @@ function getRows_Cost($ServiceTypeId, $CostId) {
 ///             Funcitons for Reports /////
 
 //getting data from the table Invoice and Bookings filter by Search
-function getReport_bySearch_Invoice($search) {
+function getReport_bySearch_Invoice() {
     $database = new Database();
-    if($search == NULL || empty($search) || $search == "") {
-        $mySearch = NULL;
-        $query = "SELECT
-            Invoices.InvoiceNo,
-            Invoices.InvoiceDate,
-            Invoices.USD,
-            Invoices.MMK,
-            Invoices.PaidOn,
-            Invoices.Status,
-            PaymentMethods.Method,
-            Bookings.Reference,
-            Bookings.Name AS BookingsName,
-            Corporates.Name AS CorporatesName
-            FROM Invoices LEFT OUTER JOIN Bookings
-            ON Invoices.BookingsId = Bookings.Id
-            LEFT OUTER JOIN Corporates ON
-            Bookings.CorporatesId = Corporates.Id
-            LEFT OUTER JOIN PaymentMethods ON
-            Invoices.MethodId = PaymentMethods.Id
-            ORDER BY Bookings.Reference DESC
-        ;";
-    }
-    else {
-        $mySearch = '%'.$search.'%';
-        $query = "SELECT
-            Invoices.InvoiceNo,
-            Invoices.InvoiceDate,
-            Invoices.USD,
-            Invoices.MMK,
-            Invoices.PaidOn,
-            Invoices.Status,
-            PaymentMethods.Method,
-            Bookings.Reference,
-            Bookings.Name AS BookingsName,
-            Corporates.Name AS CorporatesName
-            FROM Invoices LEFT OUTER JOIN Bookings
-            ON Invoices.BookingsId = Bookings.Id
-            LEFT OUTER JOIN Corporates ON
-            Bookings.CorporatesId = Corporates.Id
-            LEFT OUTER JOIN PaymentMethods ON
-            Invoices.MethodId = PaymentMethods.Id
-            WHERE CONCAT(
-            Invoices.InvoiceNo,
-            Bookings.Reference,
-            Bookings.Name,
-            Corporates.Name
-            ) LIKE :mySearch
-            ORDER BY Bookings.Reference DESC
-        ;";
-    }
+    $search = $_REQUEST['search'];
+    $mySearch = '%'.$search.'%';
+    $query = "SELECT
+        Invoices.InvoiceNo,
+        Invoices.InvoiceDate,
+        Invoices.USD,
+        Invoices.MMK,
+        Invoices.PaidOn,
+        Invoices.Status,
+        PaymentMethods.Method,
+        Bookings.Reference,
+        Bookings.Name AS BookingsName,
+        Corporates.Name AS CorporatesName
+        FROM Invoices LEFT OUTER JOIN Bookings
+        ON Invoices.BookingsId = Bookings.Id
+        LEFT OUTER JOIN Corporates ON
+        Bookings.CorporatesId = Corporates.Id
+        LEFT OUTER JOIN PaymentMethods ON
+        Invoices.MethodId = PaymentMethods.Id
+        WHERE CONCAT(
+        Invoices.InvoiceNo,
+        Bookings.Reference,
+        Bookings.Name,
+        Corporates.Name
+        ) LIKE :mySearch
+        ORDER BY Bookings.Reference DESC
+    ;";
     $database->query($query);
     $database->bind(':mySearch', $mySearch);
     return $r = $database->resultset();
@@ -533,9 +510,10 @@ function get_InvoiceReport_Filterby_InvoiceDate() {
 // function to get Invoice report by Corporates & Invoice Status
 function get_InvoiceReport_Filterby_Corporates() {
     $CorporatesId = $_REQUEST['CorporatesId'];
-    $InvoiceStatus = $_REQUEST['InvoicesStatus'];
+    $InvoicesStatus = $_REQUEST['InvoicesStatus'];
     $database = new Database();
-    if($CorporatesId == 0 && $InvoicesStatus != 0) {
+
+    if($CorporatesId == NULL && $InvoicesStatus != NULL) {
         $query = "SELECT
         Invoices.InvoiceNo,
         Invoices.InvoiceDate,
@@ -555,8 +533,11 @@ function get_InvoiceReport_Filterby_Corporates() {
         Invoices.MethodId = PaymentMethods.Id
         WHERE Invoices.Status = :InvoicesStatus
         ;";
+        $database->query($query);
+        $database->bind(':InvoicesStatus', $InvoicesStatus);
+        return $r = $database->resultset();
     }
-    else if ($CorporatesId != 0 && $InvoicesStatus == 0) {
+    else if ($CorporatesId != NULL && $InvoicesStatus == NULL) {
         $query = "SELECT
         Invoices.InvoiceNo,
         Invoices.InvoiceDate,
@@ -576,8 +557,11 @@ function get_InvoiceReport_Filterby_Corporates() {
         Invoices.MethodId = PaymentMethods.Id
         WHERE Corporates.Id = :CorporatesId
         ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        return $r = $database->resultset();
     }
-    else if ($CorporatesId != 0 && $InvoicesStatus != 0) {
+    else if ($CorporatesId != NULL && $InvoicesStatus != NULL) {
         $query = "SELECT
         Invoices.InvoiceNo,
         Invoices.InvoiceDate,
@@ -598,6 +582,13 @@ function get_InvoiceReport_Filterby_Corporates() {
         WHERE Corporates.Id = :CorporatesId
         AND Invoices.Status = :InvoicesStatus
         ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        $database->bind(':InvoicesStatus', $InvoicesStatus);
+        return $r = $database->resultset();
+    }
+    else  {
+        $msg_error = $empty_field;
     }
 }
 

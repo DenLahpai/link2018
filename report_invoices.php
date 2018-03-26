@@ -9,13 +9,18 @@ if (isset($_REQUEST['buttonInvoiceDate'])) {
 
 if (isset($_REQUEST['buttonCorporate'])) {
     $CorporatesId = $_REQUEST['CorporatesId'];
-    $InvoiceStatus = $_REQUEST['InvoicesStatus'];
+    $InvoicesStatus = $_REQUEST['InvoicesStatus'];
     $rows_Invoices = get_InvoiceReport_Filterby_Corporates();
 }
 
-foreach ($rows_Invoices as $row_Invoices) {
-//
+if (isset($_REQUEST['buttonSearch'])) {
+    $rows_Invoices = getReport_bySearch_Invoice();
 }
+
+foreach ($rows_Invoices as $row_Invoices) {
+    //
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -47,6 +52,7 @@ foreach ($rows_Invoices as $row_Invoices) {
                         <li>
                             <label for="CorporatesId">Corporates:</label>
                             <select id="CorporatesId" name="CorporatesId">
+                                <option value="">Select One</option>
                                 <?php
                                 $rows_Corporates = getRows_Corporates();
                                 foreach ($rows_Corporates as $row_Corporates) {
@@ -54,24 +60,23 @@ foreach ($rows_Invoices as $row_Invoices) {
                                         echo "<option value=\"$row_Corporates->Id\" selected>$row_Corporates->Name</option>";
                                     }
                                     else {
-                                        echo "<option value=\"0\">Select One</option>";
                                         echo "<option value=\"$row_Corporates->Id\">$row_Corporates->Name</option>";
                                     }
                                 }
                                 ?>
                             </select>
                             <select name="InvoicesStatus">
+                            <option value="">Select One</option>
                             <?php
                             $get_InvoicesStatus = new Database();
                             $query_get_InvoicesStatus = "SELECT DISTINCT Status FROM Invoices";
                             $get_InvoicesStatus->query($query_get_InvoicesStatus);
                             $rows_InvoicesStatus = $get_InvoicesStatus->resultset();
                             foreach ($rows_InvoicesStatus as $row_InvoicesStatus) {
-                                if ($row_InvoicesStatus->Status == $InvoiceStatus) {
+                                if ($row_InvoicesStatus->Status == $InvoicesStatus) {
                                     echo "<option value=\"$row_InvoicesStatus->Status\" selected>$row_InvoicesStatus->Status</option>";
                                 }
                                 else {
-                                    echo "<option value=\"0\">Select One</option>";
                                     echo "<option value=\"$row_InvoicesStatus->Status\">$row_InvoicesStatus->Status</option>";
                                 }
                             }
