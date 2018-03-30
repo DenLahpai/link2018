@@ -38,7 +38,8 @@ foreach ($rows_Invoices as $row_Invoices) {
             <section>
                 <form class="form report invoices" action="#" method="post">
                     <ul>
-                        <li style="font-weight:bold; text-align: center;">Enter Search Criteria</li>
+                        <li style="font-weight:bold; text-align: center;">
+                            Enter Search Criteria
                         </li>
                         <li>
                             <label for="InvoiceDate1">Invoice From:</label>
@@ -65,6 +66,7 @@ foreach ($rows_Invoices as $row_Invoices) {
                                 }
                                 ?>
                             </select>
+                            Status:
                             <select name="InvoicesStatus">
                             <option value="">Select One</option>
                             <?php

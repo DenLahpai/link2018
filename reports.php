@@ -18,7 +18,13 @@ require 'functions.php';
                 <div class="links">
                     <ul>
                         <li>
+                            <a href="report_bookings.php">Bookings</a>
+                        </li>
+                        <li>
                             <a href="report_invoices.php">Invoices</a>
+                        </li>
+                        <li>
+                            <a href="report_services.php">Services</a>
                         </li>
                     </ul>
                 </div>
