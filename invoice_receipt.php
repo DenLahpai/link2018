@@ -181,36 +181,47 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <select name="method" onchange="this.form.submit()">
                         <option value="0">Select Payment Option</option>
                     <?php
-                    if($method == 1) {
+                    if ($method == 1) {
                         echo "<option value=\"1\" selected>Cash in $currency</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
                     }
                     else if ($method == 2) {
                         echo "<option value=\"1\">Cash</option>";
                         echo "<option value=\"2\" selected>UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
                     }
                     else if ($method == 3) {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\" selected>Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
                     }
                     else if ($method == 4) {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\" selected>KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
                     }
-
+                    else if ($method == 5) {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\"KBZ</option>";
+                        echo "<option value=\"5\" selected>CB</option>";
+                    }
                     else {
                         echo "<option value=\"1\" >Cash</option>";
                         echo "<option value=\"2\">UBO</option>";
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
                     }
                     ?>
                     </select>

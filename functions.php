@@ -547,7 +547,7 @@ function get_InvoiceReport_Filterby_Corporates() {
         Invoices.Status,
         PaymentMethods.Method,
         Bookings.Reference,
-        Bookings.Name As BookingsName,
+        Bookings.Name AS BookingsName,
         Corporates.Name AS CorporatesName
         FROM Invoices LEFT OUTER JOIN Bookings
         ON Invoices.BookingsId = Bookings.Id
@@ -571,7 +571,7 @@ function get_InvoiceReport_Filterby_Corporates() {
         Invoices.Status,
         PaymentMethods.Method,
         Bookings.Reference,
-        Bookings.Name As BookingsName,
+        Bookings.Name AS BookingsName,
         Corporates.Name AS CorporatesName
         FROM Invoices LEFT OUTER JOIN Bookings
         ON Invoices.BookingsId = Bookings.Id
