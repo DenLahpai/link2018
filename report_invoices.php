@@ -1,21 +1,16 @@
 <?php
 require "functions.php";
 
-if (isset($_REQUEST['buttonInvoiceDate'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
     $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
-    $rows_Invoices = get_InvoiceReport_Filterby_InvoiceDate();
-}
-
-if (isset($_REQUEST['buttonCorporate'])) {
     $CorporatesId = $_REQUEST['CorporatesId'];
     $InvoicesStatus = $_REQUEST['InvoicesStatus'];
-    $rows_Invoices = get_InvoiceReport_Filterby_Corporates();
+    $search = trim($_REQUEST['search']);
+
+    echo "tst!";
 }
 
-if (isset($_REQUEST['buttonSearch'])) {
-    $rows_Invoices = getReport_bySearch_Invoice();
-}
 
 foreach ($rows_Invoices as $row_Invoices) {
     //
@@ -48,7 +43,6 @@ foreach ($rows_Invoices as $row_Invoices) {
                             <label for="InvoiceDate2">Until:</label>
                             <input type="date" name="InvoiceDate2" id="InvoiceDate2"
                             value="<?php echo $InvoiceDate2; ?>">
-                            <button type="submit" name="buttonInvoiceDate">Submit</button>
                         </li>
                         <li>
                             <label for="CorporatesId">Corporates:</label>
@@ -84,11 +78,12 @@ foreach ($rows_Invoices as $row_Invoices) {
                             }
                             ?>
                             </select>
-                            <button type="submit" name="buttonCorporate">Submit</button>
                         </li>
                         <li>
                             <input type="text" name="search" placeholder="Search">
-                            <button type="submit" name="buttonSearch">Search</button>
+                        </li>
+                        <li style="text-align: center;">
+                            <button type="submit" name="buttonSubmit">Submit</button>
                         </li>
                     </ul>
                 </form>
