@@ -2,15 +2,8 @@
 require "functions.php";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
-    $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
-    $CorporatesId = $_REQUEST['CorporatesId'];
-    $InvoicesStatus = $_REQUEST['InvoicesStatus'];
-    $search = trim($_REQUEST['search']);
-
-    echo "tst!";
+    get_report_invoices();
 }
-
 
 foreach ($rows_Invoices as $row_Invoices) {
     //
