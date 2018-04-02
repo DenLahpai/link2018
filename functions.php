@@ -594,6 +594,8 @@ function get_InvoiceReport_Filterby_Corporates() {
 
 //function to get data for report_invoices
 function get_report_invoices() {
+
+    $database = new Database();
     $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
     $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
     $CorporatesId = $_REQUEST['CorporatesId'];
