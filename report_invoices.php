@@ -78,7 +78,8 @@ foreach ($rows_Invoices as $row_Invoices) {
                             </select>
                         </li>
                         <li>
-                            <input type="text" name="search" placeholder="Search" value="<?php echo $search; ?>">
+                            <input type="text" name="search" placeholder="Search"
+                            value="<?php echo $search; ?>">
                         </li>
                         <li style="text-align: center;">
                             <button type="submit" name="buttonSubmit">Submit</button>
