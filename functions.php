@@ -922,5 +922,4 @@ function get_report_invoices() {
     }
 }
 
-
 ?>

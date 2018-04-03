@@ -1,6 +1,18 @@
 
 <?php
 require "functions.php";
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $CorporatesId = $_REQUEST['CorporatesId'];
+    $Status = $_REQUEST['Status'];
+    $ArvDate1 = $_REQUEST['ArvDate1'];
+    $ArvDate2 = $_REQUEST['ArvDate2'];
+    $created1 = $_REQUEST['created1'];
+    $created2 = $_REQUEST['created2'];
+    $rows_bookings = get_report_bookings();
+    //TODO write functions to get report in functions.php
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -88,5 +100,6 @@ require "functions.php";
                 </form>
             </section>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>
