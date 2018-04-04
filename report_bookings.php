@@ -91,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <input type="date" name="created2" value="<?php echo $created2; ?>">
                         </li>
                         <li>
-                            <input type="text" name="search" placeholder="Search" value="<?php //echo $search; ?>">
+                            <input type="text" name="search" placeholder="Search" value="<?php echo $search; ?>">
                         </li>
                         <li style="text-align: center;">
                             <button type="submit" name="buttonSearch">Search</button>

@@ -922,4 +922,151 @@ function get_report_invoices() {
     }
 }
 
+//Function to get the data for the report_bookings.php
+function get_report_bookings() {
+    $database = new Database();
+    $CorporatesId = $_REQUEST['CorporatesId'];
+    $Status = $_REQUEST['Status'];
+    $ArvDate1 = $_REQUEST['ArvDate1'];
+    $ArvDate2 = $_REQUEST['ArvDate2'];
+    $created1 = $_REQUEST['created1'];
+    $created2 = $_REQUEST['created2'];
+
+    if ($ArvDate2 == NULL) {
+        $ArvDate2 = $ArvDate1;
+    }
+
+    if ($created2 == NULL) {
+        $created2 = $created1;
+    }
+
+    if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
+        echo "00000";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search != NULL) {
+        echo "00001";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 != NULL && $search == NULL) {
+        echo "00010";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL && $created1 == NULL && $search == NULL) {
+        echo "00100";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
+        echo "01000";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
+        echo "10000";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+        echo "00011";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+        echo "00101";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+        echo "00110";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+        echo "01001";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+        echo "01010";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+        echo "01100";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+        echo "10001";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+        echo "10010";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+        echo "10100";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search == NULL) {
+        echo "11000";
+    }
+
+    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+        echo "00111";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+        echo "01011";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+        echo "01101";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+        echo "01110";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+        echo "10011";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+        echo "10101";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+        echo "10110";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+        echo "11001";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+        echo "11010";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+        echo "11100";
+    }
+
+    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+        echo "01111";
+    }
+
+    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+        echo "10111";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+        echo "11011";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+        echo "11101";
+    }
+
+    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+        echo "11110";
+    }
+
+    else {
+        echo "11111";
+    }
+}
+
 ?>
