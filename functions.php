@@ -931,6 +931,8 @@ function get_report_bookings() {
     $ArvDate2 = $_REQUEST['ArvDate2'];
     $created1 = $_REQUEST['created1'];
     $created2 = $_REQUEST['created2'];
+    $search = $_REQUEST['search'];
+    $mySearch = '%'.$search.'%';
 
     if ($ArvDate2 == NULL) {
         $ArvDate2 = $ArvDate1;
@@ -942,10 +944,54 @@ function get_report_bookings() {
 
     if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
         echo "00000";
+        $query = "SELECT
+            Bookings.Id AS BookingsId,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName,
+            Bookings.ArvDate,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username,
+            Bookings.created
+            FROM Bookings LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Users ON
+            Bookings.UserId = Users.Id
+        ;";
+        $database->query($query);
     }
 
     else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search != NULL) {
         echo "00001";
+        $query = "SELECT
+            Bookings.Id AS BookingsId,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName,
+            Bookings.ArvDate,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username,
+            Bookings.created
+            FROM Bookings LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Users ON
+            Bookings.UserId = Users.Id
+            WHERE CONCAT(
+            Bookings.Reference,
+            Bookings.Name,
+            Corporates.Name,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username
+            ) LIKE :mySearch
+        ;";
+        $database->query($query);
+        $database->bind(':mySearch', $mySearch);
     }
 
     else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 != NULL && $search == NULL) {
@@ -1067,6 +1113,7 @@ function get_report_bookings() {
     else {
         echo "11111";
     }
+    return $r = $database->resultset();
 }
 
 ?>

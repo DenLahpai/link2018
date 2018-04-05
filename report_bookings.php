@@ -1,6 +1,7 @@
 
 <?php
 require "functions.php";
+$search = NULL;
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $CorporatesId = $_REQUEST['CorporatesId'];
@@ -9,7 +10,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $ArvDate2 = $_REQUEST['ArvDate2'];
     $created1 = $_REQUEST['created1'];
     $created2 = $_REQUEST['created2'];
-    $rows_bookings = get_report_bookings();
+    $search = $_REQUEST['search'];
+    $rows_Bookings = get_report_bookings();
     //TODO write functions to get report in functions.php
 }
 
@@ -99,6 +101,39 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </ul>
                 </form>
             </section>
+            <main>
+                <table>
+                    <thead>
+                        <th>Reference</th>
+                        <th>Name</th>
+                        <th>Corporate</th>
+                        <th>Arrival</th>
+                        <th>Pax</th>
+                        <th>Status</th>
+                        <th>Remark</th>
+                        <th>User</th>
+                        <th>Created</th>
+                    </thead>
+                    <tbody>
+                    <?php
+                    foreach ($rows_Bookings as $row_Bookings) {
+                        echo "<tr>";
+                        echo "<td><a href=\"booking_summary.php?BookingsId=$row_Bookings->BookingsId\">$row_Bookings->Reference</td>";
+                        echo "<td>".$row_Bookings->BookingsName."</td>";
+                        echo "<td>".$row_Bookings->CorporatesName."</td>";
+                        echo "<td>".date("d-M-y", strtotime($row_Bookings->ArvDate))."</td>";
+                        echo "<td>".$row_Bookings->Pax."</td>";
+                        echo "<td>".$row_Bookings->Status."</td>";
+                        echo "<td>".$row_Bookings->Remark."</td>";
+                        echo "<td>".$row_Bookings->Username."</td>";
+                        echo "<td>".$row_Bookings->created."</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                    </tbody>
+                </table>
+
+            </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
     </body>

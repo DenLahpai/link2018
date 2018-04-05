@@ -1,6 +1,8 @@
 <?php
 require "functions.php";
 
+$search = NULL;
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rows_Invoices = get_report_invoices();
     $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
@@ -8,10 +10,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $CorporatesId = $_REQUEST['CorporatesId'];
     $InvoicesStatus = $_REQUEST['InvoicesStatus'];
     $search = trim($_REQUEST['search']);
-}
-
-foreach ($rows_Invoices as $row_Invoices) {
-    //
 }
 
 ?>
