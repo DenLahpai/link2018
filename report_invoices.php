@@ -7,6 +7,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $rows_Invoices = get_report_invoices();
     $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
     $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
+    if ($InvoiceDate2 == NULL) {
+        $InvoiceDate2 = $InvoiceDate1;
+    }
     $CorporatesId = $_REQUEST['CorporatesId'];
     $InvoicesStatus = $_REQUEST['InvoicesStatus'];
     $search = trim($_REQUEST['search']);

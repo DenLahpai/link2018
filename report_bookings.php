@@ -8,8 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Status = $_REQUEST['Status'];
     $ArvDate1 = $_REQUEST['ArvDate1'];
     $ArvDate2 = $_REQUEST['ArvDate2'];
+    if ($ArvDate2 == NULL) {
+        $ArvDate2 = $ArvDate1;
+    }
     $created1 = $_REQUEST['created1'];
     $created2 = $_REQUEST['created2'];
+    if ($created2 == NULL) {
+        $created2 = date("Y-m-d", strtotime($created1.'+'.'1'.'days'));
+    }
     $search = $_REQUEST['search'];
     $rows_Bookings = get_report_bookings();
     //TODO write functions to get report in functions.php
