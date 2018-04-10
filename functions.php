@@ -1608,14 +1608,97 @@ function get_report_bookings() {
 
     else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
         $num = "10110";
+        $query = "SELECT
+            Bookings.Id AS BookingsId,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName,
+            Bookings.ArvDate,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username,
+            Bookings.created
+            FROM Bookings LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Users ON
+            Bookings.UserId = Users.Id
+            WHERE Bookings.CorporatesId = :CorporatesId
+            AND Bookings.ArvDate >= :ArvDate1
+            AND Bookings.ArvDate <= :ArvDate2
+            AND Bookings.created >= :created1
+            AND Boookings.created <= :created2
+        ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        $database->bind(':ArvDate1', $ArvDate1);
+        $database->bind(':ArvDate2', $ArvDate2);
+        $database->bind(':created1', $created1);
+        $database->bind(':created2', $created2);
     }
 
     else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
         $num = "11001";
+        $query = "SELECT
+            Bookings.Id AS BookingsId,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName,
+            Bookings.ArvDate,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username,
+            Bookings.created
+            FROM Bookings LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Users ON
+            Bookings.UserId = Users.Id
+            WHERE Bookings.CorporatesId = :CorporatesId
+            AND Bookings.Status >= :Statuss
+            AND CONCAT(
+            Bookings.Reference,
+            Bookings.Name,
+            Corporates.Name,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username
+            ) LIKE :mySearch
+        ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        $database->bind(':Status', $Status);
+        $database->bind(':mySearch', $mySearch);
     }
 
     else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
         $num = "11010";
+        $query = "SELECT
+            Bookings.Id AS BookingsId,
+            Bookings.Reference,
+            Bookings.Name AS BookingsName,
+            Corporates.Name AS CorporatesName,
+            Bookings.ArvDate,
+            Bookings.Pax,
+            Bookings.Status,
+            Bookings.Remark,
+            Users.Username,
+            Bookings.created
+            FROM Bookings LEFT OUTER JOIN Corporates ON
+            Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Users ON
+            Bookings.UserId = Users.Id
+            WHERE Bookings.CorporatesId = :CorporatesId
+            AND Bookings.Status = :Status
+            AND Bookings.created >= :created1
+            AND Boookings.created <= :created2
+        ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        $database->bind(':Status', $Status);
+        $database->bind(':created1', $created1);
+        $database->bind(':created2', $created2);
     }
 
     else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
