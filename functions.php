@@ -1969,4 +1969,6 @@ function get_report_bookings() {
     echo $num;
 }
 
+//function to get services
+
 ?>

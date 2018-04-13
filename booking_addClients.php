@@ -50,7 +50,10 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 DOB,
                 Country,
                 FrequentFlyer,
-                Company,
+                Company,<head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
                 Phone,
                 Email,
                 Website
