@@ -138,7 +138,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     ?>
                     </tbody>
                 </table>
-
             </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
