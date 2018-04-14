@@ -22,7 +22,7 @@ foreach ($rows_Bookings as $row_Bookings) {
             include "includes/menu_bookings.html";
             ?>
             <section>
-                <a href="booking_addServices.php?BookingsId=$BookingsId">
+                <a href="<?php echo "booking_addServices.php?BookingsId=$BookingsId";?>">
                     <button type="button" name="button">Add Service</button>
                 </a>
             </section>
@@ -39,6 +39,13 @@ foreach ($rows_Bookings as $row_Bookings) {
                             <td></td>
                         </tr>
                     </tbody>
+                </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                        </tr>
+                    </thead>
                 </table>
             </main>
         </div>

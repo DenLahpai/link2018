@@ -1969,6 +1969,92 @@ function get_report_bookings() {
     echo $num;
 }
 
-//function to get services
+//function to get data from the table Services_booking
+function get_rows_Services($ServiceTypeId, $Reference) {
+    $database = new Database;
+    $query = "SELECT
+        Services_booking.Id AS ServicesId,
+        Services_booking.CostId AS CostId,
+        Services_booking.Date_in AS Date_in,
+        Services_booking.Date_ouSELECT
+        Services_booking.Id AS ServicesId,
+        Services_booking.CostId AS CostId,
+        Services_booking.Date_in AS Date_in,
+        Services_booking.Date_out AS Date_out,
+        Services_booking.Pax AS Pax,
+        Services_booking.Sgl AS Sgl,
+        Services_booking.Dbl AS Dbl,
+        Services_booking.Twn AS Twn,
+        Services_booking.Tpl AS Tpl,
+        Services_booking.Quantity AS Quantity,
+        Services_booking.Pick_up AS Pick_up,
+        Services_booking.Drop_off AS Drop_off,
+        Services_booking.Pick_up_time AS Pick_up_time,
+        Services_booking.Drop_off_time AS Drop_off_time,
+        Services_booking.Remark AS Remark,
+        Services_booking.Spc_rq AS Spc_rq,
+        Services_booking.Status AS Status,
+        Services_booking.Cfm_no AS Cfm_no,
+        Services_booking.Cfm_by AS Cfm_by,
+        Services_booking.Cost1_USD AS Cost1_USD,
+        Services_booking.Cost1_MMK AS Cost1_MMK,
+        Services_booking.Cost2_USD AS Cost2_USD,
+        Services_booking.Cost2_MMK AS Cost2_MMK,
+        Services_booking.Cost3_USD AS Cost3_USD,
+        Services_booking.Cost3_MMK AS Cost3_MMK,
+        Services_booking.Total_cost_USD AS Total_cost_USD,
+        Services_booking.Total_cost_MMK AS Total_cost_MMK,
+        Services_booking.Markup AS Markup,
+        Services_booking.Sell_USD AS Sell_USD,
+        Services_booking.Sell_MMK AS Sell_MMK,
+        Suppliers.Name AS SupplierName,
+        Cost.Service AS Service,
+        Cost.Additional AS Additional,
+        Cost.SupplierId AS SupplierId
+        FROM Services_booking LEFT OUTER JOIN Cost
+        ON Services_booking.CostId = Cost.Id
+        LEFT OUTER JOIN Suppliers
+        Cost.SupplierId = Suppliers.Idt AS Date_out,
+        Services_booking.Pax AS Pax,
+        Services_booking.Sgl AS Sgl,
+        Services_booking.Dbl AS Dbl,
+        Services_booking.Twn AS Twn,
+        Services_booking.Tpl AS Tpl,
+        Services_booking.Quantity AS Quantity,
+        Services_booking.Pick_up AS Pick_up,
+        Services_booking.Drop_off AS Drop_off,
+        Services_booking.Pick_up_time AS Pick_up_time,
+        Services_booking.Drop_off_time AS Drop_off_time,
+        Services_booking.Remark AS Remark,
+        Services_booking.Spc_rq AS Spc_rq,
+        Services_booking.Status AS Status,
+        Services_booking.Cfm_no AS Cfm_no,
+        Services_booking.Cfm_by AS Cfm_by,
+        Services_booking.Cost1_USD AS Cost1_USD,
+        Services_booking.Cost1_MMK AS Cost1_MMK,
+        Services_booking.Cost2_USD AS Cost2_USD,
+        Services_booking.Cost2_MMK AS Cost2_MMK,
+        Services_booking.Cost3_USD AS Cost3_USD,
+        Services_booking.Cost3_MMK AS Cost3_MMK,
+        Services_booking.Total_cost_USD AS Total_cost_USD,
+        Services_booking.Total_cost_MMK AS Total_cost_MMK,
+        Services_booking.Markup AS Markup,
+        Services_booking.Sell_USD AS Sell_USD,
+        Services_booking.Sell_MMK AS Sell_MMK,
+        Suppliers.Name AS SupplierName,
+        Cost.Service AS Service,
+        Cost.Additional AS Additional,
+        Cost.SupplierId AS SupplierId
+        FROM Services_booking LEFT OUTER JOIN Cost
+        ON Services_booking.CostId = Cost.Id
+        LEFT OUTER JOIN Suppliers
+        ON Cost.SupplierId = Suppliers.Id
+        WHERE Cost.ServiceTypeId = :ServiceTypeId
+        AND Services_booking = :BookingsId
+    ;";
+    $database->query($query);
+    $database->bind(':ServiceTypeId', $ServiceTypeId);
+    $database->bind(':BookingsId', $BookingsId);
+}
 
 ?>
