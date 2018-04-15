@@ -2001,7 +2001,7 @@ function get_rows_Services($ServiceTypeId, $Reference) {
         Services_booking.Cost2_USD AS Cost2_USD,
         Services_booking.Cost2_MMK AS Cost2_MMK,
         Services_booking.Cost3_USD AS Cost3_USD,
-        Services_booking.Cost3_MMK AS Cost3_MMK,
+        Services_booking.Cost3_MMKkey => $value AS Cost3_MMK,
         Services_booking.Total_cost_USD AS Total_cost_USD,
         Services_booking.Total_cost_MMK AS Total_cost_MMK,
         Services_booking.Markup AS Markup,
@@ -2055,6 +2055,53 @@ function get_rows_Services($ServiceTypeId, $Reference) {
     $database->query($query);
     $database->bind(':ServiceTypeId', $ServiceTypeId);
     $database->bind(':BookingsId', $BookingsId);
+}
+
+//function to filter suppliers by service type
+function filter_rows_Suppliers($ServiceTypeId) {
+    $database = new Database;
+    $query = "SELECT DISTINCT
+        Suppliers.Id AS SupplierId,
+        Suppliers.Name AS SupplierName
+        FROM Suppliers LEFT JOIN Cost
+        ON Suppliers.Id = Cost.SupplierId
+        WHERE Cost.ServiceTypeId = :ServiceTypeId
+    ;";
+    $database->query($query);
+    $database->bind(':ServiceTypeId', $ServiceTypeId);
+    return $r = $database->resultset();
+}
+
+//function to search services to be added in a booking
+function searchServices() {
+    $ServiceTypeId = $_REQUEST['ServiceTypeId'];
+    $SupplierId = $_REQUEST['SupplierId'];
+    $Date_in = $_REQUEST['Date_in'];
+    $Quantity = $_REQUEST['Quantity'];
+    $Markup = $_REQUEST['Markup'];
+
+    $database = new Database;
+    $query = "SELECT
+        Cost.Id,
+        Cost.SupplierId,
+        Suppliers.Name AS SuppliersName,
+        Cost.Service,
+        Cost.Additional,
+        Cost.MaxPax,
+        Cost.Cost1_USD,
+        Cost.Cost1_MMK
+        FROM Cost LEFT JOIN Suppliers
+        ON Cost.SupplierId = Suppliers.Id
+        WHERE ServiceTypeId = :ServiceTypeId
+        AND SupplierId = :SupplierId
+        AND StartDate <= :Date_in
+        AND EndDate >= :Date_in
+    ;";
+    $database->query($query);
+    $database->bind(':ServiceTypeId', $ServiceTypeId);
+    $database->bind(':SupplierId', $SupplierId);
+    $database->bind(':Date_in', $Date_in);
+    return $r = $database->resultset();
 }
 
 ?>

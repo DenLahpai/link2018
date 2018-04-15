@@ -49,5 +49,6 @@ foreach ($rows_Bookings as $row_Bookings) {
                 </table>
             </main>
         </div>
+        <?php include "includes/footer.html";?>
     </body>
 </html>
