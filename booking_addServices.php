@@ -99,16 +99,17 @@ if (isset($_REQUEST['buttonSubmit'])) {
                     <?php
                     foreach ($rows_Service as $row_Service) {
                         echo "<div class=\"grid-item\">";
-                        echo "<form action=\"booking_addingService.php\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
+                        // echo "<form action=\"booking_addingService.php\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
                         echo "<ul>";
-                        echo "<li><input type=\"number\" name=\"CostId\" value=\"$row_Service->Id\"></li>";
-                        echo "<li><input type=\"number\" name=\"BookingsId\" value=\"$BookingsId\"></li>";
+                        echo "<li><input type=\"number\" name=\"CostId\"  id=\"CostId\" value=\"$row_Service->Id\"></li>";
+                        echo "<li><input type=\"number\" name=\"BookingsId\" id=\"BookingsId\" value=\"$BookingsId\"></li>";
                         echo "<li>".$row_Service->SuppliersName."</li>";
                         echo "<li>".$row_Service->Service."</li>";
                         echo "<li>".$row_Service->Additional."</li>";
-                        echo "<li><button type=\"button\" name=\"buttonAdd\" onclick=\"submitForms($row_Service->Id);\">Add</button>";
+                        echo "<li>";
+                        echo "<button type=\"button\" name=\"buttonAdd\" onclick=\"submitForms();\">Add</button></li>";
                         echo "</ul>";
-                        echo "</form>";
+                        // echo "</form>";
                         echo "</div>";
                     }
                     ?>
@@ -118,11 +119,11 @@ if (isset($_REQUEST['buttonSubmit'])) {
         <?php include "includes/footer.html";?>
     </body>
     <script type="text/javascript">
-        function submitForms(num) {
-            document.getElementById("form1").action = "booking_addingService.php";
+        function submitForms() {
+            var BookingsId = document.getElementById("BookingsId").value;
+            var CostId = document.getElementById("CostId").value;
+            document.getElementById("form1").action = "booking_addingService.php?BookingsId="+BookingsId+"&CostId="+CostId;
             document.getElementById("form1").submit();
-            var secondForm = 'secondForm' + num;
-            document.getElementById(secondForm).submit();
         }
     </script>
 </html>
