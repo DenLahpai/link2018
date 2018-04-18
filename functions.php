@@ -435,7 +435,12 @@ function getRows_Cost($ServiceTypeId, $CostId) {
 
 //function to get data for report_invoices
 function get_report_invoices() {
+$Sgl = $_REQUEST['Sgl'];
+    $Dbl = $_REQUEST['Dbl'];
+    $Twn = $_REQUEST['Twn'];
+    $Tpl = $_REQUEST['Tpl'];
 
+    echo $row_Cost->Cost2_USD;
     $database = new Database();
     $InvoiceDate1 = $_REQUEST['InvoiceDate1'];
     $InvoiceDate2 = $_REQUEST['InvoiceDate2'];
@@ -2105,6 +2110,9 @@ function searchServices() {
     return $r = $database->resultset();
 }
 
-
+//function to add AC (Accommodation) service to the table Services_booking
+function insert_AC_Services_booking($BookingsId, $CostId) {
+    //TODO
+}
 
 ?>

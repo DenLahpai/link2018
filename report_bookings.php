@@ -17,7 +17,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     $search = $_REQUEST['search'];
     $rows_Bookings = get_report_bookings();
-    //TODO write functions to get report in functions.php
 }
 
 ?>
