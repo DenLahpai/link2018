@@ -38,7 +38,10 @@ switch ($ServiceTypeId) {
             include "includes/header.html";
             include "includes/nav.html";
             include "includes/menu_bookings.html";
-            //TODO Resume here
+            if ($ServiceTypeId == 1) {
+                include "includes/booking_addingServiceAC.php";
+            }
+        
             ?>
         </div><!-- end of content -->
     </body>

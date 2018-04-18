@@ -378,7 +378,7 @@ function getRows_SupplierContacts($SupplierContactsId) {
     return $r = $database->resultset();
 }
 
-//function to get data from the table Cost
+//function to get data from the table Cost TODO
 function getRows_Cost($ServiceTypeId, $CostId) {
     $database = new Database();
     if (empty($CostId)) {
@@ -417,12 +417,13 @@ function getRows_Cost($ServiceTypeId, $CostId) {
             Cost.Cost1_USD,
             Cost.Cost1_MMK,
             Cost.Cost2_USD,
-            Cost.Cost2_MMK,# code...
+            Cost.Cost2_MMK,
             Cost.Cost3_USD,
             Cost.Cost3_MMK,
             Suppliers.Name AS SupplierName,
             Suppliers.City
-            FROM Cost, Suppliers
+            FROM Cost LEFT JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
             WHERE Cost.Id = :CostId ;";
         $database->query($query);
         $database->bind(':CostId', $CostId);
