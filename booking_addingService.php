@@ -1,16 +1,20 @@
 <?php
 require_once "functions.php";
 $BookingsId = trim($_REQUEST['BookingsId']);
-$ServiceTypeId = $_REQUEST['ServiceTypeId'];
-$SupplierId = $_REQUEST['SupplierId'];
 $Date_in = $_REQUEST['Date_in'];
 $Quantity = $_REQUEST['Quantity'];
 $Markup = $_REQUEST['Markup'];
 $CostId = trim($_REQUEST['CostId']);
+$rows_Cost = getRows_Cost(NULL, $CostId);
+foreach ($rows_Cost as $row_Cost) {
+    $ServiceTypeId = $row_Cost->ServiceTypeId;
+    $SupplierId = $row_Cost->SupplierId;
+}
 
 $rows_Bookings = get_row_Bookings($BookingsId);
 foreach ($rows_Bookings as $row_Bookings) {
     $Reference = $row_Bookings->Reference;
+    $Pax = $row_Bookings->Pax;
 }
 
 //getting Date_out
@@ -41,7 +45,7 @@ switch ($ServiceTypeId) {
             if ($ServiceTypeId == 1) {
                 include "includes/booking_addingServiceAC.php";
             }
-        
+
             ?>
         </div><!-- end of content -->
     </body>

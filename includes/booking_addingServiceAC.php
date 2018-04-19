@@ -1,10 +1,20 @@
 <?php
 $rows_Cost = getRows_Cost(NULL, $CostId);
 foreach ($rows_Cost as $row_Cost) {
-
+    $ServiceTypeId = $row_Cost->ServiceTypeId;
+    $SupplierId = $row_Cost->SupplierId;
 }
 
 if(isset($_REQUEST['buttonSubmit'])) {
+    $Date_in = $_REQUEST['Date_in'];
+    $Date_out = $_REQUEST['Date_out'];
+    $Quantity = $_REQUEST['Quantity'];
+    $Markup = $_REQUEST['Markup'];
+    $Sgl = $_REQUEST['Sgl'];
+    $Dbl = $_REQUEST['Dbl'];
+    $Twn = $_REQUEST['Twn'];
+    $Tpl = $_REQUEST['Tpl'];
+    $Spc_rq = $_REQUEST['Spc_rq'];
 
 }
 ?>
@@ -36,19 +46,23 @@ if(isset($_REQUEST['buttonSubmit'])) {
             </li>
             <li>
                 Number of Single Room(s):
-                <input type="number" name="Sgl" value="">
+                <input type="number" name="Sgl" value="<?php echo $Sgl;?>">
             </li>
             <li>
                 Number of Double Room(s):
-                <input type="number" name="Dbl" value="">
+                <input type="number" name="Dbl" value="<?php echo $Dbl;?>">
             </li>
             <li>
                 Number of Twin Room(s):
-                <input type="number" name="Twn" value="">
+                <input type="number" name="Twn" value="<?php echo $Twn;?>">
             </li>
             <li>
                 Number of Triple Room(s):
-                <input type="number" name="Tpl" value="">
+                <input type="number" name="Tpl" value="<?php echo $Tpl;?>">
+            </li>
+            <li>
+                Special Request:
+                <input type="text" name="Spc_rq" value="<?php echo $Spc_rq; ?>" placeholder="Special Request for Supplier">
             </li>
             <li>
                 <button type="submit" name="buttonSubmit">Submit</button>
@@ -56,11 +70,3 @@ if(isset($_REQUEST['buttonSubmit'])) {
         </ul>
     </form>
 </section>
-<script type="text/javascript">
-    function submitForms() {
-        var BookingsId = document.getElementById("BookingsId").value;
-        var CostId = document.getElementById("CostId").value;
-        document.getElementById("form1").action = "booking_addingService.php?BookingsId="+BookingsId+"&CostId="+CostId;
-        document.getElementById("form1").submit();
-    }
-</script>

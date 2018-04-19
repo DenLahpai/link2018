@@ -385,6 +385,7 @@ function getRows_Cost($ServiceTypeId, $CostId) {
         $query = "SELECT
             Cost.Id,
             Cost.SupplierId,
+            Cost.ServiceTypeId,
             Cost.Service,
             Cost.Additional,
             Cost.StartDate,
@@ -409,6 +410,7 @@ function getRows_Cost($ServiceTypeId, $CostId) {
         $query = "SELECT
             Cost.Id,
             Cost.SupplierId,
+            Cost.ServiceTypeId,
             Cost.Service,
             Cost.Additional,
             Cost.StartDate,
