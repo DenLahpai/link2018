@@ -16,6 +16,25 @@ if(isset($_REQUEST['buttonSubmit'])) {
     $Tpl = $_REQUEST['Tpl'];
     $Spc_rq = $_REQUEST['Spc_rq'];
 
+    $TotalSgl_USD = ($row_Cost->Cost2_USD * $Quantity * $Sgl) +
+    ($row_Cost->Cost2_MMK * $Quantity * $Sgl / $row_Bookings->Exchange);
+
+    $TotalSgl_MMK = ($row_Cost->Cost2_USD * $Quantity * $Sgl * $row_Bookings->Exchange) +
+    ($row_Cost->Cost2_MMK * $Quantity * $Sgl);
+
+    $TotalDbl_USD = ($row_Cost->Cost1_USD * $Quantity * $Dbl) +
+    ($row_Cost->Cost1_MMK * $Quantity * $Dbl / $row_Bookings->Exchange);
+
+    $TotalDbl_MMK = ($row_Cost->Cost1_USD * $Quantity * $Dbl * $row_Bookings->Exchange) +
+    ($row_Cost->Cost1_MMK * $Quantity * $Dbl);
+
+    $TotalTwn_USD = ($row_Cost->Cost1_USD * $Quantity * $Twn) +
+    ($row_Cost->Cost1_MMK * $Quantity * $Twn / $row_Bookings->Exchange);
+
+    $TotalTwn_MMK = ($row_Cost->Cost1_USD * $Quantity * $Twn * $row_Bookings->Exchange) +
+    ($row_Cost->Cost1_MMK * $Quantity * $Twn / $row_Bookings->Exchange);
+
+    // $TotalTpl_USD = TODO
 }
 ?>
 
