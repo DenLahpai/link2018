@@ -48,10 +48,10 @@ if (isset($_REQUEST['buttonSubmit'])) {
                                 $rows_ServiceType = getRows_ServiceType(NULL);
                                 foreach ($rows_ServiceType as $row_ServiceType) {
                                     if($ServiceTypeId == $row_ServiceType->Id) {
-                                        echo "<option value=\"$row_ServiceType->Id\" selected>".$row_ServiceType->Code."</option>";
+                                        echo "<option value=\"$row_ServiceType->Id\" selected>".$row_ServiceType->Type."</option>";
                                     }
                                     else {
-                                        echo "<option value=\"$row_ServiceType->Id\">".$row_ServiceType->Code."</option>";
+                                        echo "<option value=\"$row_ServiceType->Id\">".$row_ServiceType->Type."</option>";
                                     }
                                 }
                                 ?>

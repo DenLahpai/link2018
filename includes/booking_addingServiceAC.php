@@ -32,12 +32,100 @@ if(isset($_REQUEST['buttonSubmit'])) {
     ($row_Cost->Cost1_MMK * $Quantity * $Twn / $row_Bookings->Exchange);
 
     $TotalTwn_MMK = ($row_Cost->Cost1_USD * $Quantity * $Twn * $row_Bookings->Exchange) +
-    ($row_Cost->Cost1_MMK * $Quantity * $Twn / $row_Bookings->Exchange);
+    ($row_Cost->Cost1_MMK * $Quantity * $Twn);
 
-    // $TotalTpl_USD = TODO
+    $TotalTpl_USD = ($row_Cost->Cost3_USD * $Quantity * $Tpl) +
+    ($row_Cost->Cost3_MMK * $Quantity * $Tpl / $row_Bookings->Exchange);
+
+    $TotalTpl_MMK = ($row_Cost->Cost3_USD * $Quantity * $Tpl  * $row_Bookings->Exchange) +
+    ($row_Cost->Cost3_MMK * $Quantity * $Tpl);
+
+    $Total_USD = round($TotalSgl_USD + $TotalTwn_USD + $TotalDbl_USD + $TotalTpl_USD, 2);
+    $Total_MMK = round($TotalSgl_MMK + $TotalTwn_MMK + $TotalDbl_MMK + $TotalTpl_MMK, 2);
+
+    $profit_USD = $Total_USD * $Markup / 100;
+    $profit_MMK = $Total_MMK * $Markup / 100;
+
+    $Sell_USD = round($Total_USD + $profit_USD, 2);
+    $Sell_MMK = round($Total_MMK + $profit_MMK, 2);
+
+    $database = new Database;
+    $queryInsert = "INSERT INTO Services_booking (
+        BookingsId,
+        CostId,
+        Date_in,
+        Date_out,
+        Pax,
+        Sgl,
+        Dbl,
+        Twn,
+        Tpl,
+        Quantity,
+        Spc_rq,
+        Cost1_USD,
+        Cost1_MMK,
+        Cost2_USD,
+        Cost2_MMK,
+        Cost3_USD,
+        Cost3_MMK,
+        Total_cost_USD,
+        Total_cost_MMK,
+        Markup,
+        Sell_USD,
+        Sell_MMK
+        ) VALUES(
+        :BookingsId,
+        :CostId,
+        :Date_in,
+        :Date_out,
+        :Pax,
+        :Sgl,
+        :Dbl,
+        :Twn,
+        :Tpl,
+        :Quantity,
+        :Spc_rq,
+        :Cost1_USD,
+        :Cost1_MMK,
+        :Cost2_USD,
+        :Cost2_MMK,
+        :Cost3_USD,
+        :Cost3_MMK,
+        :Total_USD,
+        :Total_MMK,
+        :Markup,
+        :Sell_USD,
+        :Sell_MMK
+        )
+    ;";
+    $database->query($queryInsert);
+    $database->bind(':BookingsId', $BookingsId);
+    $database->bind(':CostId', $CostId);
+    $database->bind(':Date_in', $Date_in);
+    $database->bind(':Date_out', $Date_out);
+    $database->bind(':Pax', $row_Bookings->Pax);
+    $database->bind(':Sgl', $Sgl);
+    $database->bind(':Dbl', $Dbl);
+    $database->bind(':Twn', $Twn);
+    $database->bind(':Tpl', $Tpl);
+    $database->bind(':Quantity', $Quantity);
+    $database->bind(':Spc_rq', $Spc_rq);
+    $database->bind(':Cost1_USD', $row_Cost->Cost1_USD);
+    $database->bind(':Cost1_MMK', $row_Cost->Cost1_MMK);
+    $database->bind(':Cost2_USD', $row_Cost->Cost2_USD);
+    $database->bind(':Cost2_MMK', $row_Cost->Cost2_MMK);
+    $database->bind(':Cost3_USD', $row_Cost->Cost3_USD);
+    $database->bind(':Cost3_MMK', $row_Cost->Cost3_MMK);
+    $database->bind(':Total_USD', $Total_USD);
+    $database->bind(':Total_MMK', $Total_MMK);
+    $database->bind(':Markup', $Markup);
+    $database->bind(':Sell_USD', $Sell_USD);
+    $database->bind(':Sell_MMK', $Sell_MMK);
+    if($database->execute()) {
+        header("location:booking_services.php?BookingsId=$BookingsId");
+    }
 }
 ?>
-
 <section>
     <form class="form addingService AC" action="#" method="post">
         <h3 style="text-align: center;">

@@ -45,8 +45,12 @@ switch ($ServiceTypeId) {
             if ($ServiceTypeId == 1) {
                 include "includes/booking_addingServiceAC.php";
             }
+            else if ($ServiceTypeId == 2) {
+                include "includes/booking_addingServiceFL.php";
+            }
 
             ?>
         </div><!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>

@@ -109,17 +109,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                         <?php
                         //getting data from the table Cities
-                        $getRows_Cities = new Database();
-                        $query_getRows_Cities = "SELECT
-                            Cities.Id,
-                            Cities.AirportCode,
-                            Cities.City,
-                            Countries.Country AS Country
-                            FROM Cities, Countries
-                            WHERE Cities.CountryCode = Countries.Code
-                            ORDER BY City ;";
-                        $getRows_Cities->query($query_getRows_Cities);
-                        $rows_Cities = $getRows_Cities->resultset();
+                        $rows_Cities = getRows_Cities(NULL);
                         foreach ($rows_Cities as $row_Cities) {
                             echo "<tr>";
                             echo "<td>".$row_Cities->AirportCode."</td>";

@@ -10,6 +10,45 @@ function get_row_Users($UsersId) {
     return $r = $get_row_Users->resultset();
 }
 
+//function to get rows from the table Cities
+function getRows_Cities($CitiesId) {
+    $database = new Database;
+    if(empty($CitiesId) || $CitiesId == "" || $CitiesId == NULL) {
+        $query = "SELECT
+            Cities.Id,
+            Cities.AirportCode,
+            Cities.City,
+            Cities.CountryCode,
+            Countries.Code,
+            Countries.Country,
+            Countries.Region
+            FROM Cities LEFT JOIN Countries
+            ON Cities.CountryCode = Countries.Code
+        ;";
+        $database->query($query);
+        return $r = $database->resultset();
+    }
+    else {
+        $query = "SELECT
+            Cities.Id,
+            Cities.AirportCode,
+            Cities.City,
+            Cities.CountryCode,
+            Countries.Code,
+            Countries.Country,
+            Countries.Region
+            FROM Cities LEFT JOIN Countries
+            ON Cities.CountryCode = Countries.Code
+            WHERE Cities.Id = :CitiesId
+        ;";
+        $database->query($query);
+        $database->bind(':CitiesId', $CitiesId);
+        return $r = $database->resultset();
+    }
+}
+
+//function to get rows from the table Countries TODO Similart to Cities.
+
 //function to get rows from the table Corporates
 function getRows_Corporates() {
     $database = new Database();
@@ -378,7 +417,7 @@ function getRows_SupplierContacts($SupplierContactsId) {
     return $r = $database->resultset();
 }
 
-//function to get data from the table Cost TODO
+//function to get data from the table Cost
 function getRows_Cost($ServiceTypeId, $CostId) {
     $database = new Database();
     if (empty($CostId)) {
@@ -2110,11 +2149,6 @@ function searchServices() {
     $database->bind(':SupplierId', $SupplierId);
     $database->bind(':Date_in', $Date_in);
     return $r = $database->resultset();
-}
-
-//function to add AC (Accommodation) service to the table Services_booking
-function insert_AC_Services_booking($BookingsId, $CostId) {
-    //TODO
 }
 
 ?>
