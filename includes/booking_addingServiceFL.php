@@ -6,7 +6,12 @@
         <ul>
             <li>
                 From:
-                <input type="text" name="" value="">
+                <select name="Pick_up">
+                    <option value="">Select</option>
+                    <?php
+                    $rows_Cities->getRows_Cities(NULL);
+                    ?>
+                </select>
             </li>
         </ul>
     </form>

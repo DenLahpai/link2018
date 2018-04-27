@@ -98,10 +98,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <tbody>
                     <?php
                     //getting the data from the table Countries
-                    $getRows_Countries = new Database();
-                    $query_getRows_Countries = "SELECT * FROM Countries ORDER BY Id;";
-                    $getRows_Countries->query($query_getRows_Countries);
-                    $rows_Countries = $getRows_Countries->resultset();
+                    $rows_Countries = getRows_Countries(NULL);
                     foreach ($rows_Countries as $row_Countries) {
                         echo "<tr>";
                         echo "<td>".$row_Countries->Code."</td>";

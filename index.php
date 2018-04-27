@@ -1,11 +1,18 @@
 <?php
 session_start();
+
+//setting up the time zone
+date_default_timezone_set("Asia/Yangon");
+//Uncomment the two lines below to get error reporting as a dev enviroment.
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
 ?>
 <!DOCTYPE html>
 <html>
     <head>
         <?php
         $title = "Welcome";
+        $msg_error = NULL;
         include "includes/head.html";
         ?>
         <style media="screen">
@@ -27,7 +34,7 @@ session_start();
                     <ul>
                         <li class="error">
                         <?php
-                        if($_SESSION['msg_error'] != NULL) {
+                        if(isset($_SESSION['msg_error'])) {
                             echo $_SESSION['msg_error'];
                         }
                         ?>

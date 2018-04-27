@@ -47,7 +47,22 @@ function getRows_Cities($CitiesId) {
     }
 }
 
-//function to get rows from the table Countries TODO Similart to Cities.
+//function to get rows from the table Countries
+function getRows_Countries($CountriesId) {
+    $database = new Database();
+    if (empty($CountriesId) || $CountriesId == "" || $CountriesId == NULL) {
+        $query = "SELECT * FROM Countries";
+        $database->query($query);
+    }
+    else {
+        $query = "SELECT * FROM Countries
+            WHERE Id = :CountriesId
+        ;";
+        $database->query($query);
+        $database->bind(':CountriesId', $CountriesId);
+    }
+    return $r = $database->resultset();
+}
 
 //function to get rows from the table Corporates
 function getRows_Corporates() {
@@ -257,12 +272,12 @@ function selectTitles($Title) {
         echo "<option value=\"Ms.\">Ms.</option>";
         echo "<option value=\"Mrs.\">Mrs.</option>";
     }
-    else if ($Title == 'Ms.'){
+    elseif ($Title == 'Ms.'){
         echo "<option value=\"Mr.\">Mr.</option>";
         echo "<option value=\"Ms.\" selected=\"selected\">Ms.</option>";
         echo "<option value=\"Mrs.\">Mrs.</option>";
     }
-    else if ($Title == 'Mrs.') {
+    elseif ($Title == 'Mrs.') {
         echo "<option value=\"Mr.\">Mr.</option>";
         echo "<option value=\"Ms.\">Ms.</option>";
         echo "<option value=\"Mrs.\" selected=\"selected\">Mrs.</option>";
@@ -516,7 +531,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->query($query);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus == NULL && $search == NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus == NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -542,7 +557,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':InvoiceDate2', $InvoiceDate2);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search == NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -566,7 +581,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':CorporatesId', $CorporatesId);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search == NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -591,7 +606,7 @@ $Sgl = $_REQUEST['Sgl'];
         return $r = $database->resultset();
     }
 
-    else if ($InvoiceDate1 == NULL && $CorporatesId == NULL & $InvoicesStatus == NULL && $search != NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId == NULL & $InvoicesStatus == NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -620,7 +635,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search == NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -648,7 +663,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':CorporatesId', $CorporatesId);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search == NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -676,7 +691,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':InvoicesStatus', $InvoicesStatus);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus == NULL && $search != NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus == NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -709,7 +724,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search == NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -735,7 +750,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':InvoicesStatus', $InvoicesStatus);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search != NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -766,7 +781,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId == NULL && $InvoicesStatus != NULL & $search != NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId == NULL && $InvoicesStatus != NULL & $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -797,7 +812,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search == NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search == NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -827,7 +842,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':InvoicesStatus', $InvoicesStatus);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search != NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId != NULL && $InvoicesStatus == NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -862,7 +877,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search != NULL) {
+    elseif ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,WHERE
             Invoices.InvoiceDate,
@@ -895,7 +910,7 @@ $Sgl = $_REQUEST['Sgl'];
         $database->bind(':mySearch', $mySearch);
         return $r = $database->resultset();
     }
-    else if ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search != NULL) {
+    elseif ($InvoiceDate1 != NULL && $CorporatesId == NULL && $InvoicesStatus != NULL && $search != NULL) {
         $query = "SELECT
             Invoices.InvoiceNo,
             Invoices.InvoiceDate,
@@ -1010,7 +1025,7 @@ function get_report_bookings() {
         $database->query($query);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search != NULL) {
         $num = "00001";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1041,7 +1056,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL && $created1 != NULL && $search == NULL) {
         $num = "00010";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1066,7 +1081,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL && $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL && $created1 == NULL && $search == NULL) {
         $num = "00100";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1091,7 +1106,7 @@ function get_report_bookings() {
         $database->bind(':ArvDate2', $ArvDate2);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
         $num = "01000";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1114,7 +1129,7 @@ function get_report_bookings() {
         $database->bind(':Status', $Status);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL && $created1 == NULL && $search == NULL) {
         $num = "10000";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1137,7 +1152,7 @@ function get_report_bookings() {
         $database->bind(':CorporatesId', $CorporatesId);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
         $num = "00011";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1172,7 +1187,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
         $num = "00101";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1207,7 +1222,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
         $num = "00110";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1236,7 +1251,7 @@ function get_report_bookings() {
         $database->bind(':ArvDate2', $ArvDate2);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
         $num = "01001";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1269,7 +1284,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
         $num = "01010";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1296,7 +1311,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
         $num = "01100";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1323,7 +1338,7 @@ function get_report_bookings() {
         $database->bind(':ArvDate2', $ArvDate2);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
         $num = "10001";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1356,7 +1371,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
         $num = "10010";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1383,7 +1398,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
         $num = "10100";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1410,7 +1425,7 @@ function get_report_bookings() {
         $database->bind(':ArvDate2', $ArvDate2);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search == NULL) {
         $num = "11000";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1435,7 +1450,7 @@ function get_report_bookings() {
         $database->bind(':Status', $Status);
     }
 
-    else if ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
         $num = "00111";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1474,7 +1489,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
         $num = "01011";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1511,7 +1526,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
         $num = "01101";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1548,7 +1563,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
         $num = "01110";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1579,7 +1594,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
         $num = "10011";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1616,7 +1631,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
         $num = "10101";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1653,7 +1668,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
         $num = "10110";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1684,7 +1699,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 == NULL && $search != NULL) {
         $num = "11001";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1719,7 +1734,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search == NULL) {
         $num = "11010";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1748,7 +1763,7 @@ function get_report_bookings() {
         $database->bind(':created2', $created2);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search == NULL) {
         $num = "11100";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1777,7 +1792,7 @@ function get_report_bookings() {
         $database->bind(':ArvDate2', $ArvDate2);
     }
 
-    else if ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId == NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
         $num = "01111";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1818,7 +1833,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status == NULL && $ArvDate1 != NULL & $created1 != NULL && $search != NULL) {
         $num = "10111";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1859,7 +1874,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 == NULL & $created1 != NULL && $search != NULL) {
         $num = "11011";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1898,7 +1913,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 == NULL && $search != NULL) {
         $num = "11101";
         $query = "SELECT
             Bookings.Id AS BookingsId,
@@ -1937,7 +1952,7 @@ function get_report_bookings() {
         $database->bind(':mySearch', $mySearch);
     }
 
-    else if ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
+    elseif ($CorporatesId != NULL && $Status != NULL && $ArvDate1 != NULL & $created1 != NULL && $search == NULL) {
         $num = "11110";
         $query = "SELECT
             Bookings.Id AS BookingsId,
