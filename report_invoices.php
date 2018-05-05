@@ -107,20 +107,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($rows_Invoices as $row_Invoices) {
-                        echo "<tr>";
-                        echo "<td><a href=\"booking_invoiceEdit.php?InvoiceNo=$row_Invoices->InvoiceNo\">Edit</a></td>";
-                        echo "<td>".$row_Invoices->Reference."</td>";
-                        echo "<td>".$row_Invoices->BookingsName."</td>";
-                        echo "<td>".$row_Invoices->CorporatesName."</td>";
-                        echo "<td>".date('d-m-y', strtotime($row_Invoices->InvoiceDate))."</td>";
-                        echo "<td>".$row_Invoices->USD."</td>";
-                        echo "<td>".$row_Invoices->MMK."</td>";
-                        echo "<td>".$row_Invoices->Status."</td>";
-                        echo "<td>".$row_Invoices->Method."</td>";
-                        echo "<td>".$row_Invoices->InvoiceNo."</td>";
-                        echo "<td><a href=\"invoice_receipt.php?InvoiceNo=$row_Invoices->InvoiceNo\" target=\"_blank\">Receipt</a></td>";
-                        echo "</tr>";
+                    if(!empty($rows_Invoices)) {
+                        foreach ($rows_Invoices as $row_Invoices) {
+                            echo "<tr>";
+                            echo "<td><a href=\"booking_invoiceEdit.php?InvoiceNo=$row_Invoices->InvoiceNo\" target=\"_blank\">Edit</a></td>";
+                            echo "<td>".$row_Invoices->Reference."</td>";
+                            echo "<td>".$row_Invoices->BookingsName."</td>";
+                            echo "<td>".$row_Invoices->CorporatesName."</td>";
+                            echo "<td>".date('d-m-y', strtotime($row_Invoices->InvoiceDate))."</td>";
+                            echo "<td>".$row_Invoices->USD."</td>";
+                            echo "<td>".$row_Invoices->MMK."</td>";
+                            echo "<td>".$row_Invoices->Status."</td>";
+                            echo "<td>".$row_Invoices->Method."</td>";
+                            echo "<td>".$row_Invoices->InvoiceNo."</td>";
+                            echo "<td><a href=\"invoice_receipt.php?InvoiceNo=$row_Invoices->InvoiceNo\" target=\"_blank\">Receipt</a></td>";
+                            echo "</tr>";
+                        }
                     }
                     ?>
                     </tbody>
