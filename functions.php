@@ -1107,12 +1107,7 @@ function get_report_bookings() {
             Bookings.Id AS BookingsId,
             Bookings.Reference,
             Bookings.Name AS BookingsName,
-            Corporates.Name AS CorporatesName,$Sgl = $_REQUEST['Sgl'];
-    $Dbl = $_REQUEST['Dbl'];
-    $Twn = $_REQUEST['Twn'];
-    $Tpl = $_REQUEST['Tpl'];
-
-    echo $row_Cost->Cost2_USD;
+            Corporates.Name AS CorporatesName,
             Bookings.ArvDate,
             Bookings.Pax,
             Bookings.Status,
