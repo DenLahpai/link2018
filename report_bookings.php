@@ -120,18 +120,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </thead>
                     <tbody>
                     <?php
-                    foreach ($rows_Bookings as $row_Bookings) {
-                        echo "<tr>";
-                        echo "<td><a href=\"booking_summary.php?BookingsId=$row_Bookings->BookingsId\">$row_Bookings->Reference</td>";
-                        echo "<td>".$row_Bookings->BookingsName."</td>";
-                        echo "<td>".$row_Bookings->CorporatesName."</td>";
-                        echo "<td>".date("d-M-y", strtotime($row_Bookings->ArvDate))."</td>";
-                        echo "<td>".$row_Bookings->Pax."</td>";
-                        echo "<td>".$row_Bookings->Status."</td>";
-                        echo "<td>".$row_Bookings->Remark."</td>";
-                        echo "<td>".$row_Bookings->Username."</td>";
-                        echo "<td>".$row_Bookings->created."</td>";
-                        echo "</tr>";
+                    if (!empty($rows_Bookings)) {
+                        foreach ($rows_Bookings as $row_Bookings) {
+                            echo "<tr>";
+                            echo "<td><a href=\"booking_summary.php?BookingsId=$row_Bookings->BookingsId\">$row_Bookings->Reference</td>";
+                            echo "<td>".$row_Bookings->BookingsName."</td>";
+                            echo "<td>".$row_Bookings->CorporatesName."</td>";
+                            echo "<td>".date("d-M-y", strtotime($row_Bookings->ArvDate))."</td>";
+                            echo "<td>".$row_Bookings->Pax."</td>";
+                            echo "<td>".$row_Bookings->Status."</td>";
+                            echo "<td>".$row_Bookings->Remark."</td>";
+                            echo "<td>".$row_Bookings->Username."</td>";
+                            echo "<td>".$row_Bookings->created."</td>";
+                            echo "</tr>";
+                        }
                     }
                     ?>
                     </tbody>

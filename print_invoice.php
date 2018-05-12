@@ -161,6 +161,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\">KBZ</option>";
                         echo "<option value=\"5\">CB</option>";
                         echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
 
                     }
                     elseif ($method == '2') {
@@ -170,6 +171,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\">KBZ</option>";
                         echo "<option value=\"5\">CB</option>";
                         echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
                     }
                     elseif ($method == '3') {
                         echo "<option value=\"1\" >Cash</option>";
@@ -178,6 +180,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\">KBZ</option>";
                         echo "<option value=\"5\">CB</option>";
                         echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
                     }
                     elseif ($method == '4') {
                         echo "<option value=\"1\" >Cash</option>";
@@ -186,6 +189,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\" selected>KBZ</option>";
                         echo "<option value=\"5\">CB</option>";
                         echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
                     }
                     elseif ($method == '5') {
                         echo "<option value=\"1\" >Cash</option>";
@@ -194,6 +198,16 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"4\">KBZ</option>";
                         echo "<option value=\"5\" selected>CB</option>";
                         echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
+                    }
+                    elseif ($method == '6') {
+                        echo "<option value=\"1\" >Cash</option>";
+                        echo "<option value=\"2\">UBO</option>";
+                        echo "<option value=\"3\">Visa / Master</option>";
+                        echo "<option value=\"4\">KBZ</option>";
+                        echo "<option value=\"5\">CB</option>";
+                        echo "<option value=\"6\" selected>Aya</option>";
+                        echo "<option value=\"7\">DBS</option>";
                     }
                     else {
                         echo "<option value=\"1\" >Cash</option>";
@@ -201,7 +215,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<option value=\"3\">Visa / Master</option>";
                         echo "<option value=\"4\">KBZ</option>";
                         echo "<option value=\"5\">CB</option>";
-                        echo "<option value=\"6\" selected>Aya</option>";
+                        echo "<option value=\"6\">Aya</option>";
+                        echo "<option value=\"7\" selected>DBS</option>";
                     }
                     ?>
                     </select>
@@ -225,6 +240,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                         break;
                     case '6':
                         include "includes/aya.html";
+                        break;
+                    case '7':
+                        include "includes/dbs.html";
                         break;
                     default:
                         # code...
