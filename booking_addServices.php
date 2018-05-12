@@ -97,20 +97,22 @@ if (isset($_REQUEST['buttonSubmit'])) {
             <main>
                 <div class="grid-div"><!-- grid-div -->
                     <?php
-                    foreach ($rows_Service as $row_Service) {
-                        echo "<div class=\"grid-item\">";
-                        // echo "<form action=\"booking_addingService.php\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
-                        echo "<ul>";
-                        echo "<li><input type=\"number\" name=\"CostId\"  id=\"CostId\" value=\"$row_Service->Id\"></li>";
-                        echo "<li><input type=\"number\" name=\"BookingsId\" id=\"BookingsId\" value=\"$BookingsId\"></li>";
-                        echo "<li>".$row_Service->SuppliersName."</li>";
-                        echo "<li>".$row_Service->Service."</li>";
-                        echo "<li>".$row_Service->Additional."</li>";
-                        echo "<li>";
-                        echo "<button type=\"button\" name=\"buttonAdd\" onclick=\"submitForms();\">Add</button></li>";
-                        echo "</ul>";
-                        // echo "</form>";
-                        echo "</div>";
+                    if (!empty($rows_Service)) {
+                        foreach ($rows_Service as $row_Service) {
+                            echo "<div class=\"grid-item\">";
+                            // echo "<form action=\"booking_addingService.php\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
+                            echo "<ul>";
+                            echo "<li><input type=\"number\" name=\"CostId\"  id=\"CostId\" value=\"$row_Service->Id\"></li>";
+                            echo "<li><input type=\"number\" name=\"BookingsId\" id=\"BookingsId\" value=\"$BookingsId\"></li>";
+                            echo "<li>".$row_Service->SuppliersName."</li>";
+                            echo "<li>".$row_Service->Service."</li>";
+                            echo "<li>".$row_Service->Additional."</li>";
+                            echo "<li>";
+                            echo "<button type=\"button\" name=\"buttonAdd\" onclick=\"submitForms();\">Add</button></li>";
+                            echo "</ul>";
+                            // echo "</form>";
+                            echo "</div>";
+                        }
                     }
                     ?>
                 </div><!-- end of grid-div -->

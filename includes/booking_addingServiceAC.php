@@ -16,29 +16,21 @@ if(isset($_REQUEST['buttonSubmit'])) {
     $Tpl = $_REQUEST['Tpl'];
     $Spc_rq = $_REQUEST['Spc_rq'];
 
-    $TotalSgl_USD = ($row_Cost->Cost2_USD * $Quantity * $Sgl) +
-    ($row_Cost->Cost2_MMK * $Quantity * $Sgl / $row_Bookings->Exchange);
+    $TotalSgl_USD = ($row_Cost->Cost2_USD * $Quantity * $Sgl);
 
-    $TotalSgl_MMK = ($row_Cost->Cost2_USD * $Quantity * $Sgl * $row_Bookings->Exchange) +
-    ($row_Cost->Cost2_MMK * $Quantity * $Sgl);
+    $TotalSgl_MMK = ($row_Cost->Cost2_MMK * $Quantity * $Sgl);
 
-    $TotalDbl_USD = ($row_Cost->Cost1_USD * $Quantity * $Dbl) +
-    ($row_Cost->Cost1_MMK * $Quantity * $Dbl / $row_Bookings->Exchange);
+    $TotalDbl_USD = ($row_Cost->Cost1_USD * $Quantity * $Dbl);
 
-    $TotalDbl_MMK = ($row_Cost->Cost1_USD * $Quantity * $Dbl * $row_Bookings->Exchange) +
-    ($row_Cost->Cost1_MMK * $Quantity * $Dbl);
+    $TotalDbl_MMK = ($row_Cost->Cost1_MMK * $Quantity * $Dbl);
 
-    $TotalTwn_USD = ($row_Cost->Cost1_USD * $Quantity * $Twn) +
-    ($row_Cost->Cost1_MMK * $Quantity * $Twn / $row_Bookings->Exchange);
+    $TotalTwn_USD = ($row_Cost->Cost1_USD * $Quantity * $Twn);
 
-    $TotalTwn_MMK = ($row_Cost->Cost1_USD * $Quantity * $Twn * $row_Bookings->Exchange) +
-    ($row_Cost->Cost1_MMK * $Quantity * $Twn);
+    $TotalTwn_MMK =  ($row_Cost->Cost1_MMK * $Quantity * $Twn);
 
-    $TotalTpl_USD = ($row_Cost->Cost3_USD * $Quantity * $Tpl) +
-    ($row_Cost->Cost3_MMK * $Quantity * $Tpl / $row_Bookings->Exchange);
+    $TotalTpl_USD = ($row_Cost->Cost3_USD * $Quantity * $Tpl);
 
-    $TotalTpl_MMK = ($row_Cost->Cost3_USD * $Quantity * $Tpl  * $row_Bookings->Exchange) +
-    ($row_Cost->Cost3_MMK * $Quantity * $Tpl);
+    $TotalTpl_MMK = ($row_Cost->Cost3_MMK * $Quantity * $Tpl);
 
     $Total_USD = round($TotalSgl_USD + $TotalTwn_USD + $TotalDbl_USD + $TotalTpl_USD, 2);
     $Total_MMK = round($TotalSgl_MMK + $TotalTwn_MMK + $TotalDbl_MMK + $TotalTpl_MMK, 2);
@@ -169,7 +161,7 @@ if(isset($_REQUEST['buttonSubmit'])) {
             </li>
             <li>
                 Special Request:
-                <input type="text" name="Spc_rq" value="<?php echo $Spc_rq; ?>" placeholder="Special Request for Supplier">
+                <input type="text" name="Spc_rq" placeholder="Special Request for Supplier">
             </li>
             <li>
                 <button type="submit" name="buttonSubmit">Submit</button>

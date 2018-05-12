@@ -19,7 +19,6 @@ function getRows_Cities($CitiesId) {
             Cities.AirportCode,
             Cities.City,
             Cities.CountryCode,
-            Countries.Code,
             Countries.Country,
             Countries.Region
             FROM Cities LEFT JOIN Countries
