@@ -215,6 +215,12 @@ main ul li {
     font-weight: bold;
 }
 
+.grid-item button {
+    background-color: silver;
+    color: black;
+    padding: 6px 12px;
+}
+
 section table {
     margin: 12px auto;
     border-collapse: collapse;

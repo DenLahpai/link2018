@@ -40,6 +40,20 @@
                 <input type="number" name="Pax" value="<?php echo $Pax;?>" readonly>
             </li>
             <li>
+                ETD:&nbsp;
+                <input type="time" name="Pick_up_time">&nbsp;
+                ETA:&nbsp;
+                <input type="time" name="Drop_off_time">
+            </li>
+            <li>
+                Select Currency:
+                <select id="Currency" name=""  onchange="selectCurrency();">
+                    <option value="">Select One</option>
+                    <option value="USD">USD</option>
+                    <option value="MMK">MMK</option>
+                </select>
+            </li>
+            <li>
                 Cost in USD / pers: &nbsp;
                 <input type="number" step="0.01" name="Cost1_USD">&nbsp;
                 Sell in USD / pers: &nbsp;
@@ -54,3 +68,9 @@
         </ul>
     </form>
 </section>
+<script type="text/javascript">
+    function selectCurrency() {
+        var Currency = document.getElementById('Currency').value;
+        alert(Currency);
+    }
+</script>
