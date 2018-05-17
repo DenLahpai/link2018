@@ -5,6 +5,7 @@ $rows_Bookings = get_row_Bookings($BookingsId);
 foreach ($rows_Bookings as $row_Bookings) {
     $Reference = $row_Bookings->Reference;
 }
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -31,13 +32,30 @@ foreach ($rows_Bookings as $row_Bookings) {
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="5">Flights</th>
+                            <th colspan="6">Flights</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td></td>
-                        </tr>
+                    <?php
+                    $rows_Flights = getRows_Services('2', $BookingsId);
+
+                    foreach ($rows_Flights as $row_Flights) {
+                        echo "<form action=\"#\" method=\"post\">";
+                        echo "<tr>";
+                        echo "<td style=\"display:none;\"><input type=\"number\" value=\"$row_Flights->ServicesId\"></td>";
+                        echo "<td>".date('d-M-y', strtotime($row_Flights->Date_in))."</td>";
+                        echo "<td>".$row_Flights->SupplierName."</td>";
+                        echo "<td>".$row_Flights->Flight_no."</td>";
+                        echo "<td>".$row_Flights->Pick_up." - ".$row_Flights->Drop_off."</td>";
+                        echo "<td>ETD:<input type=\"time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
+                        echo "ETA:<input type=\"time\" value=\"$row_Flights->Drop_off_time\"></td>";
+                        $rows_ServiceStatus = getRows_ServiceStatus($row_Flights->StatusId);
+                        echo "<td><select name=\"StatusId\">";
+                        foreach ($rows_ServiceStatus as $row_ServiceStatus) {
+                            echo "<option>$row_ServiceStatus->Code</option>";
+                        }
+                    }
+                    ?>
                     </tbody>
                 </table>
                 <table>
