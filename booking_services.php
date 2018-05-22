@@ -6,6 +6,16 @@ foreach ($rows_Bookings as $row_Bookings) {
     $Reference = $row_Bookings->Reference;
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $ServicesId = $_REQUEST['ServicesId'];
+    $Date_in = $_REQUEST['Date_in'];
+    $Flight_no = $_REQUEST['Flight_no'];
+    $Pick_up_time = $_REQUEST['Pick_up_time'];
+    $Drop_off_time = $_REQUEST['Drop_off_time'];
+    $StatusId = $_REQUEST['StatusId'];
+    //TODO
+}
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,7 +42,7 @@ foreach ($rows_Bookings as $row_Bookings) {
                 <table>
                     <thead>
                         <tr>
-                            <th colspan="6">Flights</th>
+                            <th colspan="8">Flights &nbsp; <a href="<?php echo "flightsConfirmation.php?BookingsId=$BookingsId"; //TODO ?>" target="_blank">Confirmation</a> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,18 +52,32 @@ foreach ($rows_Bookings as $row_Bookings) {
                     foreach ($rows_Flights as $row_Flights) {
                         echo "<form action=\"#\" method=\"post\">";
                         echo "<tr>";
-                        echo "<td style=\"display:none;\"><input type=\"number\" value=\"$row_Flights->ServicesId\"></td>";
-                        echo "<td>".date('d-M-y', strtotime($row_Flights->Date_in))."</td>";
+                        echo "<td style=\"display:none;\"><input type=\"number\" name=\"ServicesId\" value=\"$row_Flights->ServicesId\"></td>";
+                        echo "<td><input type=\"date\" name=\"Date_in\" value=\"$row_Flights->Date_in\"></td>";
                         echo "<td>".$row_Flights->SupplierName."</td>";
-                        echo "<td>".$row_Flights->Flight_no."</td>";
+                        echo "<td><input type=\"text\" name=\"Flight_no\" value=\"$row_Flights->Flight_no\" size=\"8\"></td>";
                         echo "<td>".$row_Flights->Pick_up." - ".$row_Flights->Drop_off."</td>";
-                        echo "<td>ETD:<input type=\"time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
-                        echo "ETA:<input type=\"time\" value=\"$row_Flights->Drop_off_time\"></td>";
+                        echo "<td>ETD:&nbsp;<input type=\"time\" name=\"Pick_up_time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
+                        echo "ETA:&nbsp;<input type=\"time\" name=\"Drop_off_time\" value=\"$row_Flights->Drop_off_time\"></td>";
                         $rows_ServiceStatus = getRows_ServiceStatus($row_Flights->StatusId);
                         echo "<td><select name=\"StatusId\">";
                         foreach ($rows_ServiceStatus as $row_ServiceStatus) {
-                            echo "<option>$row_ServiceStatus->Code</option>";
+                            echo "<option value=\"\">Select</option>";
+                            if($row_Flights->StatusId == $row_ServiceStatus->Id) {
+                                echo "<option value=\"$row_ServiceStatus->Id\" selected>$row_ServiceStatus->Code</option>";
+                            }
+                            else {
+                                echo "<option value=\"$row_ServiceStatus->Id\">$row_ServiceStatus->Code</option>";
+                            }
                         }
+                        echo "<td><button type=\"submit\">Update</button>";
+                        echo "<a href=\"editServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<button type=\"button\">Edit</button></a>";
+
+                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<button type=\"button\">Delete</button></a>";
+
+                        echo "</form>";
                     }
                     ?>
                     </tbody>
