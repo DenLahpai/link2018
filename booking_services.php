@@ -13,7 +13,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $Pick_up_time = $_REQUEST['Pick_up_time'];
     $Drop_off_time = $_REQUEST['Drop_off_time'];
     $StatusId = $_REQUEST['StatusId'];
-    //TODO
+    $updateService = New Database;
+    $query_updateService = "UPDATE Services_booking SET
+        Date_in = :Date_in,
+        Flight_no = :Flight_no,
+        Pick_up_time = :Pick_up_time,
+        Drop_off_time = :Drop_off_time,
+        StatusId = :StatusId
+        WHERE Id = :ServicesId
+    ;";
+    $updateService->query($query_updateService);
+    $updateService->bind(':Date_in', $Date_in);
+    $updateService->bind(':Flight_no', $Flight_no);
+    $updateService->bind(':Pick_up_time', $Pick_up_time);
+    $updateService->bind(':Drop_off_time', $Drop_off_time);
+    $updateService->bind(':StatusId', $StatusId);
+    $updateService->bind(':ServicesId', $ServicesId);
+    $updateService->execute();
+    //TODO DELETE & EDIT Services_booking
 }
 
 ?>
@@ -59,17 +76,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<td>".$row_Flights->Pick_up." - ".$row_Flights->Drop_off."</td>";
                         echo "<td>ETD:&nbsp;<input type=\"time\" name=\"Pick_up_time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
                         echo "ETA:&nbsp;<input type=\"time\" name=\"Drop_off_time\" value=\"$row_Flights->Drop_off_time\"></td>";
-                        $rows_ServiceStatus = getRows_ServiceStatus($row_Flights->StatusId);
+                        $rows_ServiceStatus = getRows_ServiceStatus(NULL);
                         echo "<td><select name=\"StatusId\">";
-                        foreach ($rows_ServiceStatus as $row_ServiceStatus) {
+                        if ($row_Flights->StatusId == "") {
                             echo "<option value=\"\">Select</option>";
-                            if($row_Flights->StatusId == $row_ServiceStatus->Id) {
-                                echo "<option value=\"$row_ServiceStatus->Id\" selected>$row_ServiceStatus->Code</option>";
-                            }
-                            else {
+                            foreach ($rows_ServiceStatus as $row_ServiceStatus){
                                 echo "<option value=\"$row_ServiceStatus->Id\">$row_ServiceStatus->Code</option>";
                             }
                         }
+                        else {
+                            foreach ($rows_ServiceStatus as $row_ServiceStatus){
+                                if ($row_ServiceStatus->Id == $row_Flights->StatusId) {
+                                    echo "<option value=\"$row_ServiceStatus->Id\" selected>$row_ServiceStatus->Code</option>";
+                                }
+                                else {
+                                    echo "<option value=\"$row_ServiceStatus->Id\">$row_ServiceStatus->Code</option>";
+                                }
+                            }
+                        }
+
+                        echo "</select></td>";
                         echo "<td><button type=\"submit\">Update</button>";
                         echo "<a href=\"editServices_booking.php?Services_bookingId=ServicesId\">";
                         echo "<button type=\"button\">Edit</button></a>";
