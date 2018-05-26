@@ -524,11 +524,15 @@ function getRows_Services($ServiceTypeId, $BookingsId) {
         Suppliers.Name AS SupplierName,
         Cost.Service AS Service,
         Cost.Additional AS Additional,
-        Cost.SupplierId AS SupplierId
-        FROM Services_booking LEFT OUTER JOIN Cost
+        Cost.SupplierId AS SupplierId,
+        ServiceStatus.Code AS StatusCode
+        FROM Services_booking
+        LEFT OUTER JOIN Cost
         ON Services_booking.CostId = Cost.Id
         LEFT OUTER JOIN Suppliers
         ON Cost.SupplierId = Suppliers.Id
+        LEFT OUTER JOIN ServiceStatus
+        ON Services_booking.StatusId = ServiceStatus.Id
         WHERE Cost.ServiceTypeId = :ServiceTypeId
         AND Services_booking.BookingsId = :BookingsId
     ;";

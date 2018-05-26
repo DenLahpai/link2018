@@ -34,7 +34,6 @@ foreach ($rows_Bookings as $row_Bookings) {
                 //getting Clients from the booking
                 $rows_Clients = getRows_Clients($BookingsId);
                 foreach ($rows_Clients as $row_Clients) {
-
                     echo "<li>".$row_Clients->Title;
                     echo " ".$row_Clients->FirstName." ";
                     echo $row_Clients->LastName." | ";

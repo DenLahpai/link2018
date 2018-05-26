@@ -111,7 +111,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <table>
                     <thead>
                         <tr>
-                            <th></th>
+                            <th>
+                                <!-- TODO Accommodations-->
+                            </th>
                         </tr>
                     </thead>
                 </table>

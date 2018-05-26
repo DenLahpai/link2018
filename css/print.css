@@ -25,6 +25,11 @@ section h2 {
     color: #009f00;
 }
 
+section h3 {
+    margin-top: 12px;
+    text-align: center;
+}
+
 section table {
     margin: 6px auto;
     border-collapse: collapse;
@@ -33,6 +38,16 @@ section table {
 
 section table thead tr td {
     padding: 6px 12px;
+}
+
+main h2 {
+    text-align: center;
+    color: #009f00;
+}
+
+main h3 {
+    margin-top: 12px;
+    text-align: center;
 }
 
 main table {
