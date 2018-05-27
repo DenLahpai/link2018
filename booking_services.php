@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     include "includes/head.html";
     ?>
     <body>
-        <div class="content">
+        <div class="content"><!-- content -->
             <?php
             $pageTitle = "Services: ".$Reference;
             include "includes/header.html";
@@ -53,31 +53,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <a href="<?php echo "booking_addServices.php?BookingsId=$BookingsId";?>">
                     <button type="button" name="button">Add Service</button>
                 </a>
+                <a href="<?php echo "flightsConfirmation.php?BookingsId=$BookingsId";?>" target="_blank">
+                    <button type="button" name="button">Flights Confirmation</button>
+                </a>
             </section>
             <main>
                 <h3>Services in this Booking</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <th colspan="8">Flights &nbsp; <a href="<?php echo "flightsConfirmation.php?BookingsId=$BookingsId"; //TODO ?>" target="_blank">Confirmation</a> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <h4>
+                    Flights
+                </h4>
+                <div class="grid-div"><!-- grid-div -->
                     <?php
                     $rows_Flights = getRows_Services('2', $BookingsId);
-
                     foreach ($rows_Flights as $row_Flights) {
+                        echo "<div class=\"grid-item\"><!-- grid-item -->";
                         echo "<form action=\"#\" method=\"post\">";
-                        echo "<tr>";
-                        echo "<td style=\"display:none;\"><input type=\"number\" name=\"ServicesId\" value=\"$row_Flights->ServicesId\"></td>";
-                        echo "<td><input type=\"date\" name=\"Date_in\" value=\"$row_Flights->Date_in\"></td>";
-                        echo "<td>".$row_Flights->SupplierName."</td>";
-                        echo "<td><input type=\"text\" name=\"Flight_no\" value=\"$row_Flights->Flight_no\" size=\"8\"></td>";
-                        echo "<td>".$row_Flights->Pick_up." - ".$row_Flights->Drop_off."</td>";
-                        echo "<td>ETD:&nbsp;<input type=\"time\" name=\"Pick_up_time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
-                        echo "ETA:&nbsp;<input type=\"time\" name=\"Drop_off_time\" value=\"$row_Flights->Drop_off_time\"></td>";
+                        echo "<ul>";
+                        echo "<li style=\"display:none;\"><input type=\"number\" name=\"ServicesId\" value=\"$row_Flights->ServicesId\"></li>";
+                        echo "<li>Date: &nbsp;<input type=\"date\" name=\"Date_in\" value=\"$row_Flights->Date_in\"></li>";
+                        echo "<li>Airline: &nbsp;".$row_Flights->SupplierName."</li>";
+                        echo "<li>Flight: &nbsp;<input type=\"text\" name=\"Flight_no\" value=\"$row_Flights->Flight_no\" size=\"8\"></li>";
+                        echo "<li>Route: &nbsp;".$row_Flights->Pick_up." - ".$row_Flights->Drop_off."</li>";
+                        echo "<li>ETD:&nbsp;<input type=\"time\" name=\"Pick_up_time\" value=\"$row_Flights->Pick_up_time\">&nbsp;";
+                        echo "ETA:&nbsp;<input type=\"time\" name=\"Drop_off_time\" value=\"$row_Flights->Drop_off_time\"></li>";
                         $rows_ServiceStatus = getRows_ServiceStatus(NULL);
-                        echo "<td><select name=\"StatusId\">";
+                        echo "<li>Status &nbsp; <select name=\"StatusId\">";
                         if ($row_Flights->StatusId == "") {
                             echo "<option value=\"\">Select</option>";
                             foreach ($rows_ServiceStatus as $row_ServiceStatus){
@@ -94,9 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 }
                             }
                         }
-
-                        echo "</select></td>";
-                        echo "<td><button type=\"submit\">Update</button>";
+                        echo "</select></li>";
+                        echo "<li><button type=\"submit\">Update</button>";
                         echo "<a href=\"editServices_booking.php?Services_bookingId=ServicesId\">";
                         echo "<button type=\"button\">Edit</button></a>";
 
@@ -104,21 +103,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<button type=\"button\">Delete</button></a>";
 
                         echo "</form>";
+
+                        echo "</div><!-- end of grid-item -->";
                     }
                     ?>
-                    </tbody>
-                </table>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                <!-- TODO Accommodations-->
-                            </th>
-                        </tr>
-                    </thead>
-                </table>
+
+                </div><!-- end of grid-div -->
             </main>
-        </div>
+        </div><!-- end of content -->
         <?php include "includes/footer.html";?>
     </body>
 </html>
