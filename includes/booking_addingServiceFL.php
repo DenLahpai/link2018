@@ -127,7 +127,7 @@ if (isset($_REQUEST['buttonSubmit'])) {
                 Flight No:&nbsp;
                 <input type="text" name="Flight_no" placeholder="Fight No" required>&nbsp;
                 Pax:&nbsp;
-                <input type="number" name="Pax" value="<?php echo $Pax;?>" readonly>
+                <input type="number" name="Pax" value="<?php echo $Pax;?>">
             </li>
             <li>
                 ETD:&nbsp;

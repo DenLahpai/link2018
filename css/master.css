@@ -57,7 +57,6 @@ nav {
     background: #01CFFF;
     text-align: center;
     border-radius: 12px;
-
 }
 
 nav h4 {
@@ -181,6 +180,7 @@ main h3 {
 main h4 {
     text-align: center;
     color: #01CFFF;
+    background: white;
 }
 
 main ul li {
