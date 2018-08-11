@@ -101,6 +101,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <section>
                 <a href="<?php echo "booking_addServices.php?BookingsId=$BookingsId";?>">
                     <button type="button" name="button">Add Service</button></a>
+
+                <a href="<?php echo "hotelsConfirmation.php?BookingsId=$BookingsId"; ?>" target="_blank">
+                    <button type="button" name="button">Hotels Confirmation</button></a>
                 <a href="<?php echo "flightsConfirmation.php?BookingsId=$BookingsId";?>" target="_blank">
                     <button type="button" name="button">Flights Confirmation</button></a>
                 <a href="<?php echo "transfersConfirmation.php?BookingsId=$BookingsId";?>" target="_blank">

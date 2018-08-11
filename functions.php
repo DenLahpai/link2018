@@ -522,6 +522,7 @@ function getRows_Services($ServiceTypeId, $BookingsId) {
         Services_booking.Sell_USD AS Sell_USD,
         Services_booking.Sell_MMK AS Sell_MMK,
         Suppliers.Name AS SupplierName,
+        Suppliers.City AS City,
         Cost.Service AS Service,
         Cost.Additional AS Additional,
         Cost.SupplierId AS SupplierId,
@@ -587,6 +588,119 @@ function searchServices() {
     $database->bind(':SupplierId', $SupplierId);
     $database->bind(':Date_in', $Date_in);
     return $r = $database->resultset();
+}
+
+//fucntion to get data from the table Services_booking
+function getRows_Services_booking($Services_bookingId) {
+    $database = new Database();
+
+    if ($Services_bookingId == "" || $Services_bookingId == NULL || empty($Services_bookingId)) {
+        $query = "SELECT
+            Services_booking.Id AS ServicesId,
+            Services_booking.BookingsId AS BookingsId,
+            Services_booking.CostId AS CostId,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_out AS Date_out,
+            Services_booking.Pax AS Pax,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            Services_booking.Remark AS Remark,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.StatusId AS StatusId,
+            Services_booking.Cfm_no AS Cfm_no,
+            Services_booking.Cfm_by AS Cfm_by,
+            Services_booking.Cost1_USD AS Cost1_USD,
+            Services_booking.Cost1_MMK AS Cost1_MMK,
+            Services_booking.Cost2_USD AS Cost2_USD,
+            Services_booking.Cost2_MMK AS Cost2_MMK,
+            Services_booking.Cost3_USD AS Cost3_USD,
+            Services_booking.Cost3_MMK AS Cost3_MMK,
+            Services_booking.Total_cost_USD AS Total_cost_USD,
+            Services_booking.Total_cost_MMK AS Total_cost_MMK,
+            Services_booking.Markup AS Markup,
+            Services_booking.Sell_USD AS Sell_USD,
+            Services_booking.Sell_MMK AS Sell_MMK,
+            Suppliers.Name AS SupplierName,
+            Suppliers.Address AS SupplierAddress,
+            Suppliers.Phone AS SupplierPhone,
+            Suppliers.City AS City,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Cost.SupplierId AS SupplierId,
+            ServiceStatus.Code AS StatusCode
+            FROM Services_booking
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+        ;";
+        $database->query($query);
+    }
+    else {
+        $query = "SELECT
+            Services_booking.Id AS ServicesId,
+            Services_booking.BookingsId AS BookingsId,
+            Services_booking.CostId AS CostId,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_out AS Date_out,
+            Services_booking.Pax AS Pax,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            Services_booking.Remark AS Remark,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.StatusId AS StatusId,
+            Services_booking.Cfm_no AS Cfm_no,
+            Services_booking.Cfm_by AS Cfm_by,
+            Services_booking.Cost1_USD AS Cost1_USD,
+            Services_booking.Cost1_MMK AS Cost1_MMK,
+            Services_booking.Cost2_USD AS Cost2_USD,
+            Services_booking.Cost2_MMK AS Cost2_MMK,
+            Services_booking.Cost3_USD AS Cost3_USD,
+            Services_booking.Cost3_MMK AS Cost3_MMK,
+            Services_booking.Total_cost_USD AS Total_cost_USD,
+            Services_booking.Total_cost_MMK AS Total_cost_MMK,
+            Services_booking.Markup AS Markup,
+            Services_booking.Sell_USD AS Sell_USD,
+            Services_booking.Sell_MMK AS Sell_MMK,
+            Suppliers.Name AS SupplierName,
+            Suppliers.Address AS SupplierAddress,
+            Suppliers.City AS City,
+            Suppliers.Phone AS SupplierPhone,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Cost.SupplierId AS SupplierId,
+            ServiceStatus.Code AS StatusCode
+            FROM Services_booking
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+            WHERE Services_booking.Id = :Services_bookingId
+        ;";
+        $database->query($query);
+        $database->bind(':Services_bookingId', $Services_bookingId);
+        return $r = $database->resultset();
+    }
 }
 
 ///             Funcitons for Reports /////
