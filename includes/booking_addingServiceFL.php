@@ -90,7 +90,6 @@ if (isset($_REQUEST['buttonSubmit'])) {
     }
 }
 ?>
-
 <section>
     <form class="form addingService FL" action="#" method="post">
         <ul>

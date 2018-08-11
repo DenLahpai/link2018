@@ -12,7 +12,7 @@ function get_row_Users($UsersId) {
 
 //function to get rows from the table Cities
 function getRows_Cities($CitiesId) {
-    $database = new Database;
+    $database = new Database();
     if(empty($CitiesId) || $CitiesId == "" || $CitiesId == NULL) {
         $query = "SELECT
             Cities.Id,
@@ -976,7 +976,7 @@ function get_report_invoices() {
     }
     elseif ($InvoiceDate1 == NULL && $CorporatesId != NULL && $InvoicesStatus != NULL && $search != NULL) {
         $query = "SELECT
-            Invoices.InvoiceNo,WHERE
+            Invoices.InvoiceNo,
             Invoices.InvoiceDate,
             Invoices.USD,
             Invoices.MMK,

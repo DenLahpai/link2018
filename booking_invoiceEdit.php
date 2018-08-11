@@ -178,7 +178,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 echo "<tr>";
                                 echo "<td>";
                                 echo "<input type=\"number\" name=\"Id$i\" value=\"$row_InvoiceDetails->Id\"
-                                min=\"1\"max=\"9999\" readonly>";
+                                min=\"1\"max=\"99999\" readonly>";
                                 echo "</td>";
                                 echo "<td>";
                                 echo "<input type=\"date\" name=\"Date$i\" value=\"$row_InvoiceDetails->Date\">";

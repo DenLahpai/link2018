@@ -41,7 +41,7 @@ if(isset($_REQUEST['buttonSubmit'])) {
     $Sell_USD = round($Total_USD + $profit_USD, 2);
     $Sell_MMK = round($Total_MMK + $profit_MMK, 2);
 
-    $database = new Database;
+    $database = new Database();
     $queryInsert = "INSERT INTO Services_booking (
         BookingsId,
         CostId,

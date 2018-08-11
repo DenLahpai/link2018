@@ -52,7 +52,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $updateService->bind(':ServicesId', $ServicesId);
         $updateService->execute();
     }
-    //TODO DELETE & EDIT Services_booking
+
+    if ($ServiceTypeId == 3) {
+        $Date_in = $_REQUEST['Date_in'];
+        $Pick_up = trim($_REQUEST['Pick_up']);
+        $Drop_off = trim($_REQUEST['Drop_off']);
+        $Pick_up_time = $_REQUEST['Pick_up_time'];
+        $Drop_off_time = $_REQUEST['Drop_off_time'];
+        $StatusId = $_REQUEST['StatusId'];
+
+        $query_updateService = "UPDATE Services_booking SET
+            Date_in = :Date_in,
+            Pick_up = :Pick_up,
+            Drop_off = :Drop_off,
+            Pick_up_time = :Pick_up_time,
+            Drop_off_time = :Drop_off_time,
+            StatusId = :StatusId
+            WHERE Id = :ServicesId
+        ;";
+        $updateService->query($query_updateService);
+        $updateService->bind(':Date_in', $Date_in);
+        $updateService->bind(':Pick_up', $Pick_up);
+        $updateService->bind(':Drop_off', $Drop_off);
+        $updateService->bind(':Pick_up_time', $Pick_up_time);
+        $updateService->bind(':Drop_off_time', $Drop_off_time);
+        $updateService->bind(':StatusId', $StatusId);
+        $updateService->bind(':ServicesId', $ServicesId);
+        $updateService->execute();
+    }
 }
 
 ?>
@@ -76,6 +103,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <button type="button" name="button">Add Service</button></a>
                 <a href="<?php echo "flightsConfirmation.php?BookingsId=$BookingsId";?>" target="_blank">
                     <button type="button" name="button">Flights Confirmation</button></a>
+                <a href="<?php echo "transfersConfirmation.php?BookingsId=$BookingsId";?>" target="_blank">
+                    <button type="button" name="button">Transfers Confirmation</button></a>
             </section>
             <main>
                 <h3>Services in this Booking</h3>
@@ -118,9 +147,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "</select></li>";
                         echo "<li>Cfm: &nbsp; <input type=\"text\" name=\"Cfm_no\" value=\"$row_Flights->Cfm_no\"><li>";
                         echo "<li><button type=\"submit\">Update</button>";
-                        echo "<a href=\"editServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<a href=\"editServices_booking.php?Services_bookingId=$row_Flights->ServicesId\">";
                         echo "<button type=\"button\">Edit</button></a>";
-                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=$row_Flights->ServicesId\">";
                         echo "<button type=\"button\">Delete</button></a></li>";
                         echo "</form>";
                         echo "</div><!-- end of grid-item -->";
@@ -179,17 +208,70 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<li>Cfm: &nbsp; <input type=\"text\" name=\"Cfm_no\" value=\"$row_hotels->Cfm_no\"><li>";
                         echo "<li><a href=\"hotelVoucher.php?Services_bookingId=$row_hotels->ServicesId\" target=\"_blank\">Hotel Voucher</a></li>";
                         echo "<li><button type=\"submit\">Update</button>";
-                        echo "<a href=\"editServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<a href=\"editServices_booking.php?Services_bookingId=$row_hotels->ServicesId\">";
                         echo "<button type=\"button\">Edit</button></a>";
-                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=ServicesId\">";
+                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=$row_hotels->ServicesId\">";
                         echo "<button type=\"button\">Delete</button></a></li>";
                         echo "</select></li>";
                         echo "</ul>";
                         echo "</form>";
-                        echo "</div><!-- div-item -->";
+                        echo "</div><!-- end of grid-item -->";
                     }
                     ?>
                 </div><!-- end of grid-div -->
+                <h4>Land Transfers</h4>
+                <!-- grid-div -->
+                <div class="grid-div">
+                    <?php
+                    $rows_transfers = getRows_Services('3', $BookingsId);
+                    foreach ($rows_transfers as $row_transfers) {
+                        echo "<div class=\"grid-item\"><!-- grid-item -->";
+                        echo "<form action=\"#\" method=\"post\">";
+                        echo "<ul>";
+                        echo "<li style=\"display:none;\"><input type=\"number\" name=\"ServicesId\" value=\"$row_transfers->ServicesId\"></li>";
+                        echo "<li style=\"display:none;\"><input type=\"number\" name=\"ServiceTypeId\" value=\"3\"></li>";
+                        echo "<li>".$row_transfers->SupplierName."</li>";
+                        echo "<li>Date: <input type=\"date\" name=\"Date_in\" value=\"$row_transfers->Date_in\"></li>";
+                        echo "<li>".$row_transfers->Service." ($row_transfers->Additional)"."</li>";
+                        echo "<li>Pick-up: <input type=\"text\" name=\"Pick_up\" value=\"$row_transfers->Pick_up\"> @ ";
+                        echo "<input type=\"time\" name=\"Pick_up_time\" value=\"$row_transfers->Pick_up_time\"></li>";
+                        echo "<li>Drop-off: <input type=\"text\" name=\"Drop_off\" value=\"$row_transfers->Drop_off\"> @ ";
+                        echo "<input type=\"time\" name=\"Drop_off_time\" value=\"$row_transfers->Drop_off_time\"></li>";
+
+                        $rows_ServiceStatus = getRows_ServiceStatus(NULL);
+                        echo "<li>Status: &nbsp; <select name=\"StatusId\">";
+                        if ($row_transfers->StatusId == "" || $row_transfers->StatusId == NULL || empty($row_transfers->StatusId)) {
+                            echo "<option value=\"\">Select</option>";
+                            foreach ($rows_ServiceStatus as $row_ServiceStatus){
+                                echo "<option value=\"$row_ServiceStatus->Id\">$row_ServiceStatus->Code</option>";
+                            }
+                        }
+                        else {
+                            foreach ($rows_ServiceStatus as $row_ServiceStatus){
+                                if ($row_ServiceStatus->Id == $row_transfers->StatusId) {
+                                    echo "<option value=\"$row_ServiceStatus->Id\" selected>$row_ServiceStatus->Code</option>";
+                                }
+                                else {
+                                    echo "<option value=\"$row_ServiceStatus->Id\">$row_ServiceStatus->Code</option>";
+                                }
+                            }
+                        }
+                        echo "</select></li>";
+
+                        echo "<li><button type=\"submit\">Update</button>";
+
+                        echo "<a href=\"editServices_booking.php?Services_bookingId=$row_transfers->ServicesId\">";
+                        echo "<button type=\"button\">Edit</button></a>";
+
+                        echo "<a href=\"deleteServices_booking.php?Services_bookin$row_transfers->ServicesId\">";
+                        echo "<button type=\"button\">Delete</button></a></li>";
+                        echo "</ul>";
+                        echo "</form>";
+                        echo "</div><!-- end of grid-item -->";
+                    }
+                    ?>
+                </div>
+                <!-- end of grid-div -->
             </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html";?>

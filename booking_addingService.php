@@ -23,7 +23,6 @@ foreach ($rows_Suppliers as $row_Suppliers) {
 
 }
 
-
 //getting Date_out
 switch ($ServiceTypeId) {
     case '1':
@@ -51,13 +50,24 @@ switch ($ServiceTypeId) {
             include "includes/header.html";
             include "includes/nav.html";
             include "includes/menu_bookings.html";
-            if ($ServiceTypeId == 1) {
-                include "includes/booking_addingServiceAC.php";
-            }
-            elseif ($ServiceTypeId == 2) {
-                include "includes/booking_addingServiceFL.php";
-            }
 
+            switch ($ServiceTypeId) {
+                case '1':
+                    include "includes/booking_addingServiceAC.php";
+                    break;
+
+                case '2':
+                    include "includes/booking_addingServiceFL.php";
+                    break;
+
+                case '3':
+                    include "includes/booking_addingServiceLT.php";
+                    break;
+
+                default:
+                    // code...
+                    break;
+            }
             ?>
         </div><!-- end of content -->
         <?php include "includes/footer.html"; ?>
