@@ -266,7 +266,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<a href=\"editServices_booking.php?Services_bookingId=$row_transfers->ServicesId\">";
                         echo "<button type=\"button\">Edit</button></a>";
 
-                        echo "<a href=\"deleteServices_booking.php?Services_bookin$row_transfers->ServicesId\">";
+                        echo "<a href=\"deleteServices_booking.php?Services_bookingId=$row_transfers->ServicesId\">";
                         echo "<button type=\"button\">Delete</button></a></li>";
                         echo "</ul>";
                         echo "</form>";

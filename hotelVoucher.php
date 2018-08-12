@@ -35,31 +35,80 @@ foreach ($rows_Bookings as $row_Bookings) {
                         </span>
                     </li>
                     <li>
-                        Address: &nbsp;
+                        Address:&nbsp;
                         <?php echo $row_hotels->SupplierAddress; ?>
                     </li>
                     <li>
-                        City: &nbsp;
+                        City:&nbsp;
                         <?php echo $row_hotels->City; ?>
                     </li>
                     <li>
-                        Phone: &nbsp;
+                        Phone:&nbsp;
                         <?php echo $row_hotels->SupplierPhone; ?>
                     </li>
                     <br>
                     <li>
-                        Booking Reference: &nbsp;
+                        Booking Reference:&nbsp;
                         <?php echo $row_Bookings->Reference; ?>
                     </li>
                     <li>
-                        Booking Name: &nbsp;
+                        Booking Name:&nbsp;
                         <span style="font-weight: bold;">
                             <?php echo $row_Bookings->BookingsName; ?>
                         </span>
                     </li>
                     <li>
-                        Room(s): &nbsp;
-                        <?php // TODO RESUME HERE ?>
+                        Room(s):&nbsp;
+                        <?php
+                        if ($row_hotels->Sgl != 0) {
+                            echo $row_hotels->Sgl." Sgl, ";
+                        }
+
+                        if ($row_hotels->Dbl != 0) {
+                            echo $row_hotels->Dbl." Dbl, ";
+                        }
+
+                        if ($row_hotels->Twn != 0) {
+                            echo $row_hotels->Twn." Twn, ";
+                        }
+
+                        if ($row_hotels->Tpl != 0) {
+                            echo $row_hotels->Tpl." Tpl ";
+                        }
+                        ?>
+                    </li>
+                    <li>
+                        Room Type:&nbsp;
+                        <?php echo $row_hotels->Service; ?>
+                    </li>
+                    <li>
+                        Check-in:&nbsp;
+                        <span style="font-weight: bold;">
+                        <?php echo date('d-M-Y', strtotime($row_hotels->Date_in)); ?>
+                        </span>
+                        &nbsp;
+                        Check-out:&nbsp;
+                        <span style="font-weight: bold;">
+                        <?php echo date('d-M-Y', strtotime($row_hotels->Date_out)); ?>
+                        </span>
+                    </li>
+                    <li>
+                        Night(s):
+                        &nbsp;
+                        <?php echo $row_hotels->Quantity; ?>
+                    </li>
+                    <li>
+                        Confirmation #:
+                        <span style="font-weight: bold;">
+                            <?php echo $row_hotels->Cfm_no; ?>
+                        </span>
+                    </li>
+                    <br>
+                    <br>
+                    <li>
+                        <span style="font-style: italic; text-align: center;">
+                            Link In Myanmar Travel will settle room charges inclusive of breakfast only! All the incidental charges would be settled by the guest.
+                        </span>
                     </li>
                 </ul>
             </main>
