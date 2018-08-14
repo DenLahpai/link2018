@@ -203,7 +203,7 @@ main ul li {
 }
 
 .grid-div div:nth-child(odd){
-    background: silver ;
+    background: lightgray ;
     color: black;
 }
 
@@ -222,7 +222,6 @@ main ul li {
 }
 
 .grid-item button {
-    background-color: silver;
     color: black;
     padding: 6px 12px;
 }
