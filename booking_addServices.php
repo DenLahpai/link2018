@@ -100,17 +100,19 @@ if (isset($_REQUEST['buttonSubmit'])) {
                     if (!empty($rows_Service)) {
                         foreach ($rows_Service as $row_Service) {
                             echo "<div class=\"grid-item\">";
-                            // echo "<form action=\"booking_addingService.php\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
+                            echo "<form action=\"booking_addingService.php?BookingsId=$BookingsId&CostId=$row_Service->Id\" method=\"post\"  id=\"secondForm$row_Service->Id\">";
                             echo "<ul>";
-                            echo "<li><input type=\"number\" name=\"CostId\"  id=\"CostId\" value=\"$row_Service->Id\"></li>";
-                            echo "<li><input type=\"number\" name=\"BookingsId\" id=\"BookingsId\" value=\"$BookingsId\"></li>";
+                            echo "<li class=\"hidden\"><input type=\"date\" name=\"Date_in\" id=\"Date_in\" value=\"$Date_in\"></li>";
+                            echo "<li class=\"hidden\"><input type=\"number\" name=\"Quantity\" id=\"Quantity\" value=\"$Quantity\"></li>";
+                            echo "<li class=\"hidden\"><input type=\"number\" name=\"Markup\" id=\"Markup\" value=\"$Markup\"></li>";
+                            echo "<li class=\"hidden\"><input type=\"number\" name=\"CostId\"  id=\"CostId\" value=\"$row_Service->Id\"></li>";
                             echo "<li>".$row_Service->SuppliersName."</li>";
                             echo "<li>".$row_Service->Service."</li>";
                             echo "<li>".$row_Service->Additional."</li>";
                             echo "<li>";
-                            echo "<button type=\"button\" name=\"buttonAdd\" onclick=\"submitForms();\">Add</button></li>";
+                            echo "<button type=\"submit\" name=\"buttonAdd\">Add</button></li>";
                             echo "</ul>";
-                            // echo "</form>";
+                            echo "</form>";
                             echo "</div>";
                         }
                     }
@@ -119,13 +121,5 @@ if (isset($_REQUEST['buttonSubmit'])) {
             </main>
         </div><!-- end of content -->
         <?php include "includes/footer.html";?>
-    </body>
-    <script type="text/javascript">
-        function submitForms() {
-            var BookingsId = document.getElementById("BookingsId").value;
-            var CostId = document.getElementById("CostId").value;
-            document.getElementById("form1").action = "booking_addingService.php?BookingsId="+BookingsId+"&CostId="+CostId;
-            document.getElementById("form1").submit();
-        }
-    </script>
+    </body>    
 </html>
