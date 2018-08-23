@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($created2 == NULL) {
         $created2 = date("Y-m-d", strtotime($created1.'+'.'1'.'days'));
     }
-    $search = $_REQUEST['search'];
+    $search = trim($_REQUEST['search']);
     $rows_Bookings = get_report_bookings();
 }
 

@@ -1,7 +1,18 @@
 <?php
 require_once "functions.php";
 $search = NULL;
-// TODO summitting the form 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $CorporatesId = $_REQUEST['CorporatesId'];
+    $SuppliersId = $_REQUEST['SuppliersId'];
+    $Date_in1 = $_REQUEST['Date_in1'];
+    $Date_in2 = $_REQUEST['Date_in2'];
+    if ($Date_in2 == NULL) {
+        $Date_in2 = $Date_in1;
+    }
+    $ServiceTypeId = $_REQUEST['ServiceTypeId'];
+    $search = trim($_REQUEST['search']);
+    // $rows_Services = get_report_Services_booking();
+}
 
 ?>
 <!DOCTYPE html>
@@ -39,31 +50,18 @@ $search = NULL;
                                 }
                                 ?>
                             </select>
-                            <label for="Status">Status:</label>
-                            <select id="Status" name="Status">
+                            <label for="SuppliersId">Suppliers:</label>
+                            <select id="SuppliersId" name="SuppliersId">
+                                <option value="">Select One</option>
                                 <?php
-                                switch ($Status) {
-                                    case 'Confirmed':
-                                        echo "<option value=\"Confirmed\" selected>Confirmed</option>";
-                                        echo "<option value=\"Cancelled\">Cancelled</option>";
-                                        echo "<option value=\"Not Confirmed\">Not Confirmed</option>";
-                                        break;
-                                    case 'Not Confirmed':
-                                        echo "<option value=\"Confirmed\">Confirmed</option>";
-                                        echo "<option value=\"Not Confirmed\" selected>Not Confirmed</option>";
-                                        echo "<option value=\"Cancelled\">Cancelled</option>";
-                                        break;
-                                    case 'Cancelled':
-                                        echo "<option value=\"Confirmed\">Confirmed</option>";
-                                        echo "<option value=\"Not Confirmed\">Not Confirmed</option>";
-                                        echo "<option value=\"Cancelled\" selected>Cancelled</option>";
-                                        break;
-                                    default:
-                                        echo "<option value=\"\">Select One</option>";
-                                        echo "<option value=\"Confirmed\">Confirmed</option>";
-                                        echo "<option value=\"Cancelled\">Cancelled</option>";
-                                        echo "<option value=\"Not Confirmed\">Not Confirmed</option>";
-                                        break;
+                                $rows_Suppliers = getRows_Suppliers($SupplierId);
+                                foreach ($rows_Suppliers as $row_Suppliers) {
+                                    if ($row_Suppliers->Id == $SuppliersId) {
+                                        echo "<option value=\"$row_Suppliers->Id\" selected>".$row_Suppliers->Name."</option>";
+                                    }
+                                    else {
+                                        echo "<option value=\"$row_Suppliers->Id\">".$row_Suppliers->Name."</option>";
+                                    }
                                 }
                                 ?>
                             </select>
@@ -75,6 +73,22 @@ $search = NULL;
                             <input type="date" name="Date_in2" value="<?php echo $Date_in2; ?>">
                         </li>
                         <li>
+                            <label for="ServiceTypeId">Service Type:</label>
+                            <select id="ServceiTypeId" name="ServiceTypeId">
+                                <option value="">Select One</option>
+                                <?php
+                                $rows_ServiceType = getRows_ServiceType(NULL);
+                                foreach ($rows_ServiceType as $row_ServiceType) {
+                                    if ($row_ServiceType->Id == $ServiceTypeId) {
+                                        echo "<option value=\"$row_ServiceType->Id\" selected>".$row_ServiceType->Type."</option>";
+                                    }
+                                    else {
+                                        echo "<option value=\"$row_ServiceType->Id\">".$row_ServiceType->Type."</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
+                            &nbsp;
                             <input type="text" name="search" placeholder="Search" value="<?php echo $search; ?>">
                         </li>
                         <li style="text-align: center;">
@@ -85,5 +99,6 @@ $search = NULL;
             </section>
         </div>
         <!-- end of content -->
+        <?php include "includes/footer.html"; ?>
     </body>
 </html>
