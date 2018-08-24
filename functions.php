@@ -536,6 +536,7 @@ function getRows_Services($ServiceTypeId, $BookingsId) {
         ON Services_booking.StatusId = ServiceStatus.Id
         WHERE Cost.ServiceTypeId = :ServiceTypeId
         AND Services_booking.BookingsId = :BookingsId
+        ORDER BY Services_booking.Date_in
     ;";
     $database->query($query);
     $database->bind(':ServiceTypeId', $ServiceTypeId);
