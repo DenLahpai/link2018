@@ -2531,7 +2531,208 @@ function get_report_Services_booking() {
         $database->bind(':Date_in1', $Date_in1);
         $database->bind(':Date_in2', $Date_in2);
     }
-    // TODO resume here
+    elseif ($CorporatesId == NULL && $SuppliersId != NULL && $Date_in1 == NULL && $search != NULL) {
+        $num = '0101';
+        $query = "SELECT
+            Bookings.Reference AS Reference,
+            Bookings.Name AS BookingsName,
+            Bookings.Pax AS Pax,
+            Bookings.Status AS BookingsStatus,
+            Corporates.Name AS CoporatesName,
+            Suppliers.Name AS SuppliersName,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_Out AS Date_Out,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            ServiceStatus.Code AS ServiceStatusCode,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.Cfm_no AS Cfm_no
+            FROM Services_booking
+            LEFT OUTER JOIN Bookings
+            ON Services_booking.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates
+            ON Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+            WHERE Suppliers.Id = :SuppliersId
+            AND CONCAT(
+            Bookings.Reference,
+            Bookings.Name,
+            Corporates.Name,
+            Suppliers.Name,
+            Cost.Service,
+            Cost.Additional,
+            Services_booking.Flight_no,
+            Services_booking.Pick_up,
+            Services_booking.Drop_off
+            ) LIKE :mySearch
+        ;";
+        $database->query($query);
+        $database->bind(':SupplierId', $SuppliersId);
+        $database->bind(':mySearch', $mySearch);
+    }
+    elseif ($CorporatesId == NULL && $SuppliersId != NULL && $Date_in1 != NULL && $search == NULL) {
+        $num = '0110';
+        $query = "SELECT
+            Bookings.Reference AS Reference,
+            Bookings.Name AS BookingsName,
+            Bookings.Pax AS Pax,
+            Bookings.Status AS BookingsStatus,
+            Corporates.Name AS CoporatesName,
+            Suppliers.Name AS SuppliersName,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_Out AS Date_Out,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            ServiceStatus.Code AS ServiceStatusCode,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.Cfm_no AS Cfm_no
+            FROM Services_booking
+            LEFT OUTER JOIN Bookings
+            ON Services_booking.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates
+            ON Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+            WHERE Services_booking.Date_in >= :Date_in1
+            AND Services_booking.Date_in <= :Date_in2
+            AND Suppliers.Id = :SuppliersId
+        ;";
+        $database->query($query);
+        $database->bind(':Date_in1', $Date_in1);
+        $database->bind(':Date_in2', $Date_in2);
+        $database->bind(':SuppliersId', $SuppliersId);
+    }
+    elseif ($CorporatesId != NULL && $SuppliersId == NULL && $Date_in1 == NULL && $search != NULL) {
+        $num = '1001';
+        $query = "SELECT
+            Bookings.Reference AS Reference,
+            Bookings.Name AS BookingsName,
+            Bookings.Pax AS Pax,
+            Bookings.Status AS BookingsStatus,
+            Corporates.Name AS CoporatesName,
+            Suppliers.Name AS SuppliersName,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_Out AS Date_Out,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            ServiceStatus.Code AS ServiceStatusCode,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.Cfm_no AS Cfm_no
+            FROM Services_booking
+            LEFT OUTER JOIN Bookings
+            ON Services_booking.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates
+            ON Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+            WHERE Corporates.Id = :CorporatesId
+            AND CONCAT(
+            Bookings.Reference,
+            Bookings.Name,
+            Corporates.Name,
+            Suppliers.Name,
+            Cost.Service,
+            Cost.Additional,
+            Services_booking.Flight_no,
+            Services_booking.Pick_up,
+            Services_booking.Drop_off
+            ) LIKE :mySearch
+        ;";
+        $database->query($query);
+        $database->bind(':CorporatesId', $CorporatesId);
+        $database->bind(':mySearch', $mySearch);
+    }
+    elseif ($CorporatesId != NULL && $SuppliersId == NULL && $Date_in1 != NULL && $search == NULL) {
+        $num = '1010';
+        $query = "SELECT
+            Bookings.Reference AS Reference,
+            Bookings.Name AS BookingsName,
+            Bookings.Pax AS Pax,
+            Bookings.Status AS BookingsStatus,
+            Corporates.Name AS CoporatesName,
+            Suppliers.Name AS SuppliersName,
+            Cost.Service AS Service,
+            Cost.Additional AS Additional,
+            Services_booking.Date_in AS Date_in,
+            Services_booking.Date_Out AS Date_Out,
+            Services_booking.Sgl AS Sgl,
+            Services_booking.Dbl AS Dbl,
+            Services_booking.Twn AS Twn,
+            Services_booking.Tpl AS Tpl,
+            Services_booking.Quantity AS Quantity,
+            Services_booking.Flight_no AS Flight_no,
+            Services_booking.Pick_up AS Pick_up,
+            Services_booking.Drop_off AS Drop_off,
+            Services_booking.Pick_up_time AS Pick_up_time,
+            Services_booking.Drop_off_time AS Drop_off_time,
+            ServiceStatus.Code AS ServiceStatusCode,
+            Services_booking.Spc_rq AS Spc_rq,
+            Services_booking.Cfm_no AS Cfm_no
+            FROM Services_booking
+            LEFT OUTER JOIN Bookings
+            ON Services_booking.BookingsId = Bookings.Id
+            LEFT OUTER JOIN Corporates
+            ON Bookings.CorporatesId = Corporates.Id
+            LEFT OUTER JOIN Cost
+            ON Services_booking.CostId = Cost.Id
+            LEFT OUTER JOIN Suppliers
+            ON Cost.SupplierId = Suppliers.Id
+            LEFT OUTER JOIN ServiceStatus
+            ON Services_booking.StatusId = ServiceStatus.Id
+            WHERE Services_booking.Date_in >= :Date_in1
+            AND Services_booking.Date_in <= :Date_in2
+            AND Corporates.Id = :CorporatesId
+        ;";
+        $database->query($query);
+        $database->bind(':Date_in1', $Date_in1);
+        $database->bind(':Date_in2', $Date_in2);
+        $database->bind(':CorporatesId', $CorporatesId);
+    }
+    // TODO
+
     echo $num;
     return $database->resultset();
 }
