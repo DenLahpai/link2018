@@ -107,7 +107,7 @@ if (isset($_REQUEST['buttonSubmit'])) {
                     <?php
                     $rows_Cities = getRows_Cities(NULL);
                     foreach ($rows_Cities as $row_Cities) {
-                        echo "<option value=\"$row_Cities->City\">$row_Cities->City"." - "."$row_Cities->CountryCode</option>";
+                        echo "<option value=\"$row_Cities->City\">$row_Cities->AirportCode." - ".$row_Cities->City"." - "."$row_Cities->CountryCode</option>";
                     }
                     ?>
                 </select>&nbsp;
@@ -117,7 +117,7 @@ if (isset($_REQUEST['buttonSubmit'])) {
                     <?php
                     $rows_Cities = getRows_Cities(NULL);
                     foreach ($rows_Cities as $row_Cities) {
-                        echo "<option value=\"$row_Cities->City\">$row_Cities->AirportCode"." - "."$row_Cities->City</option>";
+                        echo "<option value=\"$row_Cities->City\">$row_Cities->AirportCode"." - "."$row_Cities->City"." - "."$row_Cities->CountryCode</option>";
                     }
                     ?>
                 </select>&nbsp;
