@@ -47,6 +47,10 @@ foreach ($rows_Bookings as $row_Bookings) {
                     ?>
                     </tbody>
                 </table>
+                <p style="text-align: center;">
+                    Contacts for airport transfer in Nay Pyi Taw: <br>
+                    Ms. May Thet Htar Aung, +95 9797116878
+                </p>
             </main>
         </div>
         <!-- end of content -->
